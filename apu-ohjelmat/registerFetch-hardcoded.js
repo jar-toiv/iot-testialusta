@@ -2,6 +2,7 @@
 import { promisify } from 'node:util'
 import { execFile } from 'node:child_process'
 import fs from 'node:fs/promises'
+import { stderr } from 'node:process'
 
 const pollString = [
   '192.168.50.46',
@@ -41,6 +42,7 @@ const pollData = async () => {
   try {
     const { stdout, stderr } = await execFilePromise('mbpoll', pollString)
 
+    if (stderr) throw new Error(`from STDERR: ${stderr}`)
     const regexp = /\[0x(\w+)\]:\s*(-?\d+)/g
     let matches = [...stdout.matchAll(regexp)]
     for (const match of matches) {
@@ -48,7 +50,7 @@ const pollData = async () => {
     }
     decodeInt32(registerVoltage)
   } catch (err) {
-    console.log('Error polling the meter', stderr)
+    console.log('Error polling the meter', err)
   }
 }
 
@@ -67,7 +69,7 @@ const saveAsJSON = async (register) => {
   const json = JSON.stringify(register, null, 2)
 
   try {
-    await fs.writeFile('voltageRegisterJson.json', json)
+    await fs.writeFile('apu-ohjelmat/voltageRegisterJson.json', json)
 
     console.log('The file has been saved!')
   } catch (err) {
