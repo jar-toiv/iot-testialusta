@@ -6,10 +6,7 @@
   "type": "int32",
   "weight": 10,
   "success": {
-    "rawDec": [
-      "2340",
-      "0"
-    ],
+    "rawDec": ["2340", "0"],
     "value": 234
   },
   "error": {
