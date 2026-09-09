@@ -1,6 +1,6 @@
 # Pi to RTC Wiring
 
-- **Revision:** 4
+- **Revision:** 6
 - **Date:** 2026-09-09
 - **Related:** ADR-0001 (RTC decision, already approved, not modified here),
   `docs/adr/0004-reading-envelope-quality.md` (dual timestamp this RTC
@@ -68,8 +68,8 @@ unfinished connection.
 - [x] Pin mapping filled in above, sourced from pinout.xyz
 - [x] Pin mapping checked against the physical header (as-built harness
       confirmed 2026-09-09)
-- [ ] `i2cdetect` shows the DS3231 at its expected address on the Pi
-- [ ] Time survives a power cycle with no network present
+- [x] `i2cdetect` shows the DS3231 at its expected address on the Pi
+- [x] Time survives a power cycle with no network present
 
 ## Revision log
 
@@ -79,3 +79,5 @@ unfinished connection.
 | 2 | 2026-09-09 | Pin mapping filled in and sourced (pinout.xyz), pull-up note added |
 | 3 | 2026-09-09 | Updated to as-built: custom crimped harness, two Dupont housings, SQW/32K run separately and unterminated |
 | 4 | 2026-09-09 | Confirmed: SQW/32K are deliberately floating and isolated, not an open item |
+| 5 | 2026-09-09 | `i2cdetect -y 1` confirmed: `0x68` (DS3231) and `0x57` (onboard AT24C32 EEPROM, unrelated to RTC function). Third address `0x5f` also present, identified from chip markings (`24C32N`) plus the 24CSxx-family datasheet as the EEPROM's read-only ID page (base address + `0x08`), not a third device — no action needed |
+| 6 | 2026-09-09 | Power-cycle-without-network test passed, twice: `dtoverlay=i2c-rtc,ds3231` added to `/boot/firmware/config.txt`, `rtc-ds1307` bound as `rtc0`. Kernel log both times: `rtc-ds1307 1-0068: setting system clock to <correct UTC time>` completed before any network/NTP activity (first run: 64s before `systemd-timesyncd`'s initial sync; second run, timed 2 min power-off + 30 s power-on before reconnecting network: no NTP line present at all in the check, network wasn't even up yet) |
