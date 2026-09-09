@@ -54,7 +54,7 @@ suunniteltiin.
 **Huonot / hinta**
 - Yksi ylimääräinen komponentti epäonnistumisketjussa
 - PoE ei käytössä vaikka laite tukee sitä — molemmat kaapelit on jo
-  varattu: Eth Pi:lle, RS-485 ADR-0005:n vikaruiskutuspaneeliin. Virta
+  varattu: Eth Pi:lle, RS-485 ADR-0005:n vian tuottopaneeliin. Virta
   tulee erikseen 24 V muuntajalta (ADR-0009).
 - Vaatii Modbus RTU -orjan väylälle. Ratkaistu: hankittu EM111 on
   `EM111-DIN.AV8.1.X.S1.X`.

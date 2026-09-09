@@ -18,7 +18,7 @@ Tausta: sähköalan tausta, IoT/pilvipuoli opeteltavana.
 Useimmat harrasteprojektit demoavat toimivaa polkua. Tämä demoaa myös
 **epäonnistuvaa** polkua tarkoituksella:
 
-- Fyysinen vikaruiskutuspaneeli (kytkinrima: A/B ristiin, päätevastus
+- Fyysinen vian tuottopaneeli (kytkinrima: A/B ristiin, päätevastus
   irti, yhteinen maa poikki...)
 - Ohjelmallinen verkkovikojen simulointi (`tc netem`) ja ristiintestaus
   oikeaa mobiiliverkkoa vasten
@@ -66,7 +66,7 @@ Kerrokset: **ajuri → normalisointi → laatuportti → puskuri → julkaisu.**
 docs/
   PROJEKTIN-TILA.md   ← lähtökohta uuteen työhön, avoimet kysymykset
   adr/                ← arkkitehtuuripäätökset, yksi tiedosto per päätös
-  vikaluettelo.md     ← havaitut ja ruiskutetut viat, mittarit
+  vikaluettelo.md     ← havaitut ja tuotetut viat, mittarit
 src/                  ← ajurit, pipeline (TypeScript)
 hardware/             ← kytkentäkaaviot, hankintalista
 ```
@@ -86,7 +86,7 @@ konteksti, vaihtoehdot, päätös, seuraukset, todennus.
 
 - [ ] Suunnittelu ja laitevalinnat, ADR-0001…0018
 - [ ] Modbus-ketju pöydällä (mittari → Waveshare → kanta)
-- [ ] Kotelointi ja vikaruiskutuspaneeli
+- [ ] Kotelointi ja vian tuottopaneeli
 - [ ] CN105-luku ilmalämpöpumpusta (vain luku)
 - [ ] Etäkohteen käyttöönotto
 - [ ] Toistotila demoa varten
