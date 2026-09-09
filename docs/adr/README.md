@@ -79,11 +79,11 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | [0002](0002-Modbus-RTU-ja-M-bus-orja.md) | Kaksi eri valmistajaa yhden sijaan | Hyväksytty |
 | [0003](0003-omat-parserit.md) | Omat protokollaparserit, ei valmista yhdyskäytävää | Ehdotettu |
 | [0004](0004-reading-envelope-quality.md) | Normalisoitu mittausenvelooppi ja laatukenttä | Ehdotettu |
-| [0005](0005-fyysinen-vikaruiskutus.md) | Fyysinen vikaruiskutuspaneeli | Ehdotettu |
+| [0005](0005-fyysinen-vian-tuotto.md) | Fyysinen vian tuottopaneeli | Ehdotettu |
 | [0006](0006-verkkovikojen-simulointi.md) | Verkkovikojen simulointi netemillä + ristiintestaus oikeaa linkkiä vasten | Ehdotettu |
 | [0007](0007-ei-erillista-4g-reititinta.md) | Ei erillistä 4G-reititintä ensimmäisessä vaiheessa | Ehdotettu |
 | [0008](0008-toistotila.md) | Toistotila demon riippumattomuuden takaamiseksi | Ehdotettu |
-| [0009](0009-kotelo-ja-sahkonsyotto.md) | Ryhmäkeskus koteloksi, ei pistokemuuntajia sisällä | Ehdotettu |
+| [0009](0009-kotelo-ja-sahkonsyotto.md) | Ryhmäkeskus koteloksi, ei pistokemuuntajia sisällä | Hyväksytty |
 | [0010](0010-waveshare-modbus-tcp.md) | Waveshare-sarjapalvelin Modbus TCP -tasoksi | Hyväksytty |
 | [0011](0011-cn105-takaisinmallinnettu.md) | CN105 takaisinmallinnettuna protokollana standardin vastaparina | Ehdotettu |
 | [0012](0012-wm-bus-rajaus.md) | wM-Bus-vastaanoton eettinen ja oikeudellinen rajaus | Ehdotettu |
@@ -97,5 +97,5 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 
 ## Liittyvät dokumentit
 
-- [`../vikaluettelo.md`](../vikaluettelo.md) — havaittujen ja ruiskutettujen vikojen rekisteri
+- [`../vikaluettelo.md`](../vikaluettelo.md) — havaittujen ja tuotettujen vikojen rekisteri
 - [`0000-template.md`](0000-template.md) — pohja uudelle ADR:lle
