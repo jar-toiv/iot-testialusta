@@ -1,6 +1,6 @@
 # Enclosure Wiring
 
-- **Revision:** 1
+- **Revision:** 2
 - **Date:** 2026-09-09
 - **Related:** ADR-0009 (parts and branch-topology decision),
   `docs/bringup-enclosure-assembly.md`
@@ -19,6 +19,7 @@
 | Rev | Date | Change |
 |---|---|---|
 | 1 | 2026-09-09 | First version: main circuit, 5V and 24V DC circuits |
+| 2 | 2026-09-09 | Verification completed: checked against photo, checked against physical unit breaker by breaker, terminal numbers confirmed against datasheet/nameplate |
 
 ## Main circuit (230V AC)
 
