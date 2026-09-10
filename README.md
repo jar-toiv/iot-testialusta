@@ -68,8 +68,8 @@ toistaiseksi vain scaffoldin. Modbus RTU ja TCP on todennettu penkillä
 
 ```
 docs/
-  PROJEKTIN-TILA.md   ← lähtökohta uuteen työhön, avoimet kysymykset
   adr/                ← arkkitehtuuripäätökset, yksi tiedosto per päätös
+  design/             ← feature-speksit (requirements, design, tasks)
   vikaluettelo.md     ← havaitut ja tuotetut viat, mittarit
 src/                  ← ajurit, pipeline (TypeScript)
 hardware/             ← kytkentäkaaviot, hankintalista

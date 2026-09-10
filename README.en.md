@@ -71,8 +71,8 @@ register read through the Waveshare gateway).
 
 ```
 docs/
-  PROJEKTIN-TILA.md   ← starting point for new work, open questions
   adr/                ← architecture decisions, one file per decision
+  design/             ← feature specs (requirements, design, tasks)
   vikaluettelo.md     ← observed and injected faults, metrics
 src/                  ← drivers, pipeline (TypeScript)
 hardware/             ← wiring diagrams, shopping list

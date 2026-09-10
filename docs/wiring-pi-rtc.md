@@ -43,9 +43,8 @@ Two Dupont housings:
 - `SQW` and `32K` run out as individual single-pin Dupont jumpers,
   separate from the 5-position block, not yet plugged into anything.
 
-The whole assembly sits inside the Pi's own aluminium case (the
-metal enclosure + thermal pads already noted for the Pi in
-`docs/PROJEKTIN-TILA.md`), not inside the ADR-0009 distribution
+The whole assembly sits inside the Pi's own aluminium case (metal
+enclosure + thermal pads, ADR-0001), not inside the ADR-0009 distribution
 enclosure.
 
 ```mermaid
