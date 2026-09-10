@@ -75,7 +75,7 @@ reading.
 | Baud / parity / stop bits | 9600 bps, 8 data bits, no parity, 2 stop bits, no flow control | Vircom / web UI | 2026-08-29 |
 | TCP port | `502` | Vircom / web UI | 2026-08-29 |
 | Work mode | TCP server | Vircom / web UI | 2026-08-29 |
-| Modbus gateway type | `auto query storage type` (current setting, one of 5 options, see `configuration.md`) | Vircom, Advanced Settings → More Advanced Settings | 2026-08-29 |
+| Modbus gateway type | `auto query storage type` (one of 5 options, see `configuration.md`) | Vircom, Advanced Settings → More Advanced Settings | 2026-08-29 |
 | Firmware version | `V1.452` | Vircom / web UI | 2026-08-29 |
 
 ## As-left
@@ -83,7 +83,7 @@ reading.
 | Field | Set to | Reason | Date |
 |---|---|---|---|
 | Stop bits | `1` (was `2`) | Match meter's U3 (`bringup-modbus-bench.md`) | 2026-08-29 |
-| Modbus gateway type | `Simple modbus tcp to rtu` (was `Auto query storage type`) | Non-storage for now so bus faults surface as `TIMEOUT` instead of stale cached reads. | 2026-08-29 |
+| Modbus gateway type | `Simple modbus tcp to rtu` (was `Auto query storage type`) | Non-storage for now so bus faults surface as `TIMEOUT` instead of stale cached reads. Found back in storage mode 2026-09-10, likely not saved as default; set again, survives power-cycle. | 2026-09-10 |
 | Web login password | Set (value not recorded in git, see password manager) | Was unset at factory, open access risk | 2026-08-30 |
 
 ## Quirks
