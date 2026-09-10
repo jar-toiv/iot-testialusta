@@ -1,5 +1,6 @@
-/memos
+# Own documents
 /instructions
+/docs/bringup*
 
 # Claude — personal configuration and notes, not project code.
 # Hidden from git, but still searchable: see .ignore
