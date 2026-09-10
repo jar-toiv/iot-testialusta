@@ -47,18 +47,22 @@ Kerrokset: **ajuri → normalisointi → laatuportti → puskuri → julkaisu.**
 
 | Protokolla | Rooli tässä projektissa | Tila |
 |---|---|---|
-| Modbus RTU | Energiamittari, RS-485-anturi | 🟢 |
-| Modbus TCP | Waveshare-yhdyskäytävä | 🟢 |
-| M-Bus | Erillinen mittari, oma parseri | 🟡 |
-| wM-Bus | 868 MHz, vain omat mittarit | 🟡 |
-| CN105 | Ilmalämpöpumpun tilan luku | 🟡 |
+| Modbus RTU | Energiamittari, RS-485-anturi | 🟡 |
+| Modbus TCP | Waveshare-yhdyskäytävä | 🟡 |
+| M-Bus | Erillinen mittari, oma parseri | ⚪ |
+| wM-Bus | 868 MHz, vain omat mittarit | ⚪ |
+| CN105 | Ilmalämpöpumpun tilan luku | ⚪ |
 | 1-Wire | Lämpötilavahti | ⚪ |
 | Analogia | Virtapihti | ⚪ |
 | S0-pulssi | Varareitti | ⚪ |
 | LoRa (P2P) | Radio-osoitus | ⚪ |
-| MQTT | Koko sisäinen viestiväylä | 🟢 |
+| MQTT | Koko sisäinen viestiväylä | ⚪ |
 
-🟢 toteutettu · 🟡 osittain / testattavana · ⚪ suunniteltu
+🟢 toteutettu putkessa · 🟡 todennettu penkillä, ei putkikoodia · ⚪ suunniteltu
+
+Yhtään protokollaa ei ole vielä toteutettu putkessa: `src/` sisältää
+toistaiseksi vain scaffoldin. Modbus RTU ja TCP on todennettu penkillä
+(kaikki EM111:n rekisterit luettu Wavesharen kautta).
 
 ## Rakenne
 
@@ -76,7 +80,7 @@ hardware/             ← kytkentäkaaviot, hankintalista
 Jokainen merkittävä valinta ja hylätty vaihtoehto on kirjattu ADR:ksi:
 konteksti, vaihtoehdot, päätös, seuraukset, todennus.
 
-→ [`docs/adr/`](docs/adr/README.md) — hakemisto ja kaikki päätökset
+→ [`docs/adr/`](docs/adr/README.md): hakemisto ja kaikki päätökset
 
 ## Vikaluettelo
 
@@ -84,7 +88,7 @@ konteksti, vaihtoehdot, päätös, seuraukset, todennus.
 
 ## Tila ja tiekartta
 
-- [ ] Suunnittelu ja laitevalinnat, ADR-0001…0018
+- [ ] Suunnittelu ja laitevalinnat, ADR-0001…0019
 - [ ] Modbus-ketju pöydällä (mittari → Waveshare → kanta)
 - [ ] Kotelointi ja vian tuottopaneeli
 - [ ] CN105-luku ilmalämpöpumpusta (vain luku)

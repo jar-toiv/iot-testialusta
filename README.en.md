@@ -49,18 +49,23 @@ Layers: **driver → normalization → quality gate → buffer → publish.**
 
 | Protocol | Role in this project | Status |
 |---|---|---|
-| Modbus RTU | Energy meter, RS-485 sensor | 🟢 |
-| Modbus TCP | Waveshare gateway | 🟢 |
-| M-Bus | Separate meter, own parser | 🟡 |
-| wM-Bus | 868 MHz, own meters only | 🟡 |
-| CN105 | Reading heat pump state | 🟡 |
+| Modbus RTU | Energy meter, RS-485 sensor | 🟡 |
+| Modbus TCP | Waveshare gateway | 🟡 |
+| M-Bus | Separate meter, own parser | ⚪ |
+| wM-Bus | 868 MHz, own meters only | ⚪ |
+| CN105 | Reading heat pump state | ⚪ |
 | 1-Wire | Temperature watchdog | ⚪ |
 | Analog | Current clamp | ⚪ |
 | S0 pulse | Fallback route | ⚪ |
 | LoRa (P2P) | Radio link | ⚪ |
-| MQTT | The entire internal message bus | 🟢 |
+| MQTT | The entire internal message bus | ⚪ |
 
-🟢 implemented · 🟡 partial / under test · ⚪ planned
+🟢 implemented in the pipeline · 🟡 verified on the bench, no pipeline code ·
+⚪ planned
+
+No protocol is implemented in the pipeline yet: `src/` currently contains
+only the scaffold. Modbus RTU and TCP are bench-verified (every EM111
+register read through the Waveshare gateway).
 
 ## Structure
 
@@ -78,7 +83,7 @@ hardware/             ← wiring diagrams, shopping list
 Every significant choice and every rejected alternative is recorded as an ADR:
 context, alternatives, decision, consequences, verification.
 
-→ [`docs/adr/`](docs/adr/README.md) — index and all decisions
+→ [`docs/adr/`](docs/adr/README.md): index and all decisions
 
 ## Fault log
 
@@ -86,7 +91,7 @@ context, alternatives, decision, consequences, verification.
 
 ## Status and roadmap
 
-- [ ] Design and device selection, ADR-0001…0018
+- [ ] Design and device selection, ADR-0001…0019
 - [ ] Modbus chain on the bench (meter → Waveshare → database)
 - [ ] Enclosure and fault-injection panel
 - [ ] CN105 readout from the air-source heat pump (read-only)
