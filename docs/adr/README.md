@@ -12,7 +12,7 @@ suunnittelutyötä. Tämä hakemisto on se osa projektia, joka erottaa nämä ka
 Kun joku kysyy "miksi Raspberry Pi eikä teollinen ohjain", vastaus ei saa olla
 "se oli minulla valmiina". Sen pitää olla ADR-0001.
 
-## Tila juuri nyt — lue tämä ennen kuin luotat mihinkään alla olevaan
+## Tila juuri nyt: lue tämä ennen kuin luotat mihinkään alla olevaan
 
 Harjoittelen dokumentointia ja tästä syystä nämä ADR:t voivat olla sekavia
 tai sisältää väärää tietoa.
@@ -25,6 +25,10 @@ Mitä se tarkoittaa lukijalle:
   niitä ole tarkistettu. Vahvistamaton viittaus on huonompi kuin puuttuva.
 - **ADR ei kelpaa todisteeksi toista ADR:ää vastaan** ennen kuin molemmat on
   käyty läpi.
+- **`luonnos` hakemistossa tarkoittaa ettei tiedostoa ole GitHubissa.** Ne
+  ovat kirjoitettuja ehdotuksia, jotka voivat päätyä käyttöön tai eivät
+  koskaan. Vain ✅-rivit ovat projektin todellisia päätöksiä. Sarake
+  tarkistetaan `git status docs/adr/`:lla, ei luoteta tähän tiedostoon.
 
 Sisältö on silti käyttökelpoista: tutkimustyö, hinnat ja vaihtoehtojen
 punninta ovat aitoja. Muoto ja tilamerkinnät ovat ne jotka eivät vielä pidä.
@@ -39,7 +43,7 @@ punninta ovat aitoja. Muoto ja tilamerkinnät ovat ne jotka eivät vielä pidä.
    hinta. Sen nimeäminen on uskottavuuden lähde, ei heikkous.
 4. **Älä muokkaa hyväksytyn ADR:n päätöstä tai seurauksia.** Jos päätös
    muuttuu, kirjoita uusi ADR ja merkitse vanha `Korvattu (ks. ADR-XXXX)`.
-   Poikkeus: `Liittyy`-kenttää saa täydentää jälkikäteen (sääntö 6) — se ei
+   Poikkeus: `Liittyy`-kenttää saa täydentää jälkikäteen (sääntö 6). Se ei
    muuta päätöstä, vaan paljastaa yhteyden joka ei ollut tiedossa
    kirjoitushetkellä.
 5. **Numerointi juoksee, ei täytetä aukkoja.**
@@ -73,29 +77,29 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 
 ## Hakemisto
 
-| # | Otsikko | Tila |
-|---|---|---|
-| [0001](0001-reunalaite-raspberry-pi.md) | Reunalaitteeksi Raspberry Pi 4B, ei teollista ohjainta | Hyväksytty |
-| [0002](0002-Modbus-RTU-ja-M-bus-orja.md) | Kaksi eri valmistajaa yhden sijaan | Hyväksytty |
-| [0003](0003-omat-parserit.md) | Omat protokollaparserit, ei valmista yhdyskäytävää | Ehdotettu |
-| [0004](0004-reading-envelope-quality.md) | Normalisoitu mittausenvelooppi ja laatukenttä | Ehdotettu |
-| [0005](0005-fyysinen-vian-tuotto.md) | Fyysinen vian tuottopaneeli | Ehdotettu |
-| [0006](0006-verkkovikojen-simulointi.md) | Verkkovikojen simulointi netemillä + ristiintestaus oikeaa linkkiä vasten | Ehdotettu |
-| [0007](0007-ei-erillista-4g-reititinta.md) | Ei erillistä 4G-reititintä ensimmäisessä vaiheessa | Ehdotettu |
-| [0008](0008-toistotila.md) | Toistotila demon riippumattomuuden takaamiseksi | Ehdotettu |
-| [0009](0009-kotelo-ja-sahkonsyotto.md) | Ryhmäkeskus koteloksi, ei pistokemuuntajia sisällä | Hyväksytty |
-| [0010](0010-waveshare-modbus-tcp.md) | Waveshare-sarjapalvelin Modbus TCP -tasoksi | Hyväksytty |
-| [0011](0011-cn105-takaisinmallinnettu.md) | CN105 takaisinmallinnettuna protokollana standardin vastaparina | Ehdotettu |
-| [0012](0012-wm-bus-rajaus.md) | wM-Bus-vastaanoton eettinen ja oikeudellinen rajaus | Ehdotettu |
-| [0013](0013-lora-point-to-point.md) | LoRa point-to-point, ei LoRaWAN-gatewaytä | Ehdotettu |
-| [0014](0014-mqtt-nimiavaruus.md) | MQTT-nimiavaruus ja Sparkplug B | Ehdotettu |
-| [0015](0015-kamstrup-kwm2230.md) | Kamstrup KWM2230 rajattu pois wM-Bus-lähteenä | Ehdotettu |
-| [0016](0016-hiljainen-yhteyden-kuolema.md) | Hiljainen yhteyden kuolema ensiluokkaisena havaittavana vikana | Ehdotettu |
-| [0017](0017-elpymisportaikko.md) | Portaittainen elpyminen mobiiliyhteyden viasta | Ehdotettu |
-| [0018](0018-uloslahteva-komentokanava.md) | Uloslähtevä MQTT-komentokanava, ei sisääntulevaa yhteyttä | Ehdotettu |
-| [0019](0019-pi-tarjoaa-etakohteelle-oman-wifi-tukiaseman-kohteen-infraa-ei-oleteta.md) | Pi tarjoaa etäkohteelle oman WiFi-tukiaseman, kohteen infraa ei oleteta | Hyväksytty |
+| # | Otsikko | Tila | GitHubissa |
+|---|---|---|---|
+| [0001](0001-reunalaite-raspberry-pi.md) | Reunalaitteeksi Raspberry Pi 4B, ei teollista ohjainta | Hyväksytty | ✅ |
+| [0002](0002-Modbus-RTU-ja-M-bus-orja.md) | Kaksi eri valmistajaa yhden sijaan | Hyväksytty | ✅ |
+| [0003](0003-omat-parserit.md) | Omat protokollaparserit, ei valmista yhdyskäytävää | Ehdotettu | luonnos |
+| [0004](0004-reading-envelope-quality.md) | Normalisoitu mittausenvelooppi ja laatukenttä | Ehdotettu | luonnos |
+| [0005](0005-fyysinen-vian-tuotto.md) | Fyysinen vian tuottopaneeli | Ehdotettu | ✅ |
+| [0006](0006-verkkovikojen-simulointi.md) | Verkkovikojen simulointi netemillä + ristiintestaus oikeaa linkkiä vasten | Ehdotettu | luonnos |
+| [0007](0007-ei-erillista-4g-reititinta.md) | Ei erillistä 4G-reititintä ensimmäisessä vaiheessa | Ehdotettu | luonnos |
+| [0008](0008-toistotila.md) | Toistotila demon riippumattomuuden takaamiseksi | Ehdotettu | luonnos |
+| [0009](0009-kotelo-ja-sahkonsyotto.md) | Ryhmäkeskus koteloksi, ei pistokemuuntajia sisällä | Hyväksytty | ✅ |
+| [0010](0010-waveshare-modbus-tcp.md) | Waveshare-sarjapalvelin Modbus TCP -tasoksi | Hyväksytty | ✅ |
+| [0011](0011-cn105-takaisinmallinnettu.md) | CN105 takaisinmallinnettuna protokollana standardin vastaparina | Ehdotettu | luonnos |
+| [0012](0012-wm-bus-rajaus.md) | wM-Bus-vastaanoton eettinen ja oikeudellinen rajaus | Ehdotettu | luonnos |
+| [0013](0013-lora-point-to-point.md) | LoRa point-to-point, ei LoRaWAN-gatewaytä | Ehdotettu | luonnos |
+| [0014](0014-mqtt-nimiavaruus.md) | MQTT-nimiavaruus ja Sparkplug B | Ehdotettu | luonnos |
+| [0015](0015-kamstrup-kwm2230.md) | Kamstrup KWM2230 rajattu pois wM-Bus-lähteenä | Ehdotettu | luonnos |
+| [0016](0016-hiljainen-yhteyden-kuolema.md) | Hiljainen yhteyden kuolema ensiluokkaisena havaittavana vikana | Ehdotettu | luonnos |
+| [0017](0017-elpymisportaikko.md) | Portaittainen elpyminen mobiiliyhteyden viasta | Ehdotettu | luonnos |
+| [0018](0018-uloslahteva-komentokanava.md) | Uloslähtevä MQTT-komentokanava, ei sisääntulevaa yhteyttä | Ehdotettu | luonnos |
+| [0019](0019-pi-tarjoaa-etakohteelle-oman-wifi-tukiaseman-kohteen-infraa-ei-oleteta.md) | Pi tarjoaa etäkohteelle oman WiFi-tukiaseman, kohteen infraa ei oleteta | Ehdotettu | ✅ |
 
 ## Liittyvät dokumentit
 
-- [`../vikaluettelo.md`](../vikaluettelo.md) — havaittujen ja tuotettujen vikojen rekisteri
-- [`0000-template.md`](0000-template.md) — pohja uudelle ADR:lle
+- [`../vikaluettelo.md`](../vikaluettelo.md): havaittujen ja tuotettujen vikojen rekisteri
+- [`0000-template.md`](0000-template.md): pohja uudelle ADR:lle
