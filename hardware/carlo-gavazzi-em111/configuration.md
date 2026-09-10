@@ -66,6 +66,19 @@ Registers `001Ch`–`001Eh` (t3/t4), `0024h`–`002Ah` (partial/kVAh
 negative-direction), `002Eh`–`0034h` (THD) and the `002Ch` hour counter
 return 0. Not available on EM111.
 
+## `000Bh` is claimed twice, so read width changes the answer
+
+The source lists `000Bh` as the identification code, and also lists `000Ah`
+W dmd as INT32, which spans `000Ah`–`000Bh`. The 2026-09-02 read shows both:
+W dmd read as a 2-word pair gave `[86, 0]`, and `000Bh` read as a single
+word gave `103`. Same address, different value depending on how it was
+asked for.
+
+Driver consequence: read registers individually. Grouping several into one
+multi-word request is an optimisation that would silently change this
+value, so it must not be added without re-verifying each register against
+an individual read.
+
 ## Not covered here
 
 Not used by this project:
