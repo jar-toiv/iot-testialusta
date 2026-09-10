@@ -82,7 +82,7 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | [0001](0001-reunalaite-raspberry-pi.md) | Reunalaitteeksi Raspberry Pi 4B, ei teollista ohjainta | Hyväksytty | ✅ |
 | [0002](0002-Modbus-RTU-ja-M-bus-orja.md) | Kaksi eri valmistajaa yhden sijaan | Hyväksytty | ✅ |
 | [0003](0003-omat-parserit.md) | Omat protokollaparserit, ei valmista yhdyskäytävää | Ehdotettu | luonnos |
-| [0004](0004-reading-envelope-quality.md) | Normalisoitu mittausenvelooppi ja laatukenttä | Ehdotettu | luonnos |
+| [0004](0004-reading-envelope-quality.md) | Yksi mittausenvelooppi kaikille ajureille, substatus vain todennetuista vioista | Ehdotettu | luonnos |
 | [0005](0005-fyysinen-vian-tuotto.md) | Fyysinen vian tuottopaneeli | Ehdotettu | ✅ |
 | [0006](0006-verkkovikojen-simulointi.md) | Verkkovikojen simulointi netemillä + ristiintestaus oikeaa linkkiä vasten | Ehdotettu | luonnos |
 | [0007](0007-ei-erillista-4g-reititinta.md) | Ei erillistä 4G-reititintä ensimmäisessä vaiheessa | Ehdotettu | luonnos |
