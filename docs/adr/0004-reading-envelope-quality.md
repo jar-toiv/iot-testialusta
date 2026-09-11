@@ -2,12 +2,12 @@
 
 - **Tila:** Ehdotettu
 - **Päivämäärä:** 2026-09-10
-- **Liittyy:** ADR-0002, ADR-0005, ADR-0010, ADR-0016
+- **Liittyy:** ADR-0002, ADR-0005, ADR-0016, ADR-0020
 
 ## Konteksti
 
 Toteutettuja protokollapolkuja on yksi: EM111 Modbus TCP:llä
-Waveshare-yhdyskäytävän kautta (ADR-0010), penkkiajon vaiheet 1-3 ajettu ja
+Waveshare-yhdyskäytävän kautta (ADR-0020), penkkiajon vaiheet 1-5 ajettu ja
 29 rekisteriä ristiintarkistettu. Muilla suunnitelluilla protokollilla ei ole
 ajuria eikä osalla laitettakaan. Tavallinen ratkaisu, protokollakohtainen
 try/catch, hukkaa virheet poikkeuksina, jolloin hiljainen vika ei näy
@@ -65,7 +65,7 @@ tuore. Hylätyt keinot:
 
 | Keino | Miksi ei riitä |
 |---|---|
-| Vasteajan mittaus | Rekisterit luetaan yksitellen (`000Bh`), joten välimuistivastaus ja oikea vastaus ovat yhtä nopeita |
+| Vasteajan mittaus | Välimuisti vastaa noin 40 ms nopeammin (ADR-0020), mutta ero näkyy vain tilojen välillä, eikä gatewayn tila näy Modbusin yli |
 | V, A ja W ristiin | Todistaa fysikaalisen järkevyyden, ei tuoreutta |
 | Kasvava laskurirekisteri | EM111:llä ei ole, tuntilaskuri `002Ch` palauttaa nollaa |
 
@@ -81,7 +81,7 @@ edellisistä lukemista kuuluu laatuportille, ajuri pysyy tilattomana.
 **Hyvät**
 - Uusi protokolla on uusi ajuripaketti, putkeen ei kosketa
 - Virhetelemetria on kyselyttävissä samoilla työkaluilla kuin mittausdata
-- `STALE` kattaa Wavesharen tallentavan tilan (ADR-0010)
+- `STALE` kattaa Wavesharen tallentavan tilan ehjällä väylällä (ADR-0020)
 - Lista on lyhyt ja suljettu, joten jokainen arvo on katettavissa yhdellä
   testillä. Ei vielä tehty: `tests/`:ssä ei ole testiä TIMEOUT:lle eikä
   STALE:lle
@@ -104,9 +104,11 @@ edellisistä lukemista kuuluu laatuportille, ajuri pysyy tilattomana.
 
 ## Todennus
 
-ADR-0010:n hyväksymisehto on tämän päätöksen mittari: tallentavan tilan on
-tuotettava `STALE` ja ei-tallentavan `TIMEOUT`. Jos molemmat tuottavat
-saman, laatuportti on väärin toteutettu. Kolme lukemaa ja viiden sekunnin
-väli ovat alkuarvoja, jotka vahvistetaan penkkiajon vaiheessa 5. Vika joka
-näkyy vain lokissa eikä kannassa on tämän päätöksen epäonnistuminen ja
-kirjataan vikaluetteloon.
+Penkkiajon vaihe 5 kumosi ADR-0010:n oletuksen: katkos tuottaa `TIMEOUT`:n
+kummassakin tilassa, ja tallentava tila tuottaa `STALE`:n vain ehjällä
+väylällä. Mittarina on ADR-0020:n Todennus. Skriptiajot 2026-09-11
+(ADR-0020: tulokset Kontekstissa, skripti Todennuksessa) tukevat kolmen
+lukeman ja viiden sekunnin rajaa: AQST toistaa arvoa 10-11 lukua, Simplessä
+jännite vaihtuu 1-2 s välein. Toteutus todennetaan, kun laatuportti on olemassa.
+Vika joka näkyy vain lokissa eikä kannassa on tämän päätöksen
+epäonnistuminen ja kirjataan vikaluetteloon.
