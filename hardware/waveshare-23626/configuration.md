@@ -63,19 +63,16 @@ be checked against what this unit actually shows.
 
 ### Why this is the important one
 
-The default is **storage**, per the Spotpear guide for this exact SKU. In
-storage mode the gateway keeps
-answering with the last value it collected, whether or not the RS-485 bus is
-still alive. A reading that arrives looks healthy and is stale.
+The default is **storage**, per the Spotpear guide for this exact SKU.
+Measured on this unit 2026-09-11 (`docs/bringup-modbus-bench.md` Phase 5):
 
-That is the failure ADR-0004's quality field was designed around, and
-ADR-0010's verification depends on demonstrating both behaviours:
+- **Storage, healthy bus** → 11 reads from cache, up to 19 s old, then one
+  timeout → `STALE`
+- **Storage, bus cut** → timeout at once → `TIMEOUT`
+- **Non-storage, bus cut** → timeout at once → `TIMEOUT`
 
-- **Storage** → gateway answers from cache after the bus is cut → `STALE`
-- **Non-storage** → the read fails at the moment of asking → `TIMEOUT`
-
-So both modes get used deliberately, and the bench procedure in
-`docs/bringup-modbus-bench.md` Phase 5 runs the bus-cut test in each.
+The documented assumption was that storage mode keeps answering after the
+bus is cut. It does not. The stale data comes from a healthy bus.
 
 **Consequence for production configuration:** whichever mode ends up feeding
 the real pipeline must be a recorded decision, not the factory default. If

@@ -36,12 +36,14 @@ that is noted inline and marked **[DEVICE]** as an unverified hypothesis.
 
 | Terminal | Function |
 |---|---|
-| `RA` | RS485 A / RS422 TX+ |
-| `RB` | RS485 B / RS422 TX− |
-| `TA` | RS422 RX− |
-| `TB` | RS422 RX+ |
+| `RA` | RS422 only |
+| `RB` | RS422 only |
+| `TA` | RS485 A (+) |
+| `TB` | RS485 B (−) |
 | `GND` | Signal ground |
 | `VCC` | Power input |
+
+Manuals.plus puts RS485 on `RA`/`RB`, which is wrong for this unit.
 
 ## Factory defaults
 
@@ -61,11 +63,10 @@ that is noted inline and marked **[DEVICE]** as an unverified hypothesis.
 
 **The Modbus gateway defaults to storage mode.** The Spotpear guide for this
 exact SKU (`sources.md`) states the default Modbus mode is "storage", which
-"will automatically train the query commands", sent multiple times. Storage
-mode answers from cache after the bus has already died, exactly the
-`STALE` condition ADR-0004 exists to catch. **If nobody changes it, the
-silent-failure mode is active.** Confirm on the unit before trusting any
-reading.
+"will automatically train the query commands", sent multiple times.
+Measured 2026-09-11: on a healthy bus it answers 11 reads from cache, up to
+19 s old, then one timeout, then a fresh value. After a bus cut it times
+out at once. **If nobody changes it, readings are stale without any sign.**
 
 ## As-found
 
@@ -85,6 +86,11 @@ reading.
 | Stop bits | `1` (was `2`) | Match meter's U3 (`bringup-modbus-bench.md`) | 2026-08-29 |
 | Modbus gateway type | `Simple modbus tcp to rtu` (was `Auto query storage type`) | Non-storage for now so bus faults surface as `TIMEOUT` instead of stale cached reads. | 2026-08-29 |
 | Web login password | Set (value not recorded in git, see password manager) | Was unset at factory, open access risk | 2026-08-30 |
+| Modbus gateway type | `Simple modbus tcp to rtu`, after AQST and ZLMB tests the same day. ZLMB rows (`0000h` len 2, `000Bh` len 1) left in the device but inactive | ADR-0020. Verified: `ACT` LED quiet with no polling, `mbpoll` read on port 502 OK | 2026-09-11 |
+
+**LEDs, observed 2026-09-11:** `ACT` blinks blue when the gateway queries
+the RS-485 side, also on its own in ZLMB mode. `LINK` blinks blue with TCP
+traffic from a master. Not from documentation.
 
 ## Quirks
 
