@@ -6,8 +6,8 @@
 * Use regex to find [0x] . . .
 * Push the successful RX into registers object
 
-`mbpoll 192.168.50.46 -a 1 -r 1 -c 2 -p 502 -t 4 -x -1`
-
+`mbpoll 192.168.50.46 -a 1 -r 1 -c 2 -p 502 -t 4 -x -1` Windows
+`mbpoll 192.168.50.46 -a 1 -r 1 -c 2 -p 502 -t 4 -1` Linux
 
 >### What I learned / studied
 >* Re-learn how to promisify a function simply.

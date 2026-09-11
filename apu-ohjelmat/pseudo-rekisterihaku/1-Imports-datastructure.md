@@ -11,7 +11,10 @@
 >- Do I need fs or something to write register values into JSON ?
 >- Start with poll test to see what we get and how to strip it
 
-`mbpoll 192.168.50.46 -a 1 -r 1 -c 2 -p 502 -t 4 -x -1`
+`mbpoll 192.168.50.46 -a 1 -r 1 -c 2 -p 502 -t 4 -x -1` Works only on windows
+
+`mbpoll 192.168.50.46 -a 1 -r 1 -c 2 -p 502 -t 4 -1` Works on Rasperry Pi (Hexa needs to be asked differently: removed -x flag)
+
 ` poll | ip | address | rekisteri (korjattu +1) | c= 2 rekisteriä INT32 | portti | formaatti 04 | hexat | pollaa kerran |`
 
 | Modicom adr | Phys add | Len | Var | Format| Weight |
