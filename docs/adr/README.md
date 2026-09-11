@@ -98,6 +98,7 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | [0017](0017-elpymisportaikko.md) | Portaittainen elpyminen mobiiliyhteyden viasta | Ehdotettu | luonnos |
 | [0018](0018-uloslahteva-komentokanava.md) | Uloslähtevä MQTT-komentokanava, ei sisääntulevaa yhteyttä | Ehdotettu | luonnos |
 | [0019](0019-pi-tarjoaa-etakohteelle-oman-wifi-tukiaseman-kohteen-infraa-ei-oleteta.md) | Pi tarjoaa etäkohteelle oman WiFi-tukiaseman, kohteen infraa ei oleteta | Ehdotettu | ✅ |
+| [0020](0020-waveshare-gateway-simple-tilaan.md) | Waveshare Simple-tilaan oletuksena, tallentava tila vain STALE-demoon| Hyväksytty | ✅ |
 
 ## Liittyvät dokumentit
 
