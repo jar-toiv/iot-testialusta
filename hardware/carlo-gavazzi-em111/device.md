@@ -31,6 +31,7 @@
 | Data bits | not a configurable parameter (Modbus RTU standard, always 8) | **[MODEL]** |
 | Parity | none (default) / even | **[MODEL]** |
 | Stop bits | 1 (default) or 2; 2 only allowed if parity = none | **[MODEL]** |
+| Data refresh time | 1 s | **[MODEL]** `EM111_DS_ENG.pdf` p. 4 |
 
 ### Terminal labels
 
