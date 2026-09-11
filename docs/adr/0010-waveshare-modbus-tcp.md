@@ -1,6 +1,6 @@
 # ADR-0010: Waveshare-sarjapalvelin Modbus TCP -tasoksi
 
-- **Tila:** Hyväksytty
+- **Tila:** Korvattu
 - **Päivämäärä:** 2026-08-30
 - **Liittyy:** ADR-0004
 
