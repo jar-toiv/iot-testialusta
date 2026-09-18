@@ -2,6 +2,11 @@
 /instructions
 /docs/bringup*
 
+# Env variables
+.env
+.env.*
+!.env.example
+
 # Claude — personal configuration and notes, not project code.
 # Hidden from git, but still searchable: see .ignore
 .claude
