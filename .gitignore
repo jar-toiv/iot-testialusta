@@ -1,9 +1,10 @@
 # Own documents
 /instructions
 /docs/bringup*
+.NOTES.md
+.NOTES-KIRO.md
 
 # Claude — personal configuration and notes, not project code.
-# Hidden from git, but still searchable: see .ignore
 .claude
 /CLAUDE.md
 /CLAUDE.local.md
