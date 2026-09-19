@@ -1,6 +1,8 @@
 # Own documents
 /instructions
 /docs/bringup*
+.NOTES.md
+.NOTES-KIRO.md
 
 # Env variables
 .env
@@ -8,7 +10,6 @@
 !.env.example
 
 # Claude — personal configuration and notes, not project code.
-# Hidden from git, but still searchable: see .ignore
 .claude
 /CLAUDE.md
 /CLAUDE.local.md
