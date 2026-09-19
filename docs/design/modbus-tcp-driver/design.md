@@ -36,8 +36,10 @@ has no source yet.
 ### Modbus library
 
 **Modbus client library.** Two maintained open source candidates, checked
-against the npm registry and the downloads API on 2026-09-15. No decision has
-been made.
+against the npm registry and the downloads API on 2026-09-15. Chosen:
+`modbus-serial` 8.0.25, installed 2026-09-17 and pinned by `save-exact=true`.
+It carries roughly twice the downloads, and its optional `serialport` costs
+nothing here because the RS-485 side belongs to the gateway.
 
 | | `modbus-serial` | `jsmodbus` |
 |---|---|---|
