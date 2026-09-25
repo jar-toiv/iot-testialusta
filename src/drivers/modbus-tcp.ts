@@ -1,49 +1,40 @@
 import modbuslib from 'modbus-serial'
 import { readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
 
 const Modbus = modbuslib.default
 const client = new Modbus()
 
 const gatewayConfigPath = process.env.WAVESHARE_GATEWAY_PATH
-if (!gatewayConfigPath) {
+const GATEWAY_IP = process.env.GATEWAY_WS_23626_001_IP
+const profilePatch = process.env.EM111_REGISTER
+
+if (!gatewayConfigPath || !GATEWAY_IP || !profilePatch) {
   throw Error(`Missing env.var ${gatewayConfigPath}`)
 }
 
-const json = await readFile(gatewayConfigPath, {
+const gatewayConfigText = await readFile(gatewayConfigPath, {
   encoding: 'utf8',
 })
-// console.log(resolve(gatewayConfigPath))
-// console.log(typeof gatewayConfigPath) //STRING
+const profileText = await readFile(profilePatch, { encoding: 'utf8' })
 
-// console.log(json)
-// // console.log(typeof json)
-console.log(json)
+const gatewayConfig = JSON.parse(gatewayConfigText)
+const profile = JSON.parse(profileText)
 
-/**
-try {s
-  const filePath = new URL('./package.json', import.meta.url);
-  const contents = await readFile(filePath, { encoding: 'utf8' });
-  console.log(contents);
-} catch (err) {
-  console.error(err.message);
+const meter = {
+  slaveId: gatewayConfig.slaves[0].slaveId,
+  adr: profile.registers[0].adr,
+  count: profile.registers[0].count,
 }
- */
+await client.connectTCP(GATEWAY_IP, gatewayConfig.port)
 
-const meterConfig = {
-  id: 1,
-  responseTimeoutMs: 500,
-}
+client.setID(meter.slaveId)
 
-// await client.connectTCP(gatewayConfig.ip, gatewayConfig.options)
-// client.setID(meterConfig.id)
+const { data, buffer } = await client.readHoldingRegisters(
+  meter.adr,
+  meter.count,
+)
 
-// const { data, buffer } = await client.readHoldingRegisters(
-//   holdingRegisters.address,
-//   holdingRegisters.length,
-// )
+client.close()
 
-// client.close()
-
-// console.log(data)
-// console.log(buffer)
+console.log(data)
+console.log(buffer)
