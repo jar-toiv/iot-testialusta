@@ -1,4 +1,4 @@
-# ADR-0000: [Otsikko — päätös yhtenä lauseena, ei kysymyksenä]
+# ADR-0000: [Otsikko, päätös yhtenä lauseena, ei kysymyksenä]
 
 - **Tila:** Ehdotettu | Hyväksytty | Hylätty | Korvattu | Vanhentunut
 - **Päivämäärä:** YYYY-MM-DD

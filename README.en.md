@@ -1,8 +1,8 @@
 *[Suomeksi](README.md) · **English***
 
-# Iot Demo Testbed A multi-protocol demo environment for industrial IoT
+# Iot test cabinet, multi-protocol environment for industrial IoT
 
-A testbed cabinet has been installed in the field to collect data from fieldbuses.
+A test cabinet has been installed in the field to collect data from fieldbuses.
 I use the MQTT protocol for data collection and TypeScript for pushing it into databases.
 
 The cabinet is later meant to be able to simulate faults that occur in the field.
@@ -32,18 +32,27 @@ the path that **fails**:
 ## Architecture
 
 ```
-Field                     Edge                    Cloud
-─────                     ────                    ─────
+Field                     Edge                          Cloud
+─────                     ────                          ─────
 Modbus meter ───RS485───┐
 Modbus sensor ──────────┤
                         └─► Waveshare ──Eth──┐
-                                             ├─► Pi 4B ──4G──► broker + database
-ESP32 (CN105) ──┐                           │   Mosquitto
-ESP32 (analog) ─┴──WiFi (Pi's own AP)───────┘   InfluxDB, MongoDB
-                                                 store-and-forward
+                                             │
+                                          TSW010 ──Eth──► ZTE (SIM)
+                                             │                │
+ESP32 (CN105) ──┐                            │                4G
+ESP32 (analog) ─┴──WiFi (Pi's own AP)──►  Pi 4B                ▼
+                                                        broker + database
+                                                        Mosquitto
+                                                        InfluxDB, MongoDB
+                                                        store-and-forward
 ```
 
 Layers: **driver → normalization → quality gate → buffer → publish.**
+
+The TSW010 is an unmanaged switch, so link state is not readable in
+software: a pulled gateway cable shows up only as a failed Modbus
+connection.
 
 ## Protocols covered
 

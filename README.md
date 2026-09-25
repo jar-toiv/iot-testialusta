@@ -1,6 +1,6 @@
 ***Suomeksi** · [English](README.en.md)*
 
-# Iot Demo Testbed Teollisen IoT:n moniprotokollainen demoympäristö
+# Iot testialusta, moni protokolla testauskeskus
 
 Kentälle on asennettu Testbed keskus, jonka tarkoituksena on kerätä data kenttäväylistä.
 Hyödynnän MQTT protokollaa tiedon keruussa ja typescriptiä niiden viennissä tietokantoihin
@@ -30,18 +30,27 @@ Useimmat harrasteprojektit demoavat toimivaa polkua. Tämä demoaa myös
 ## Arkkitehtuuri
 
 ```
-Kenttä                    Reuna                   Pilvi
-──────                    ─────                   ─────
+Kenttä                    Reuna                         Pilvi
+──────                    ─────                         ─────
 Modbus-mittari ──RS485──┐
 Modbus-anturi ──────────┤
                         └─► Waveshare ──Eth──┐
-                                             ├─► Pi 4B ──4G──► broker + kanta
-ESP32 (CN105) ──┐                           │   Mosquitto
-ESP32 (analogia)┴──WiFi (Pi:n oma AP)───────┘   InfluxDB, MongoDB
-                                                 store-and-forward
+                                             │
+                                          TSW010 ──Eth──► ZTE (SIM)
+                                             │                │
+ESP32 (CN105) ──┐                            │                4G
+ESP32 (analogia)┴──WiFi (Pi:n oma AP)──►  Pi 4B                ▼
+                                                        broker + kanta
+                                                        Mosquitto
+                                                        InfluxDB, MongoDB
+                                                        store-and-forward
 ```
 
 Kerrokset: **ajuri → normalisointi → laatuportti → puskuri → julkaisu.**
+
+TSW010 on hallitsematon kytkin, joten linkin tila ei näy ohjelmallisesti:
+yhdyskäytävän irronnut kaapeli havaitaan vasta epäonnistuneena
+Modbus-yhteytenä.
 
 ## Katetut protokollat
 
