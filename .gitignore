@@ -4,6 +4,9 @@
 .NOTES.md
 .NOTES-KIRO.md
 
+# ENV
+.env*
+
 # Claude — personal configuration and notes, not project code.
 .claude
 /CLAUDE.md
