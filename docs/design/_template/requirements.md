@@ -3,32 +3,24 @@
 - **Status:** Draft | Accepted | Implemented
 - **Related:** ADR-XXXX, ADR-YYYY
 
-## User story
+## Introduction
 
-Who needs this and why. One or two sentences: what does this feature let
-someone do that they couldn't do before?
+What this feature covers, and explicitly what it does not.
 
-## Requirements (EARS notation)
+## Requirements
 
-Write every requirement in one of these forms. Pick the form that matches
-the trigger. Don't force everything into "WHEN".
+EARS notation, one form per requirement. The forms are listed in
+`docs/design/README.md`. IDs are permanent: `REQ-<FEATURE>-<NNN>` for
+functional, `NFR-<FEATURE>-<NNN>` for non-functional. Every requirement cites
+a source: a bench measurement, a datasheet page, or an ADR number.
 
-| Form | Pattern | Use when |
-|---|---|---|
-| Ubiquitous | `THE SYSTEM SHALL <response>` | Always true, no trigger |
-| Event-driven | `WHEN <trigger> THE SYSTEM SHALL <response>` | A specific event happens |
-| State-driven | `WHILE <state> THE SYSTEM SHALL <response>` | Behavior depends on an ongoing state |
-| Unwanted behavior | `IF <condition> THEN THE SYSTEM SHALL <response>` | Error / fault handling |
-| Optional feature | `WHERE <feature is present> THE SYSTEM SHALL <response>` | Conditional on configuration/hardware |
-| Complex | `WHILE <state>, WHEN <trigger> THE SYSTEM SHALL <response>` | An event that matters only in a given state |
+| REQ | Form | Requirement | Source |
+|---|---|---|---|
+| REQ-XXX-001 | Event-driven | WHEN <trigger>, XXX SHALL <response>. | bench phase n, ADR-nnnn |
+| NFR-XXX-001 | Ubiquitous | XXX SHALL <bounded, measurable statement>. | ... |
 
-Every requirement traces to a measurement or an ADR.
+## Open questions
 
-- REQ-1 (Form): ...
-
-## Acceptance criteria
-
-Turn each requirement above into something testable: a condition that is
-either true or false once the feature exists. Every REQ gets one.
-
-- [ ] REQ-1 is verified by: ...
+Mechanism questions left to design.md. Anything that appears to contradict an
+accepted ADR goes here too, prefixed `Conflict:`, citing both the requirement
+and the ADR.
