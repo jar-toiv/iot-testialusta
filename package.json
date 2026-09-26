@@ -28,6 +28,7 @@
     "vitest": "4.1.11"
   },
   "dependencies": {
-    "modbus-serial": "8.0.25"
+    "modbus-serial": "8.0.25",
+    "zod": "4.6.5"
   }
 }
