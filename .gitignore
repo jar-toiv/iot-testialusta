@@ -3,7 +3,7 @@
 /docs/bringup*
 .NOTES.md
 .NOTES-KIRO.md
-
+/docs/architecture.md
 # ENV
 .env.*
 
