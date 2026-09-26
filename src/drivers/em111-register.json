@@ -5,7 +5,7 @@
     {
       "id": "voltage_l_n",
       "unit": "V",
-      "addr": 0,
+      "adr": 0,
       "count": 2,
       "signed": true,
       "scale": 0.1

@@ -1,0 +1,14 @@
+{
+  "name": "Waveshare_23626",
+  "id": "WS_23626_001",
+  "ip": "",
+  "port": 502,
+  "slaves": [
+    {
+      "slaveId": 1,
+      "id": "em111_ilp_upstairs",
+      "profile": "em111-register.json",
+      "label": "measuring inner unit"
+    }
+  ]
+}

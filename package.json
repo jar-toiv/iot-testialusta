@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "poc:modbus": "tsc -p apu-ohjelmat/POC/POC-modbus-tcp-driver && node apu-ohjelmat/POC/POC-modbus-tcp-driver/dist/driver.js",
-    "driver:modbus": "npm run build && node dist/drivers/modbus-tcp.js",
+    "driver:modbus": "npm run build && node --env-file=.env.development dist/drivers/modbus-tcp.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",

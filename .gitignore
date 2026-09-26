@@ -4,10 +4,8 @@
 .NOTES.md
 .NOTES-KIRO.md
 
-# Env variables
-.env
+# ENV
 .env.*
-!.env.example
 
 # Claude — personal configuration and notes, not project code.
 .claude
