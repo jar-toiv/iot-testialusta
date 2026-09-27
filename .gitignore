@@ -6,6 +6,7 @@
 /docs/architecture.md
 # ENV
 .env.*
+!.env.example
 
 # Claude — personal configuration and notes, not project code.
 .claude
