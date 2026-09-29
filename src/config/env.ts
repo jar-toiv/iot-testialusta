@@ -1,6 +1,8 @@
 import * as z from 'zod'
 
 const envSchema = z.object({
+  // .min(1): an empty CONFIG_DIR= in .env would otherwise pass validation
+
   CONFIG_DIR: z.string().min(1),
   ENV: z
     .union([
