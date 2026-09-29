@@ -4,9 +4,11 @@
 .NOTES.md
 .NOTES-KIRO.md
 /docs/architecture.md
+
 # ENV
 .env.*
 !.env.example
+
 
 # Claude — personal configuration and notes, not project code.
 .claude
@@ -20,6 +22,10 @@
 # Node
 node_modules/
 dist/
+
+# DEVICE CONFIGS
+/config/gateways/*
+!/config/gateways/README.md
 
 #Hardware official documentation
 /hardware/carlo-gavazzi-em111/EM110-111-112DIN_CE.pdf
