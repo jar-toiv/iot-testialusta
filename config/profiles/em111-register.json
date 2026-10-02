@@ -8,6 +8,7 @@
       "adr": 0,
       "count": 2,
       "signed": true,
+      "type": "int32",
       "scale": 0.1
     }
   ]
