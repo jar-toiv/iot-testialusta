@@ -1,4 +1,4 @@
-***Suomeksi** · [English](README.en.md)*
+***Suomeksi** · [English](README.en.md) · [Työpäiväkirja](NOTES.md)*
 
 # Iot testialusta, moni protokolla testauskeskus
 

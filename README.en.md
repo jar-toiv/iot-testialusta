@@ -1,4 +1,4 @@
-*[Suomeksi](README.md) · **English***
+*[Suomeksi](README.md) · **English** · [Work diary](NOTES.md)*
 
 # Iot test cabinet, multi-protocol environment for industrial IoT
 
