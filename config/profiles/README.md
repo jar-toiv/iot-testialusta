@@ -1,0 +1,21 @@
+## Field device profiles JSONs
+
+
+
+### Waveshare 23626
+```
+{
+  "name": "Carlo Gavazzi EM111 S1 modbus",
+  "wordOrder": "lowFirst",
+  "registers": [
+    {
+      "id": "voltage_l_n",
+      "unit": "V",
+      "adr": 0,
+      "count": 2,
+      "signed": true,
+      "scale": 0.1
+    }
+  ]
+}
+```
