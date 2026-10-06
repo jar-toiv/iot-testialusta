@@ -3,7 +3,7 @@
 - This document should be updated after each PR
 
 
-### 6-10-26 (branch `feature/modbus-tcp-driver`)
+### 6-10-26 (PR #42)
 - Config pipelines moved into one exported function `getValidatedConfigs(gatewayDir, profileDir)`, returns `{ gateways, profiles }`
 - Loader is sync now (`readFileSync`, `readdirSync`): the program must not start without valid configs
 - Missing config folder throws `Cannot read config directory: <dir>`

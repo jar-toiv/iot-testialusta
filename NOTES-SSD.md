@@ -18,7 +18,7 @@ Every requirement traces to a measurement or an ADR.
 ## 11-9-26 feat modbus-tcp-driver
 - initialized Kiro design with EARS notation. Starting to practice it.1
 
-- PRs: #24-#41 (12-9-26 ... 2-10-26), all from branch `feature/modbus-tcp-driver`
+- PRs: #24-#42 (12-9-26 ... 6-10-26), all from branch `feature/modbus-tcp-driver`
 - Status: config loading done (#39-#41), loader tested for a missing gateway or profile folder (6-10-26), driver not wired to it yet, `tasks.md` still an empty template
 - Implemented: not yet
 
