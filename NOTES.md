@@ -3,6 +3,13 @@
 - This document should be updated after each PR
 
 
+### 6-10-26 (branch `feature/modbus-tcp-driver`)
+- Config pipelines moved into one exported function `getValidatedConfigs(gatewayDir, profileDir)`, returns `{ gateways, profiles }`
+- Loader is sync now (`readFileSync`, `readdirSync`): the program must not start without valid configs
+- Missing config folder throws `Cannot read config directory: <dir>`
+- `index.ts` is the entry point: reads `env`, builds the two paths, calls the loader
+- First real tests in `tests/config/loadConfig.test.ts`, fixtures in `tests/fixtures/`, scaffold test removed
+
 ### 2-10-26 (PR #40)
 - Load all gateway and profile configs from `CONFIG_DIR`, every JSON file validated with Zod
 - Validation error names the failing file: `throw new Error(msg, { cause: err })`
@@ -102,6 +109,11 @@ Findings:
 - The Modbus driver is a device independent. Each devices's register map is a JSON file placed on the PI,
     loaded at startup and validated with Zod, so a new device needs no code change or rebuild
 - `export type Gateway = z.infer<typeof gatewaySchema>`: one source for both validation and type
+- Test file `<unit>.test.ts`, `describe` names the function, each `it` is one situation
+- `expect(() => fn()).toThrow(text)`: the arrow lets `expect` run the call and catch the throw
+- A test can pass for the wrong reason: check the error message, not just that something threw
+- A function can be tested only on what it receives: the config root is visible only in `index.ts`
+- Import paths start from the file, folder paths in code start from cwd
 
 ## 19-9-26
 - Created first part of pseudo and first code for the driver `modbus-tcp.ts`.
