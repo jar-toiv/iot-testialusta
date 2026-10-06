@@ -32,7 +32,7 @@ const readRawConfigPairs = (configFilenames: string[], dir: string) => {
   return rawConfigPairs
 }
 
-export const validateConfigPairs = <T extends ZodObject>(
+const validateConfigPairs = <T extends ZodObject>(
   rawConfigPairs: RawConfigPair[],
   schema: T,
 ) => {
