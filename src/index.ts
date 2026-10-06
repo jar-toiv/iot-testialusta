@@ -1,7 +1,9 @@
-// Placeholder entry point.
-//
-// This file exists only so the build, typecheck and test commands have
-// something real to act on. Replace it when the pipeline implementation
-// starts (see docs/design/ and the ADRs).
+import { env } from './config/env.js'
+import path from 'node:path'
+import { getValidatedConfigs } from './config/loadConfig.js'
 
-export const SCAFFOLD_READY = true
+const gatewayDir = path.join(env.CONFIG_DIR, 'gateways')
+const profileDir = path.join(env.CONFIG_DIR, 'profiles')
+
+const configs = getValidatedConfigs(gatewayDir, profileDir)
+console.log(configs)
