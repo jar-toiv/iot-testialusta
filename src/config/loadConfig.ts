@@ -4,10 +4,7 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { gatewaySchema } from '../schemas/gateway/gatewaySchema.js'
 import { profileSchema } from '../schemas/profile/profileSchema.js'
 
-interface RawConfigPair {
-  filePath: string
-  json: unknown
-}
+type RawConfigPair = { filePath: string; json: unknown }
 
 const getConfigFilenames = (dir: string) => {
   let dirFilenames: string[]

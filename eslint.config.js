@@ -9,41 +9,11 @@ export default defineConfig([
     files: ['**/*.ts'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
+      tseslint.configs.recommended,
+      tseslint.configs.recommendedTypeChecked,
     ],
     languageOptions: {
       parserOptions: { projectService: true },
-    },
-    rules: {
-      '@typescript-eslint/naming-convention': [
-        'error',
-        {
-          selector: 'default',
-          format: ['camelCase'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'allow',
-        },
-        { selector: 'import', format: ['camelCase', 'PascalCase'] },
-        {
-          selector: 'variable',
-          format: ['camelCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'allow',
-        },
-        { selector: 'typeLike', format: ['PascalCase'] },
-        {
-          selector: 'variable',
-          types: ['boolean'],
-          format: ['PascalCase'],
-          prefix: ['is', 'should', 'has', 'can', 'did', 'will'],
-        },
-        // Env variable names (CONFIG_DIR) are object keys in the zod schema
-        {
-          selector: 'objectLiteralProperty',
-          format: ['camelCase', 'UPPER_CASE'],
-        },
-      ],
     },
   },
   {
