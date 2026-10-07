@@ -15,3 +15,6 @@ dist/
 package-lock.json
 
 *.md
+
+# Deliberately invalid JSON, used by tests/config/loadConfig.test.ts.
+tests/fixtures/broken-json/

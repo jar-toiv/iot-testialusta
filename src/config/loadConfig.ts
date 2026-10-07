@@ -29,8 +29,15 @@ const readRawConfigPairs = (configFilenames: string[], dir: string) => {
   for (const configFilename of configFilenames) {
     const filePath = path.join(dir, configFilename)
     const fileText = readFileSync(filePath, { encoding: 'utf-8' })
-    const json: unknown = JSON.parse(fileText)
-    rawConfigPairs.push({ filePath, json })
+
+    try {
+      const json: unknown = JSON.parse(fileText)
+      rawConfigPairs.push({ filePath, json })
+    } catch (err) {
+      throw new Error(`Cannot parse JSON file: ${filePath}`, {
+        cause: err,
+      })
+    }
   }
   return rawConfigPairs
 }
