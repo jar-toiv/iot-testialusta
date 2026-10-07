@@ -87,6 +87,28 @@ src/                  ← drivers, pipeline (TypeScript)
 hardware/             ← wiring diagrams, shopping list
 ```
 
+## Running locally
+
+Requires Node.js 24.
+
+```bash
+npm ci                  # install dependencies
+npm run build           # compile TypeScript
+npm test                # run the tests
+npm run driver:modbus   # build and start the Modbus TCP driver
+```
+
+`driver:modbus` reads its environment variables from `.env.development`.
+
+## Environment variables
+
+Copy `.env.example` to `.env.development` and fill in the values.
+
+| Variable | Required | Description |
+|---|---|---|
+| `CONFIG_DIR` | yes | Root folder of field configuration: contains `gateways/` and `profiles/` |
+| `ENV` | no | `development` (default), `testing` or `production` |
+
 ## Architecture decisions
 
 Every significant choice and every rejected alternative is recorded as an ADR:
@@ -100,7 +122,7 @@ context, alternatives, decision, consequences, verification.
 
 ## Status and roadmap
 
-- [ ] Design and device selection, ADR-0001…0019
+- [ ] Design and device selection, ADR-0001…0021
 - [ ] Modbus chain on the bench (meter → Waveshare → database)
 - [ ] Enclosure and fault-injection panel
 - [ ] CN105 readout from the air-source heat pump (read-only)

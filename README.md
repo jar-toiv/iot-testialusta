@@ -84,6 +84,28 @@ src/                  ← ajurit, pipeline (TypeScript)
 hardware/             ← kytkentäkaaviot, hankintalista
 ```
 
+## Ajaminen paikallisesti
+
+Vaatii Node.js 24:n.
+
+```bash
+npm ci                  # asenna riippuvuudet
+npm run build           # käännä TypeScript
+npm test                # aja testit
+npm run driver:modbus   # käännä ja käynnistä Modbus TCP -ajuri
+```
+
+`driver:modbus` lukee ympäristömuuttujat tiedostosta `.env.development`.
+
+## Ympäristömuuttujat
+
+Kopioi `.env.example` nimelle `.env.development` ja täytä arvot.
+
+| Muuttuja | Pakollinen | Kuvaus |
+|---|---|---|
+| `CONFIG_DIR` | kyllä | Kenttäkonfiguraation juurikansio: sisältää `gateways/` ja `profiles/` |
+| `ENV` | ei | `development` (oletus), `testing` tai `production` |
+
 ## Arkkitehtuuripäätökset
 
 Jokainen merkittävä valinta ja hylätty vaihtoehto on kirjattu ADR:ksi:
@@ -97,7 +119,7 @@ konteksti, vaihtoehdot, päätös, seuraukset, todennus.
 
 ## Tila ja tiekartta
 
-- [ ] Suunnittelu ja laitevalinnat, ADR-0001…0019
+- [ ] Suunnittelu ja laitevalinnat, ADR-0001…0021
 - [ ] Modbus-ketju pöydällä (mittari → Waveshare → kanta)
 - [ ] Kotelointi ja vian tuottopaneeli
 - [ ] CN105-luku ilmalämpöpumpusta (vain luku)
