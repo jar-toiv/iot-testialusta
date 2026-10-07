@@ -3,6 +3,14 @@
 - This document should be updated after each PR
 
 
+### 7-10-26 (PR #43, #45)
+- ESLint is stricter: `strictTypeChecked`, `stylisticTypeChecked` and a `naming-convention` rule
+- Broken JSON in a config file now names the file: `Cannot parse JSON file: <path>`
+- Two new tests for the loader: broken JSON and schema mismatch
+- READMEs got "Running locally" and "Environment variables" sections
+- New habits: only docs go straight to `main`, commit subjects use `fix:`, `feat:`, `docs:`
+- Lint changes went to `main` by mistake with the wrong message, undone with `git revert` and redone through a branch
+
 ### 6-10-26 (PR #42)
 - Config pipelines moved into one exported function `getValidatedConfigs(gatewayDir, profileDir)`, returns `{ gateways, profiles }`
 - Loader is sync now (`readFileSync`, `readdirSync`): the program must not start without valid configs
@@ -114,6 +122,15 @@ Findings:
 - A test can pass for the wrong reason: check the error message, not just that something threw
 - A function can be tested only on what it receives: the config root is visible only in `index.ts`
 - Import paths start from the file, folder paths in code start from cwd
+- `git revert <hash>` undoes a pushed commit with a new commit, history stays as it was
+- Braces are a box: a `const` made inside is seen there and deeper, never outside
+- `return` inside a loop ends the whole function, not one round
+- `path.join` only builds a string, it does not touch the disk
+- Test output: `Expected` is what the test wants, `Received` is what it got
+- A failing test is fixed in the code, not in the test
+- Zod stays in the compiled JS because it checks data at runtime, TS types are removed
+- `interface` for object shapes, `type` for everything else (unions, aliases)
+- Wait for the green CI check before pressing Merge
 
 ## 19-9-26
 - Created first part of pseudo and first code for the driver `modbus-tcp.ts`.
