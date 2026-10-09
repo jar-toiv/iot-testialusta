@@ -52,6 +52,7 @@ export const validateConfigPairs = <T extends ZodObject>(
 }
 
 export const getValidatedConfigs = (gatewayDir: string, profileDir: string) => {
+  // Two pipelines on purpose, they may diverge with other meters/protocols later.
   // Gateway pipeline
   const gatewayFilenames = getConfigFilenames(gatewayDir)
   const rawGatewayPairs = readRawConfigPairs(gatewayFilenames, gatewayDir)
