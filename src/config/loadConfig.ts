@@ -18,7 +18,8 @@ const getConfigFilenames = (dir: string) => {
   }
   const configFilenames = dirFilenames.filter((name) => name.endsWith('.json'))
 
-  if (configFilenames.length === 0) throw Error(`Missing configs at: ${dir}`)
+  if (configFilenames.length === 0)
+    throw new Error(`Missing configs at: ${dir}`)
 
   return configFilenames
 }
@@ -53,9 +54,10 @@ const validateConfigPairs = <T extends ZodObject>(
       const validConfig = schema.parse(rawConfigPair.json)
       validConfigs.push(validConfig)
     } catch (err) {
-      throw new Error(`Parsing failed at ${rawConfigPair.filePath}`, {
-        cause: err,
-      })
+      throw new Error(
+        `Config does not match schema: ${rawConfigPair.filePath}`,
+        { cause: err },
+      )
     }
   }
   return validConfigs
