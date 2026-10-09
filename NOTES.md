@@ -3,6 +3,17 @@
 - This document should be updated after each PR
 
 
+### 9-10-26 (PR #46, #47)
+- Reviewed `loadConfig.ts` with a code review checklist: design, functionality, complexity, tests, names
+- Two more loader tests: config folder with no JSON files, and the first success case
+- Schema mismatch now says `Config does not match schema: <path>`, so it reads differently from a JSON syntax error
+- Kept the gateway and profile pipelines as two separate copies on purpose: they may grow apart when other meters come in
+- Found but not fixed: a gateway's `profile` name is never checked against the loaded profiles
+
+### 8-10-26 IoT-cabinet worki
+- Finished the cabinet and took pictures
+- Took output voltages from DC powers Mornsun 25 VDC and Mean Well 5.7 VDC
+
 ### 7-10-26 (PR #43, #45)
 - ESLint is stricter: `strictTypeChecked`, `stylisticTypeChecked` and a `naming-convention` rule
 - Broken JSON in a config file now names the file: `Cannot parse JSON file: <path>`
@@ -131,6 +142,12 @@ Findings:
 - Zod stays in the compiled JS because it checks data at runtime, TS types are removed
 - `interface` for object shapes, `type` for everything else (unions, aliases)
 - Wait for the green CI check before pressing Merge
+- Review order: design first, style last. The linter covers style, a person covers the rest
+- In review the author fixes or gives a technical reason. "I don't want to" is not a reason
+- Count the places that can throw and check each has a test. Four tests for four throws can still miss one
+- Tests that only check failures say nothing about what the function does when it works
+- `git switch -c name` makes a new branch and keeps uncommitted changes, plain `git switch` to an old branch can refuse
+- `git branch -d` refuses after a squash merge, `-D` is fine once the content is confirmed in `main`
 
 ## 19-9-26
 - Created first part of pseudo and first code for the driver `modbus-tcp.ts`.
