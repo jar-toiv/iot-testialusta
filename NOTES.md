@@ -3,12 +3,14 @@
 - This document should be updated after each PR
 
 
-### 9-10-26 (PR #46, #47)
+### 9-10-26 (PR #46-#48)
 - Reviewed `loadConfig.ts` with a code review checklist: design, functionality, complexity, tests, names
 - Two more loader tests: config folder with no JSON files, and the first success case
 - Schema mismatch now says `Config does not match schema: <path>`, so it reads differently from a JSON syntax error
 - Kept the gateway and profile pipelines as two separate copies on purpose: they may grow apart when other meters come in
 - Found but not fixed: a gateway's `profile` name is never checked against the loaded profiles
+- Added a why-comment above the two pipelines
+- `index.ts` calls the loader go get JSONs
 
 ### 8-10-26 IoT-cabinet worki
 - Finished the cabinet and took pictures
@@ -148,6 +150,8 @@ Findings:
 - Tests that only check failures say nothing about what the function does when it works
 - `git switch -c name` makes a new branch and keeps uncommitted changes, plain `git switch` to an old branch can refuse
 - `git branch -d` refuses after a squash merge, `-D` is fine once the content is confirmed in `main`
+- A comment that says why stops the next person from "fixing" a choice made on purpose
+- A merge brings in only what the branch changed: an old branch does not undo newer work on `main`
 
 ## 19-9-26
 - Created first part of pseudo and first code for the driver `modbus-tcp.ts`.
