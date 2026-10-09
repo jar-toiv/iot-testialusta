@@ -2,7 +2,7 @@
 
 
 
-### Waveshare 23626
+### Carlo Gavazzi EM111
 ```
 {
   "name": "Carlo Gavazzi EM111 S1 modbus",
@@ -14,6 +14,7 @@
       "adr": 0,
       "count": 2,
       "signed": true,
+      "type": "int32",
       "scale": 0.1
     }
   ]

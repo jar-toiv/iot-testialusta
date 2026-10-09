@@ -3,6 +3,9 @@
 
 
 ### Waveshare 23626
+
+Fill in `ip` with the gateway's IPv4 address. An empty value fails validation.
+
 ```
 {
   "name": "Waveshare_23626",
