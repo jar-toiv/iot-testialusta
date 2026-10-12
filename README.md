@@ -7,6 +7,9 @@ Hyödynnän MQTT protokollaa tiedon keruussa ja typescriptiä niiden viennissä 
 
 Keskuksella on tarkoitus myöhemmin saada simuloitua kentällä tapahtuvia vikoja.
 
+<img src="docs/images/cabinet_powered_700kt.jpg" alt="Testbed-keskus käynnissä, ovi auki" width="49%">
+<img src="docs/images/cabinet_open_500kt.jpg" alt="Testbed-keskuksen johdotus, Raspberry Pi ei kytkettynä" width="49%">
+
 ## Miksi tämä on olemassa
 
 Tarkoituksena on syventää tietoa teollisuuden tiedonsiirto protokollista sekä laitteista ja oppia tekemään koodi tasolla. Pyrin myös dokumentoimaan jokaisen harkinnan, päätöksen, vian ja teon.
