@@ -7,8 +7,12 @@ Hyödynnän MQTT protokollaa tiedon keruussa ja typescriptiä niiden viennissä 
 
 Keskuksella on tarkoitus myöhemmin saada simuloitua kentällä tapahtuvia vikoja.
 
-<img src="docs/images/cabinet_powered_700kt.jpg" alt="Testbed-keskus käynnissä, ovi auki" width="49%">
-<img src="docs/images/cabinet_open_500kt.jpg" alt="Testbed-keskuksen johdotus, Raspberry Pi ei kytkettynä" width="49%">
+<table>
+  <tr>
+    <td><img src="docs/images/cabinet_powered_700kt.jpg" alt="Testbed-keskus käynnissä, ovi auki" width="380"></td>
+    <td><img src="docs/images/cabinet_open_500kt.jpg" alt="Testbed-keskuksen johdotus, Raspberry Pi ei kytkettynä" width="380"></td>
+  </tr>
+</table>
 
 ## Miksi tämä on olemassa
 

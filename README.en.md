@@ -7,8 +7,12 @@ I use the MQTT protocol for data collection and TypeScript for pushing it into d
 
 The cabinet is later meant to be able to simulate faults that occur in the field.
 
-<img src="docs/images/cabinet_powered_700kt.jpg" alt="The test cabinet powered up, door open" width="49%">
-<img src="docs/images/cabinet_open_500kt.jpg" alt="The test cabinet wiring, no Raspberry Pi connected" width="49%">
+<table>
+  <tr>
+    <td><img src="docs/images/cabinet_powered_700kt.jpg" alt="The test cabinet powered up, door open" width="380"></td>
+    <td><img src="docs/images/cabinet_open_500kt.jpg" alt="The test cabinet wiring, no Raspberry Pi connected" width="380"></td>
+  </tr>
+</table>
 
 ## Why this exists
 
