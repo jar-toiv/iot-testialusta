@@ -3,6 +3,11 @@
 - This document should be updated after each PR
 
 
+### 12-10-26 (docs, straight to main)
+- Two cabinet photos in both READMEs, in `docs/images/`
+- Checked the photos for GPS and camera data in the Exif block before adding them (none found). Phone photos carry it by default
+- Side by side layout: an HTML table with fixed pixel widths. A percentage width worked in the editor preview but not on GitHub
+
 ### 9-10-26 (PR #46-#48)
 - Reviewed `loadConfig.ts` with a code review checklist: design, functionality, complexity, tests, names
 - Two more loader tests: config folder with no JSON files, and the first success case
