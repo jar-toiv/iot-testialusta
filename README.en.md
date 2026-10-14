@@ -42,13 +42,13 @@ the path that **fails**:
 Field                     Edge                          Cloud
 ─────                     ────                          ─────
 Modbus meter ───RS485───┐
-Modbus sensor ──────────┤
+                        │
                         └─► Waveshare ──Eth──┐
                                              │
                                           TSW010 ──Eth──► ZTE (SIM)
                                              │                │
-ESP32 (CN105) ──┐                            │                4G
-ESP32 (analog) ─┴──WiFi (Pi's own AP)──►  Pi 4B                ▼
+                                             │                4G
+ESP32 (CN105) ──  WiFi (Pi:n oma AP)──►  Pi 4B                ▼
                                                         broker + database
                                                         Mosquitto
                                                         InfluxDB, MongoDB

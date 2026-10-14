@@ -40,13 +40,13 @@ Useimmat harrasteprojektit demoavat toimivaa polkua. Tämä demoaa myös
 Kenttä                    Reuna                         Pilvi
 ──────                    ─────                         ─────
 Modbus-mittari ──RS485──┐
-Modbus-anturi ──────────┤
+                        │
                         └─► Waveshare ──Eth──┐
                                              │
                                           TSW010 ──Eth──► ZTE (SIM)
                                              │                │
-ESP32 (CN105) ──┐                            │                4G
-ESP32 (analogia)┴──WiFi (Pi:n oma AP)──►  Pi 4B                ▼
+                                             │                4G
+ESP32 (CN105) ──WiFi (Pi:n oma AP)──►  Pi 4B                  ▼
                                                         broker + kanta
                                                         Mosquitto
                                                         InfluxDB, MongoDB
