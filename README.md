@@ -104,10 +104,10 @@ Vaatii Node.js 24:n.
 npm ci                  # asenna riippuvuudet
 npm run build           # käännä TypeScript
 npm test                # aja testit
-npm run driver:modbus   # käännä ja käynnistä Modbus TCP -ajuri
+npm start               # käännä ja käynnistä, lataa ja tarkistaa konfiguraatiot
 ```
 
-`driver:modbus` lukee ympäristömuuttujat tiedostosta `.env.development`.
+`start` lukee ympäristömuuttujat tiedostosta `.env.development`.
 
 ## Ympäristömuuttujat
 

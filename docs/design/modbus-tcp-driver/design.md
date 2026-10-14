@@ -13,6 +13,21 @@
 | Component | Owns | Does not own |
 |---|---|---|
 | `scheduler` | The cycle clock: the configured polling interval, when the next cycle is due, and starting exactly one cycle at a time. | Error handling, Modbus protocol, connection state |
+| `connection` | Opening and closing the TCP connection, a new attempt each cycle while it is down, and identifying the meter on every new connection (D7). | The cycle clock, reading measurement registers |
+| `registerReader` | One request for one register (D5), the response timeout (D2), and classifying the outcome: answer, timeout, exception or malformed. | Decoding, quality per reading, the connection's life |
+| `decoder` | Raw words to a number: word order, `type`, `scale` (D6). A pure function, testable without hardware. | Anything on the wire |
+
+| REQ | Component |
+|---|---|
+| 001, 010 | `scheduler` |
+| 008, 010, 011, 012 | `connection` |
+| 003, 006, 007 | `registerReader` |
+| 004 | `decoder` |
+| 002, 005, 009 | The cycle `scheduler` starts: one reading per register, quality per register |
+
+Each component is a separate unit so that each can be tested on its own.
+Connection and register reading are split the way Home Assistant splits its
+modbus hub from its entities.
 
 `scheduler` serves REQ-MTD-001 and REQ-MTD-010. It holds the next due time and
 no previous readings. That absence is deliberate: remembering values is what
@@ -129,28 +144,28 @@ Sketch, not the final `src/types/` file. The `Reading` envelope itself is
 defined once in ADR-0004 and is not restated here; below is only what MTD
 takes in, what it hands out, and which parts of the envelope it narrows.
 
-### In: the register group
+### In: gateway config
+
+`src/schemas/gateway/gatewaySchema.ts`, plus the two timing fields.
 
 ```ts
-// Sketch only. Should be updated when we fetch data again using modbus library.
-type RegisterSpec = {
-  name:            string;  // becomes Reading.source.point
-  physicalAddress: string;  // e.g. '0004h'
-  words:           number;  // 1 or 2 on this meter
-  type:            'int16' | 'int32' | 'uint16' | 'ascii';
-  weight:          number;  // REQ-MTD-004: value = raw / weight
-  unit:            string;  // becomes Reading.unit
-};
-
-type RegisterGroupConfig = {
-  pollIntervalMs: number;          // REQ-MTD-001
-  registers:      RegisterSpec[];  // order is the read order within a cycle
-};
+gateway = {
+  name:              string
+  id:                string
+  ip:                ipv4
+  port:              1-65535
+  pollIntervalMs:    number   // D4, REQ-MTD-001
+  responseTimeoutMs: number   // D4, D2, REQ-MTD-003
+  slaves: [{
+    slaveId: 1-247
+    id:      string
+    profile: string           // name of the profile file
+    label:   string
+  }]
+}
 ```
 
-An object holding an array: the group carries state of its own (the interval),
-the registers are an ordered list because ADR-0020 option A does not queue, so
-they are read one at a time.
+Both timings sit on the gateway, not on a slave: one bus, one cycle clock.
 
 
 ## Error handling and edge cases
