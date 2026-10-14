@@ -12,6 +12,9 @@
 - D6: `type` alone gives the sign (`int32` / `uint32`), `signed` goes, `scale` stays a multiplier
 - D7: on every new connection read the meter's ID code and firmware, wrong ID gives BAD for all registers
 - `requirements.md` accepted, two new requirements REQ-MTD-011 and 012
+- READMEs brought up to date: scaffold note, structure block, roadmap (enclosure done), analog ESP32 removed from the diagram
+- `npm run driver:modbus` replaced by `npm start`, which runs `index.ts`. Drivers are chosen by config, not by separate scripts
+- `design.md`: four components (`scheduler`, `connection`, `registerReader`, `decoder`), gateway and profile shapes, and the four outcomes of one register read
 
 ### 12-10-26 (docs, straight to main)
 - Two cabinet photos in both READMEs, in `docs/images/`
@@ -132,44 +135,6 @@ Findings:
 - Rules engine pricing.
 
 ---
-
-- readFile for field files, not import
-- JSON import needs with `{ type: 'json' }`
-- `--env-file` loads .env into process.env
-- `Relative paths` resolve from cwd
-- `path.resolve` shows the real path
-- !value catches `undefined` and `empty`
-- Pi config belongs in /etc
-- One `industry` method is to load up registers during system buildup
-- Linux `systemd`-service will handle `Restart=always` if it crashes etc.
-- The Modbus driver is a device independent. Each devices's register map is a JSON file placed on the PI,
-    loaded at startup and validated with Zod, so a new device needs no code change or rebuild
-- `export type Gateway = z.infer<typeof gatewaySchema>`: one source for both validation and type
-- Test file `<unit>.test.ts`, `describe` names the function, each `it` is one situation
-- `expect(() => fn()).toThrow(text)`: the arrow lets `expect` run the call and catch the throw
-- A test can pass for the wrong reason: check the error message, not just that something threw
-- A function can be tested only on what it receives: the config root is visible only in `index.ts`
-- Import paths start from the file, folder paths in code start from cwd
-- `git revert <hash>` undoes a pushed commit with a new commit, history stays as it was
-- Braces are a box: a `const` made inside is seen there and deeper, never outside
-- `return` inside a loop ends the whole function, not one round
-- `path.join` only builds a string, it does not touch the disk
-- Test output: `Expected` is what the test wants, `Received` is what it got
-- A failing test is fixed in the code, not in the test
-- Zod stays in the compiled JS because it checks data at runtime, TS types are removed
-- `interface` for object shapes, `type` for everything else (unions, aliases)
-- Wait for the green CI check before pressing Merge
-- Review order: design first, style last. The linter covers style, a person covers the rest
-- In review the author fixes or gives a technical reason. "I don't want to" is not a reason
-- Count the places that can throw and check each has a test. Four tests for four throws can still miss one
-- Tests that only check failures say nothing about what the function does when it works
-- `git switch -c name` makes a new branch and keeps uncommitted changes, plain `git switch` to an old branch can refuse
-- `git branch -d` refuses after a squash merge, `-D` is fine once the content is confirmed in `main`
-- A comment that says why stops the next person from "fixing" a choice made on purpose
-- A merge brings in only what the branch changed: an old branch does not undo newer work on `main`
-- `int32` has a sign (2's complement), `uint32` does not. The same bits `FFFFFFFF` are -1 or 4 294 967 295
-- The data type comes from the datasheet's Data Format column, it is not chosen
-- A decision that departs from common practice says so, and says when it moves to it
 
 ## 19-9-26
 - Created first part of pseudo and first code for the driver `modbus-tcp.ts`.
