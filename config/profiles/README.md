@@ -1,0 +1,22 @@
+## Field device profiles JSONs
+
+
+
+### Carlo Gavazzi EM111
+```
+{
+  "name": "Carlo Gavazzi EM111 S1 modbus",
+  "wordOrder": "lowFirst",
+  "registers": [
+    {
+      "id": "voltage_l_n",
+      "unit": "V",
+      "adr": 0,
+      "count": 2,
+      "signed": true,
+      "type": "int32",
+      "scale": 0.1
+    }
+  ]
+}
+```

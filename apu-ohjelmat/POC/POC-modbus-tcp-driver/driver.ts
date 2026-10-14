@@ -1,7 +1,6 @@
-import modbus from 'modbus-serial'
+import ModbusRTU from 'modbus-serial'
 
-const Modbus = modbus.default
-const client = new Modbus()
+const client = new ModbusRTU.default()
 
 const meterConfig = {
   ip: 'gateway-IP-address',

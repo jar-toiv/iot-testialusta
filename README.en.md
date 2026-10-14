@@ -1,4 +1,4 @@
-*[Suomeksi](README.md) · **English***
+*[Suomeksi](README.md) · **English** · [Work diary](NOTES.md)*
 
 # Iot test cabinet, multi-protocol environment for industrial IoT
 
@@ -6,6 +6,13 @@ A test cabinet has been installed in the field to collect data from fieldbuses.
 I use the MQTT protocol for data collection and TypeScript for pushing it into databases.
 
 The cabinet is later meant to be able to simulate faults that occur in the field.
+
+<table>
+  <tr>
+    <td><img src="docs/images/cabinet_powered_700kt.jpg" alt="The test cabinet powered up, door open" width="380"></td>
+    <td><img src="docs/images/cabinet_open_500kt.jpg" alt="The test cabinet wiring, no Raspberry Pi connected" width="380"></td>
+  </tr>
+</table>
 
 ## Why this exists
 
@@ -73,7 +80,7 @@ connection.
 ⚪ planned
 
 No protocol is implemented in the pipeline yet: `src/` currently contains
-only the scaffold. Modbus RTU and TCP are bench-verified (every EM111
+the config loader with its tests, no driver yet. Modbus RTU and TCP are bench-verified (every EM111
 register read through the Waveshare gateway).
 
 ## Structure
@@ -83,9 +90,36 @@ docs/
   adr/                ← architecture decisions, one file per decision
   design/             ← feature specs (requirements, design, tasks)
   vikaluettelo.md     ← observed and injected faults, metrics
+  images/             ← README images
+config/
+  gateways/           ← one file per gateway
+  profiles/           ← one register map per meter model
 src/                  ← drivers, pipeline (TypeScript)
-hardware/             ← wiring diagrams, shopping list
+tests/                ← vitest tests and their fixtures
+hardware/             ← one folder per device: records and manufacturer documents
 ```
+
+## Running locally
+
+Requires Node.js 24.
+
+```bash
+npm ci                  # install dependencies
+npm run build           # compile TypeScript
+npm test                # run the tests
+npm run driver:modbus   # build and start the Modbus TCP driver
+```
+
+`driver:modbus` reads its environment variables from `.env.development`.
+
+## Environment variables
+
+Copy `.env.example` to `.env.development` and fill in the values.
+
+| Variable | Required | Description |
+|---|---|---|
+| `CONFIG_DIR` | yes | Root folder of field configuration: contains `gateways/` and `profiles/` |
+| `ENV` | no | `development` (default), `testing` or `production` |
 
 ## Architecture decisions
 
@@ -100,7 +134,7 @@ context, alternatives, decision, consequences, verification.
 
 ## Status and roadmap
 
-- [ ] Design and device selection, ADR-0001…0019
+- [ ] Design and device selection, ADR-0001…0021
 - [ ] Modbus chain on the bench (meter → Waveshare → database)
 - [ ] Enclosure and fault-injection panel
 - [ ] CN105 readout from the air-source heat pump (read-only)

@@ -1,0 +1,15 @@
+{
+  "name": "test-profile",
+  "wordOrder": "lowFirst",
+  "registers": [
+    {
+      "id": "register-1",
+      "unit": "V",
+      "adr": 0,
+      "count": 1,
+      "signed": false,
+      "type": "int16",
+      "scale": 1
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-***Suomeksi** · [English](README.en.md)*
+***Suomeksi** · [English](README.en.md) · [Työpäiväkirja](NOTES.md)*
 
 # Iot testialusta, moni protokolla testauskeskus
 
@@ -6,6 +6,13 @@ Kentälle on asennettu Testbed keskus, jonka tarkoituksena on kerätä data kent
 Hyödynnän MQTT protokollaa tiedon keruussa ja typescriptiä niiden viennissä tietokantoihin
 
 Keskuksella on tarkoitus myöhemmin saada simuloitua kentällä tapahtuvia vikoja.
+
+<table>
+  <tr>
+    <td><img src="docs/images/cabinet_powered_700kt.jpg" alt="Testbed-keskus käynnissä, ovi auki" width="380"></td>
+    <td><img src="docs/images/cabinet_open_500kt.jpg" alt="Testbed-keskuksen johdotus, Raspberry Pi ei kytkettynä" width="380"></td>
+  </tr>
+</table>
 
 ## Miksi tämä on olemassa
 
@@ -70,7 +77,7 @@ Modbus-yhteytenä.
 🟢 toteutettu putkessa · 🟡 todennettu penkillä, ei putkikoodia · ⚪ suunniteltu
 
 Yhtään protokollaa ei ole vielä toteutettu putkessa: `src/` sisältää
-toistaiseksi vain scaffoldin. Modbus RTU ja TCP on todennettu penkillä
+konfiguraation lataajan testeineen, ajuria ei vielä ole. Modbus RTU ja TCP on todennettu penkillä
 (kaikki EM111:n rekisterit luettu Wavesharen kautta).
 
 ## Rakenne
@@ -80,9 +87,36 @@ docs/
   adr/                ← arkkitehtuuripäätökset, yksi tiedosto per päätös
   design/             ← feature-speksit (requirements, design, tasks)
   vikaluettelo.md     ← havaitut ja tuotetut viat, mittarit
+  images/             ← README:n kuvat
+config/
+  gateways/           ← yksi tiedosto per yhdyskäytävä
+  profiles/           ← yksi rekisterikartta per mittarimalli
 src/                  ← ajurit, pipeline (TypeScript)
-hardware/             ← kytkentäkaaviot, hankintalista
+tests/                ← vitest-testit ja niiden fixturet
+hardware/             ← yksi kansio per laite: tiedot ja valmistajan dokumentit
 ```
+
+## Ajaminen paikallisesti
+
+Vaatii Node.js 24:n.
+
+```bash
+npm ci                  # asenna riippuvuudet
+npm run build           # käännä TypeScript
+npm test                # aja testit
+npm run driver:modbus   # käännä ja käynnistä Modbus TCP -ajuri
+```
+
+`driver:modbus` lukee ympäristömuuttujat tiedostosta `.env.development`.
+
+## Ympäristömuuttujat
+
+Kopioi `.env.example` nimelle `.env.development` ja täytä arvot.
+
+| Muuttuja | Pakollinen | Kuvaus |
+|---|---|---|
+| `CONFIG_DIR` | kyllä | Kenttäkonfiguraation juurikansio: sisältää `gateways/` ja `profiles/` |
+| `ENV` | ei | `development` (oletus), `testing` tai `production` |
 
 ## Arkkitehtuuripäätökset
 
@@ -97,7 +131,7 @@ konteksti, vaihtoehdot, päätös, seuraukset, todennus.
 
 ## Tila ja tiekartta
 
-- [ ] Suunnittelu ja laitevalinnat, ADR-0001…0019
+- [ ] Suunnittelu ja laitevalinnat, ADR-0001…0021
 - [ ] Modbus-ketju pöydällä (mittari → Waveshare → kanta)
 - [ ] Kotelointi ja vian tuottopaneeli
 - [ ] CN105-luku ilmalämpöpumpusta (vain luku)

@@ -1,0 +1,7 @@
+{
+  "name": "test-gateway",
+  "id": "gateway-1",
+  "ip": "192.0.2.1",
+  "port": 502,
+  "slaves": []
+}

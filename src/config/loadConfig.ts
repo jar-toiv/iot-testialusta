@@ -4,7 +4,10 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { gatewaySchema } from '../schemas/gateway/gatewaySchema.js'
 import { profileSchema } from '../schemas/profile/profileSchema.js'
 
-type RawConfigPair = { filePath: string; json: unknown }
+interface RawConfigPair {
+  filePath: string
+  json: unknown
+}
 
 const getConfigFilenames = (dir: string) => {
   let dirFilenames: string[]
@@ -15,7 +18,8 @@ const getConfigFilenames = (dir: string) => {
   }
   const configFilenames = dirFilenames.filter((name) => name.endsWith('.json'))
 
-  if (configFilenames.length === 0) throw Error(`Missing configs at: ${dir}`)
+  if (configFilenames.length === 0)
+    throw new Error(`Missing configs at: ${dir}`)
 
   return configFilenames
 }
@@ -26,13 +30,20 @@ const readRawConfigPairs = (configFilenames: string[], dir: string) => {
   for (const configFilename of configFilenames) {
     const filePath = path.join(dir, configFilename)
     const fileText = readFileSync(filePath, { encoding: 'utf-8' })
-    const json: unknown = JSON.parse(fileText)
-    rawConfigPairs.push({ filePath, json })
+
+    try {
+      const json: unknown = JSON.parse(fileText)
+      rawConfigPairs.push({ filePath, json })
+    } catch (err) {
+      throw new Error(`Cannot parse JSON file: ${filePath}`, {
+        cause: err,
+      })
+    }
   }
   return rawConfigPairs
 }
 
-export const validateConfigPairs = <T extends ZodObject>(
+const validateConfigPairs = <T extends ZodObject>(
   rawConfigPairs: RawConfigPair[],
   schema: T,
 ) => {
@@ -43,9 +54,10 @@ export const validateConfigPairs = <T extends ZodObject>(
       const validConfig = schema.parse(rawConfigPair.json)
       validConfigs.push(validConfig)
     } catch (err) {
-      throw new Error(`Parsing failed at ${rawConfigPair.filePath}`, {
-        cause: err,
-      })
+      throw new Error(
+        `Config does not match schema: ${rawConfigPair.filePath}`,
+        { cause: err },
+      )
     }
   }
   return validConfigs
