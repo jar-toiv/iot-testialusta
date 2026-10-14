@@ -133,7 +133,8 @@ konteksti, vaihtoehdot, päätös, seuraukset, todennus.
 
 - [ ] Suunnittelu ja laitevalinnat, ADR-0001…0021
 - [ ] Modbus-ketju pöydällä (mittari → Waveshare → kanta)
-- [ ] Kotelointi ja vian tuottopaneeli
+- [x] Kotelointi
+- [ ] Vian tuottopaneeli
 - [ ] CN105-luku ilmalämpöpumpusta (vain luku)
 - [ ] Etäkohteen käyttöönotto
 - [ ] Toistotila demoa varten

@@ -136,7 +136,8 @@ context, alternatives, decision, consequences, verification.
 
 - [ ] Design and device selection, ADR-0001…0021
 - [ ] Modbus chain on the bench (meter → Waveshare → database)
-- [ ] Enclosure and fault-injection panel
+- [x] Enclosure
+- [ ] Fault-injection panel
 - [ ] CN105 readout from the air-source heat pump (read-only)
 - [ ] Commissioning of the remote site
 - [ ] Replay mode for the demo
