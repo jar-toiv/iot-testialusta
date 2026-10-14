@@ -90,8 +90,13 @@ docs/
   adr/                ← architecture decisions, one file per decision
   design/             ← feature specs (requirements, design, tasks)
   vikaluettelo.md     ← observed and injected faults, metrics
+  images/             ← README images
+config/
+  gateways/           ← one file per gateway
+  profiles/           ← one register map per meter model
 src/                  ← drivers, pipeline (TypeScript)
-hardware/             ← wiring diagrams, shopping list
+tests/                ← vitest tests and their fixtures
+hardware/             ← one folder per device: records and manufacturer documents
 ```
 
 ## Running locally

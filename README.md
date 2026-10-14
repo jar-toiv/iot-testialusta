@@ -87,8 +87,13 @@ docs/
   adr/                ← arkkitehtuuripäätökset, yksi tiedosto per päätös
   design/             ← feature-speksit (requirements, design, tasks)
   vikaluettelo.md     ← havaitut ja tuotetut viat, mittarit
+  images/             ← README:n kuvat
+config/
+  gateways/           ← yksi tiedosto per yhdyskäytävä
+  profiles/           ← yksi rekisterikartta per mittarimalli
 src/                  ← ajurit, pipeline (TypeScript)
-hardware/             ← kytkentäkaaviot, hankintalista
+tests/                ← vitest-testit ja niiden fixturet
+hardware/             ← yksi kansio per laite: tiedot ja valmistajan dokumentit
 ```
 
 ## Ajaminen paikallisesti
