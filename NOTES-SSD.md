@@ -19,7 +19,7 @@ Every requirement traces to a measurement or an ADR.
 - initialized Kiro design with EARS notation. Starting to practice it.1
 
 - PRs: #24-#42 (12-9-26 ... 6-10-26), all from branch `feature/modbus-tcp-driver`
-- Status: config loading done (#39-#41), loader tested for a missing gateway or profile folder (6-10-26), driver not wired to it yet, `tasks.md` still an empty template
+- Status: config loading done (#39-#41), `requirements.md` accepted 14-10-26 with decisions D2, D4-D7, `design.md` next, driver not wired yet
 - Implemented: not yet
 
 ### Requirements (practice)

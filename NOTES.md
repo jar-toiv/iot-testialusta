@@ -3,6 +3,16 @@
 - This document should be updated after each PR
 
 
+### 14-10-26 (docs, Modbus driver requirements)
+- Plan for `driver.ts`: requirements -> design -> tasks -> tests -> code, one step at a time
+- Decisions now go in `docs/design/modbus-tcp-driver/decisions/`, one file each with a date
+- D2: 500 ms timeout, no retry inside a cycle for now. The meter's manual and Home Assistant both retry, so that is the planned change
+- D4: poll interval (1000 ms) and timeout live in the gateway file
+- D5: one register per request for now, block reads later (max 20 words per request)
+- D6: `type` alone gives the sign (`int32` / `uint32`), `signed` goes, `scale` stays a multiplier
+- D7: on every new connection read the meter's ID code and firmware, wrong ID gives BAD for all registers
+- `requirements.md` accepted, two new requirements REQ-MTD-011 and 012
+
 ### 12-10-26 (docs, straight to main)
 - Two cabinet photos in both READMEs, in `docs/images/`
 - Checked the photos for GPS and camera data in the Exif block before adding them (none found). Phone photos carry it by default
@@ -157,6 +167,9 @@ Findings:
 - `git branch -d` refuses after a squash merge, `-D` is fine once the content is confirmed in `main`
 - A comment that says why stops the next person from "fixing" a choice made on purpose
 - A merge brings in only what the branch changed: an old branch does not undo newer work on `main`
+- `int32` has a sign (2's complement), `uint32` does not. The same bits `FFFFFFFF` are -1 or 4 294 967 295
+- The data type comes from the datasheet's Data Format column, it is not chosen
+- A decision that departs from common practice says so, and says when it moves to it
 
 ## 19-9-26
 - Created first part of pseudo and first code for the driver `modbus-tcp.ts`.
