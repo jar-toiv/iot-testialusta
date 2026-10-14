@@ -1,4 +1,4 @@
-# ADR-0000: [Otsikko, päätös yhtenä lauseena, ei kysymyksenä]
+# ADR-0000: [Otsikko: päätös yhtenä väitelauseena]
 
 - **Tila:** Ehdotettu | Hyväksytty | Hylätty | Korvattu | Vanhentunut
 - **Päivämäärä:** YYYY-MM-DD
@@ -6,8 +6,8 @@
 
 ## Konteksti
 
-Mikä tilanne pakotti päätökseen? Mitkä rajoitteet ovat voimassa ? budjetti,
-osaaminen, käytettävissä oleva rauta, aika, turvallisuus?
+Mikä tilanne pakotti päätökseen? Mitkä rajoitteet ovat voimassa (budjetti,
+osaaminen, käytettävissä oleva rauta, aika, turvallisuus)?
 
 ## Vaihtoehdot
 
@@ -31,7 +31,7 @@ Perustelu kolmella lauseella tai vähemmän.
 **Hyvät**
 -
 
-**Huonot / hinta**  
+**Huonot / hinta**
 -
 
 **Mitä tämä sulkee pois myöhemmin**
