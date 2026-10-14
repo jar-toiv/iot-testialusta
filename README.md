@@ -77,7 +77,7 @@ Modbus-yhteytenä.
 🟢 toteutettu putkessa · 🟡 todennettu penkillä, ei putkikoodia · ⚪ suunniteltu
 
 Yhtään protokollaa ei ole vielä toteutettu putkessa: `src/` sisältää
-toistaiseksi vain scaffoldin. Modbus RTU ja TCP on todennettu penkillä
+konfiguraation lataajan testeineen, ajuria ei vielä ole. Modbus RTU ja TCP on todennettu penkillä
 (kaikki EM111:n rekisterit luettu Wavesharen kautta).
 
 ## Rakenne

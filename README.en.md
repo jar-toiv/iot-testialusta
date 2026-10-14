@@ -80,7 +80,7 @@ connection.
 ⚪ planned
 
 No protocol is implemented in the pipeline yet: `src/` currently contains
-only the scaffold. Modbus RTU and TCP are bench-verified (every EM111
+the config loader with its tests, no driver yet. Modbus RTU and TCP are bench-verified (every EM111
 register read through the Waveshare gateway).
 
 ## Structure
