@@ -3,21 +3,22 @@
 Source: `EM111_EM112_ET112_CP.pdf` (Communication Protocol, v2 rev14), see
 `sources.md`. All addresses below are "physical address" (word address in
 the Modbus frame), not the 6-digit Modicom notation the PDF also gives.
+Page numbers (p. N) are the PDF's own page footers.
 
 ## Transport
 
 - Protocol: Modbus RTU (slave only), functions 03h (read holding), 04h
-  (read input), 06h (write single holding register), 08h (diagnostic loopback, sub-function 0000h).
-- Max registers per read request: 50 words.
-- Byte order within a register: MSB, LSB.
-- 32-bit values the word order is LSW, MSW (low word first).
+  (read input), 06h (write single holding register), 08h (diagnostic loopback, sub-function 0000h). (p. 3)
+- Max registers per read request: 50 words. (p. 3)
+- Byte order within a register: MSB, LSB. (p. 7)
+- 32-bit values the word order is LSW, MSW (low word first). (p. 7)
 - RS485 bus must be terminated at both ends. On EM111 the far
   end is terminated by wiring terminal `8 (A)` to terminal `5 (T)` on the last
-  instrument on the bus.
+  instrument on the bus. (p. 6)
 - Typical answering time 40 ms, max 500 ms before a query should be
-  retried; after 2-3 unanswered queries treat as not connected.
+  retried; after 2-3 unanswered queries treat as not connected. (p. 6)
 
-## Serial port configuration registers (read/write)
+## Serial port configuration registers (read/write, p. 13)
 
 | Address | Register | Values |
 |---|---|---|
@@ -27,7 +28,7 @@ the Modbus frame), not the 6-digit Modicom notation the PDF also gives.
 | `2003h` | Stop bits | 1=1 (default) / 2=2, only valid if parity=none |
 | `2004h` | Max words per Modbus request | 50, read-only |
 
-## Identity
+## Identity (p. 11, p. 13-14)
 
 | Address | Register | Notes |
 |---|---|---|
@@ -37,7 +38,7 @@ the Modbus frame), not the 6-digit Modicom notation the PDF also gives.
 | `5000h`–`5006h` | Serial number, 7 ASCII chars | LSB of each word only |
 | `5010h` | Production year | Manufactured after 2018-10-01 only |
 
-## Instantaneous variables and meters (read-only, functions 03h/04h)
+## Instantaneous variables and meters (read-only, functions 03h/04h, p. 8)
 
 All INT32 unless noted. Values not listed as "n.a." in the source table for
 EM111 are included; the rest is not available on this model.
@@ -68,13 +69,15 @@ return 0. Not available on EM111.
 
 ## `000Bh` is claimed twice, so read width changes the answer
 
-The source lists `000Bh` as the identification code, and also lists `000Ah`
-W dmd as INT32, which spans `000Ah`–`000Bh`. The 2026-09-02 read shows both:
+The source lists `000Bh` as the identification code (p. 11), and also lists
+`000Ah` W dmd as INT32, which spans `000Ah`–`000Bh` (p. 8). The 2026-09-02
+read (origin not recorded) shows both:
 W dmd read as a 2-word pair gave `[86, 0]`, and `000Bh` read as a single
 word gave `103`. Same address, different value depending on how it was
 asked for.
 
-Driver consequence: read registers individually. Grouping several into one
+Project choice, not in the source: read registers individually. The source
+allows up to 50 words per request (p. 3). Grouping several into one
 multi-word request is an optimisation that would silently change this
 value, so it must not be added without re-verifying each register against
 an individual read.
@@ -83,4 +86,4 @@ an individual read.
 
 Not used by this project:
 M-Bus port register map, pulse output, digital input, tariff registers,
-reset commands.
+reset commands (p. 13).

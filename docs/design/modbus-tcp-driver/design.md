@@ -79,13 +79,9 @@ yet, so `npm run typecheck` still passes.
 ## Sequence: one poll cycle
 
 Simple mode, so every query reaches the meter and nothing is answered from a
-cache (ADR-0020). Registers are read one at a time rather than as one
-multi-word request, because `000Bh` answers differently depending on read
-width (`hardware/carlo-gavazzi-em111/configuration.md`).
-
-> [!NOTE]
-> A retry after an unanswered query is deliberately not drawn. It is undecided,
-> and requirements.md's open questions point at this file's D2 for it.
+cache (ADR-0020). Registers are read one at a time (`decisions/D5`). No
+retry within a cycle (`decisions/D2`). Both are first-version choices with a
+planned change recorded in the decision file.
 
 The driver is one participant here. Its internal split is the Components
 table, and `scheduler` appears only as what starts the cycle.
