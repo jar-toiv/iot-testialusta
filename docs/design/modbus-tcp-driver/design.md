@@ -211,10 +211,14 @@ case needs its own `code` field).
 
 ## Error handling and edge cases
 
-Not implemented yet -> happy path 1st.
-What happens when the happy path breaks? Be explicit about timeouts,
-malformed data, and what the system does when it genuinely doesn't know
-the answer (this is where the `UNCERTAIN` quality value earns its place).
+### Connection timeout
+
+Opening the connection uses `responseTimeoutMs`, the same limit as an answer.
+`modbus-serial` 8.0.25 sets one socket timeout for both (`ports/tcpport.js`,
+the `timeout` handler), and only if the client's `setTimeout` is called
+before `connectTCP` (`apis/connection.js`). Without it an unreachable gateway
+holds the cycle until the operating system gives up, against REQ-MTD-010.
+A failed open is REQ-MTD-008: every register `BAD`, `value: null`.
 
 ## Testing strategy
 Waiting for req 001
