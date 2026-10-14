@@ -27,11 +27,14 @@ hardware/
     device.md          identity, spec, factory defaults, as-found, as-left
     configuration.md   how to configure it, and which settings matter
     sources.md         every URL behind every claim
+    *.pdf, *.docx      manufacturer documents, the primary sources
 ```
 
 ## Index
 
 | Device | Slug | Related |
 |---|---|---|
-| Waveshare RS232/485/422 TO POE ETH (B), SKU 23626 | [waveshare-23626](waveshare-23626/device.md) | ADR-0010 |
+| Waveshare RS232/485/422 TO POE ETH (B), SKU 23626 | [waveshare-23626](waveshare-23626/device.md) | ADR-0020 (replaces ADR-0010) |
 | Carlo Gavazzi EM111-DIN.AV8.1.X.S1.X | [CG EM111-S1](carlo-gavazzi-em111/device.md) | ADR-0002 |
+| Teltonika TSW010 | [teltonika-tsw010](teltonika-tsw010/device.md) | |
+| ZTE 4G router, model to be filled in | [zte-4g-router](zte-4g-router/device.md) | |
