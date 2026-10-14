@@ -190,6 +190,24 @@ profile = {
 
 The list order is the read order within a cycle.
 
+### Inside: `registerReader` outcome
+
+A discriminated union. The driver turns each `kind` into a `Reading`, so
+these Modbus terms never leave the driver.
+
+```ts
+outcome =
+  | { kind: 'answer';    words: number[] }   // REQ-MTD-002
+  | { kind: 'timeout' }                      // REQ-MTD-003
+  | { kind: 'exception'; code: number }      // REQ-MTD-006, codes 01h-04h
+  | { kind: 'malformed' }                    // REQ-MTD-007
+```
+
+`registerReader` takes the Modbus client as a parameter instead of creating
+it, so tests can pass a fake client. Chosen over thrown errors (a missed
+`catch` stops the cycle) and over a `{ ok, error }` result (the exception
+case needs its own `code` field).
+
 
 ## Error handling and edge cases
 
