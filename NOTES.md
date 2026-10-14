@@ -15,6 +15,8 @@
 - READMEs brought up to date: scaffold note, structure block, roadmap (enclosure done), analog ESP32 removed from the diagram
 - `npm run driver:modbus` replaced by `npm start`, which runs `index.ts`. Drivers are chosen by config, not by separate scripts
 - `design.md`: four components (`scheduler`, `connection`, `registerReader`, `decoder`), gateway and profile shapes, and the four outcomes of one register read
+- Error handling: opening the connection uses the same `responseTimeoutMs`. `modbus-serial` has one socket timeout for both, set before `connectTCP`
+- Connection lost mid-cycle: put off until a cycle makes more than one request. `readRegister` and `readBlock` both get written and tested, the cycle uses only `readRegister`
 
 ### 12-10-26 (docs, straight to main)
 - Two cabinet photos in both READMEs, in `docs/images/`
