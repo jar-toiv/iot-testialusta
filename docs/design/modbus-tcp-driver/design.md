@@ -167,6 +167,29 @@ gateway = {
 
 Both timings sit on the gateway, not on a slave: one bus, one cycle clock.
 
+### In: profile
+
+`src/schemas/profile/profileSchema.ts`, without `signed` and with the
+identification code.
+
+```ts
+profile = {
+  name:               string
+  identificationCode: number  // D7, REQ-MTD-012
+  wordOrder:          'lowFirst' | 'highFirst'
+  registers: [{
+    id:    string             // becomes the reading's point
+    unit:  string
+    adr:   0-65535
+    count: number             // words, D5
+    type:  'int16' | 'uint16' | 'int32' | 'uint32'  // D6, carries the sign
+    scale: number             // D6, REQ-MTD-004
+  }]
+}
+```
+
+The list order is the read order within a cycle.
+
 
 ## Error handling and edge cases
 
