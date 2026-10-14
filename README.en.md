@@ -107,10 +107,10 @@ Requires Node.js 24.
 npm ci                  # install dependencies
 npm run build           # compile TypeScript
 npm test                # run the tests
-npm run driver:modbus   # build and start the Modbus TCP driver
+npm start               # build and start, loads and validates the configs
 ```
 
-`driver:modbus` reads its environment variables from `.env.development`.
+`start` reads its environment variables from `.env.development`.
 
 ## Environment variables
 
