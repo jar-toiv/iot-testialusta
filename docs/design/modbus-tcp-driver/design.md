@@ -220,6 +220,15 @@ before `connectTCP` (`apis/connection.js`). Without it an unreachable gateway
 holds the cycle until the operating system gives up, against REQ-MTD-010.
 A failed open is REQ-MTD-008: every register `BAD`, `value: null`.
 
+### Connection lost mid-cycle
+
+Cannot occur while a cycle is one request: the first version reads one
+register (D5). `readBlock` exists alongside `readRegister` and is tested on
+its own, but the cycle does not call it. Before a cycle makes more than one
+request, REQ-MTD-005 and REQ-MTD-008 must be reconciled: REQ-008 marks every
+register in the cycle `BAD` on a lost connection, REQ-005 keeps registers
+that already answered `GOOD`.
+
 ## Testing strategy
 Waiting for req 001
 Which REQ is proven how. Unit tests for logic that needs no hardware, bench
