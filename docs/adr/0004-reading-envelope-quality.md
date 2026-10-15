@@ -40,6 +40,15 @@ type Reading = {
 };
 ```
 
+Aikaleimat (`ts`), mallina OPC 10000-4 §7.11:
+
+- `ts.source`: laitteen oma mittausaika. Puuttuu, kun protokolla ei kanna
+  aikaa (Modbus, EM111). Vastaa OPC UA:n `sourceTimestamp`ia.
+- `ts.edge`: ajurin aika, kun vastaus saatiin tai aikakatkaisu laukesi.
+  Asetetaan aina, Pi:n kellosta. Lukeman ensisijainen aika.
+- `ts.ingest`: aika, jolloin vastaanottava palvelu tallensi lukeman. Vastaa
+  OPC UA:n `serverTimestamp`ia. `ingest - edge` näyttää puskurissa olon ajan.
+
 `TIMEOUT`: ei vastausta saatu, `value` on `null`, `quality` on `BAD`.
 `STALE`: vastaus saatiin, arvo raportoidaan,
 `quality` on `UNCERTAIN`, ks. seuraava osio.

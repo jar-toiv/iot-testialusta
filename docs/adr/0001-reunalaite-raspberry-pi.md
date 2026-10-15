@@ -51,8 +51,9 @@ pysäytä prosessia. Kriittinen ohjaus kuuluu PLC:lle, datankeruu edge-laitteell
 - Kuluttajaliittimet, ei ruuvikiinnitystä
 
 **Pakolliset lievennykset**
-- DS3231-RTC (~3 €): ilman sitä laite ei tiedä aikaa ennen verkkoyhteyttä,
-  mikä romuttaa kaksoisaikaleimauksen (ADR-0004) juuri sähkökatkon jälkeen
+- DS3231-RTC: Pi:llä ei ole paristokelloa. Sähkökatkon jälkeen ilman
+  verkkoa se ei tiedä aikaa, ja jokainen puskuroitu lukema saisi väärän
+  `ts.edge`-ajan (ADR-0004)
 - SSD USB 3.0:sta, ei microSD: aikasarjakannan kirjoituskuorma tappaa kortin
 - `bcm2835_wdt` ja systemd-vahtikoira käyttöön (0 €, yksi rivi)
 - Passiivinen jäähdytys, koska suljettu kotelo throttlaa
