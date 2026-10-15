@@ -34,7 +34,8 @@ type Reading = {
   value:      number | null;
   unit:       string;
   quality:    'GOOD' | 'UNCERTAIN' | 'BAD';
-  substatus?: 'TIMEOUT' | 'STALE';
+  substatus?: 'TIMEOUT' | 'STALE' | 'NO_CONNECTION' | 'EXCEPTION'
+            | 'MALFORMED' | 'WRONG_DEVICE' | 'NOT_IDENTIFIED';
   ts:         { source?: string; edge: string; ingest?: string };
 };
 ```
@@ -42,6 +43,30 @@ type Reading = {
 `TIMEOUT`: ei vastausta saatu, `value` on `null`, `quality` on `BAD`.
 `STALE`: vastaus saatiin, arvo raportoidaan,
 `quality` on `UNCERTAIN`, ks. seuraava osio.
+
+Modbus TCP:n oireet (2026-10-15). Substatus nimeää sen, minkä ajuri näki,
+ei arvausta syystä: sama oire voi johtua useasta viasta, ja syyn päättely
+kuuluu kerrokselle joka näkee monta lukemaa. Kaikissa `value` on `null` ja
+`quality` on `BAD`. Vaatimukset: `docs/design/modbus-tcp-driver/requirements.md`.
+
+| Substatus | Milloin | REQ-MTD | OPC UA -vastine |
+|---|---|---|---|
+| `NO_CONNECTION` | Gatewayn TCP-yhteys ei aukea tai katkeaa | 008 | `Bad_NotConnected` |
+| `TIMEOUT` | Rekisteri ei vastaa ajoissa | 003 | `Bad_NoCommunication` |
+| `EXCEPTION` | Modbus-poikkeusvastaus | 006 | `Bad_ConfigurationError` (01h-03h), `Bad_DeviceFailure` (04h) |
+| `MALFORMED` | Vastaus rikki tai väärän pituinen | 007 | `Bad_NoCommunication` |
+| `WRONG_DEVICE` | Tunnistuskoodi luettiin, mutta se on väärä | 012 | `Bad_ConfigurationError` |
+| `NOT_IDENTIFIED` | Tunnistusluku ei saanut vastausta | 013 | `Bad_NoCommunication` |
+
+OPC-sarake on vain vastaavuus, dataan menee vasemman sarakkeen nimi. Nimet
+OPC 10000-8 Table A.7:stä. `MALFORMED`in ja `NOT_IDENTIFIED`in vastine on
+oma sovitus. `WRONG_DEVICE` ja `NOT_IDENTIFIED` pidetään erillään, koska
+ensimmäinen korjataan profiilista tai osoitteesta, jälkimmäinen kaapelista
+tai laitteesta.
+
+Avoin: mittarin tila (tunnistettu, väärä, ei tunnistettu) omana viestinään,
+jotta frontti voi laskea tunnistetut mittarit. Kuuluu MQTT-nimiavaruuteen
+(ADR-0014), ei lukemaan.
 
 Envelooppi on yhteinen, koska vain ajurikerros saa tietää protokollan. Jos
 tyyppi pilkottaisiin protokollittain, normalisointi, laatuportti, puskuri ja
