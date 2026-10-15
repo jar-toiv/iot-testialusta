@@ -12,11 +12,15 @@
 - The expected code lives in the profile as `identificationCode`. EM111-DIN
   AV8 1 x S1 X is 103 (CP Table 2.6-2).
 - On a mismatch every register of that meter is emitted as `BAD`,
-  `value: null`, without substatus (as D1, D3). The process keeps running,
-  and the check runs again on the next connection.
+  `value: null`, without substatus (as D1, D3). The process keeps running.
 - A failed identification read (timeout, exception or malformed) gives the
-  same `BAD` readings, and the connection is closed so the next one repeats
-  the check (2026-10-15).
+  same `BAD` readings. This includes a failed firmware read after a
+  matching code: Victron `dbus-modbus-client` (`device.py`, `read_info`)
+  also drops the device when an info register read fails (2026-10-15).
+- Identification is per meter, the connection is per gateway. A meter that
+  fails either way retries its identification on each following cycle
+  instead of its registers. The connection stays open, so the other meters
+  behind the same gateway keep polling (2026-10-15).
 - Firmware version and revision travel with the readings as metadata. They
   are not polled.
 
