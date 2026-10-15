@@ -12,7 +12,7 @@
 - The expected code lives in the profile as `identificationCode`. EM111-DIN
   AV8 1 x S1 X is 103 (CP Table 2.6-2).
 - On a mismatch every register of that meter is emitted as `BAD`,
-  `value: null`, without substatus (as D1, D3). The process keeps running.
+  `value: null`, substatus `WRONG_DEVICE` (ADR-0004). The process keeps running.
 - A failed identification read (timeout, exception or malformed) gives the
   same `BAD` readings. This includes a failed firmware read after a
   matching code: Victron `dbus-modbus-client` (`device.py`, `read_info`)
