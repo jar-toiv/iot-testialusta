@@ -13,7 +13,7 @@
 | Component | Owns | Does not own |
 |---|---|---|
 | `scheduler` | The cycle clock: the configured polling interval, when the next cycle is due, and starting exactly one cycle at a time. | Error handling, Modbus protocol, connection state |
-| `connection` | Opening and closing the TCP connection, a new attempt each cycle while it is down, and identifying the meter on every new connection (D7). | The cycle clock, reading measurement registers |
+| `connection` | Opening and closing the TCP connection, a new attempt each cycle while it is down, and identifying each meter until it passes (D7). | The cycle clock, reading measurement registers |
 | `registerReader` | One request for one register (D5), the response timeout (D2), and classifying the outcome: answer, timeout, exception or malformed. | Decoding, quality per reading, the connection's life |
 | `decoder` | Raw words to a number: word order, `type`, `scale` (D6). A pure function, testable without hardware. | Anything on the wire |
 
@@ -101,41 +101,76 @@ planned change recorded in the decision file.
 The driver is one participant here. Its internal split is the Components
 table, and `scheduler` appears only as what starts the cycle.
 
+Three views, one concern each: the connection's life, one register read,
+and the path a request takes.
+
+### Connection life
+
+Two levels: the connection belongs to the gateway, identification to each
+meter. Each cycle the scheduler ticks, and what MTD emits depends on both.
+
+**Gateway connection**
+
+```mermaid
+%%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
+flowchart LR
+    D([Disconnected]) -- opened --> C([Connected])
+    C -- lost --> D
+```
+
+| State | Each cycle | REQ |
+|---|---|---|
+| Disconnected | Try to open. If the open fails, every register of every meter `BAD` | 008, 010 |
+| Connected | Each meter acts on its own state below | |
+
+**Each meter, while Connected**
+
+```mermaid
+%%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
+flowchart LR
+    U([Unidentified]) -- code ok --> I([Identified])
+    U -- code wrong --> W([WrongMeter])
+    W -- retry --> U
+```
+
+| State | Each cycle | REQ |
+|---|---|---|
+| Unidentified | Read `000Bh`, `0302h`, `0303h`. Any read fails: every register of this meter `BAD`, stay | 011, 013 |
+| Identified | One reading per register, see "One register read" | 002-007 |
+| WrongMeter | Every register of this meter `BAD`, then retry identification | 012 |
+
+Every meter starts Unidentified when the connection opens. A failed
+firmware read fails the whole identification, even when the code matched.
+One meter's failure never closes the connection, so the others keep
+polling (D7).
+
+### One register read
+
+```mermaid
+flowchart LR
+    R[read one register] --> T{answer within\nresponseTimeoutMs?}
+    T -- no --> TO[BAD, TIMEOUT\nREQ-MTD-003]
+    T -- yes --> E{exception?}
+    E -- yes --> EX[BAD\nREQ-MTD-006]
+    E -- no --> M{byte count\nand frame valid?}
+    M -- no --> MF[BAD, no partial decode\nREQ-MTD-007]
+    M -- yes --> G[decode, GOOD\nREQ-MTD-002, REQ-MTD-004]
+```
+
+Quality is decided per register, one reading each (REQ-MTD-005,
+REQ-MTD-009).
+
+### Request path
+
 ```mermaid
 sequenceDiagram
-    autonumber
     participant MTD as MTD driver
     participant GW as Waveshare gateway
     participant EM as EM111
-
-    Note over MTD: scheduler starts one cycle (REQ-MTD-001)
-
-    alt TCP connection unavailable (REQ-MTD-008)
-        MTD-->>MTD: one BAD reading per register, value null
-        Note over MTD: cycle clock keeps running (REQ-MTD-010)
-    else connection open
-        loop once per register in the group
-            MTD->>GW: Modbus TCP read, 03h or 04h, one register
-            GW->>EM: same request as Modbus RTU
-            Note over GW,EM: RS-485, typical answer 40 ms
-            alt answer within the response timeout
-                EM->>GW: RTU response
-                GW->>MTD: TCP response
-                alt exception response (REQ-MTD-006)
-                    MTD-->>MTD: BAD, value null
-                else byte count mismatch or malformed (REQ-MTD-007)
-                    MTD-->>MTD: BAD, value null, no partial decode
-                else well formed
-                    MTD-->>MTD: decode LSW/MSW, sign, weight (REQ-MTD-004)
-                    MTD-->>MTD: GOOD (REQ-MTD-002)
-                end
-            else no answer (REQ-MTD-003)
-                MTD-->>MTD: BAD, substatus TIMEOUT, value null
-            end
-        end
-    end
-
-    Note over MTD: one reading per register, quality decided per register (REQ-MTD-005, REQ-MTD-009)
+    MTD->>GW: Modbus TCP, 03h or 04h, one register
+    GW->>EM: same request as Modbus RTU over RS-485
+    EM->>GW: RTU response, typical 40 ms
+    GW->>MTD: TCP response
 ```
 
 ## Data model / interface
@@ -243,3 +278,14 @@ ones.
 
 Anything still unresolved that shouldn't block writing this doc, but
 should block marking it "Accepted".
+
+- **Daisy-chain break.** Meters past a break in the RS-485 chain go silent
+  while those before it answer, which reads as several meters dying. The
+  gateway config lists slaves without chain order, so the data cannot tell
+  the two apart.
+- **Second Modbus client.** The gateway accepts up to 30 TCP connections and
+  serves several hosts in its one-question-one-answer mode (Waveshare wiki).
+  A request queued behind another client's traffic can exceed
+  `responseTimeoutMs` and arrive as `TIMEOUT` with nothing broken. The
+  gateway's `QueryOneAckOneMaxWait` parameter bears on this and has not
+  been read.
