@@ -101,41 +101,61 @@ planned change recorded in the decision file.
 The driver is one participant here. Its internal split is the Components
 table, and `scheduler` appears only as what starts the cycle.
 
+Three views, one concern each: the connection's life, one register read,
+and the path a request takes.
+
+### Connection life
+
+Each cycle the scheduler ticks, and what MTD emits depends on the state.
+
+```mermaid
+%%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
+flowchart LR
+    D([Disconnected]) -- opened --> I([Identifying])
+    I -- code ok --> P([Polling])
+    I -- code wrong --> W([WrongMeter])
+    I -- no answer --> D
+    P -- lost --> D
+    W -- lost --> D
+```
+
+| State | Each cycle | REQ |
+|---|---|---|
+| Disconnected | Try to open. If the open fails, every register `BAD` | 008, 010 |
+| Identifying | Read `000Bh`, `0302h`, `0303h`. No valid answer: every register `BAD`, close | 011, 013 |
+| Polling | One reading per register, see "One register read" | 002-007 |
+| WrongMeter | Every register `BAD` | 012 |
+
+A failed firmware read (`0302h`, `0303h`) fails the whole identification,
+even when the code matched (D7).
+
+### One register read
+
+```mermaid
+flowchart LR
+    R[read one register] --> T{answer within\nresponseTimeoutMs?}
+    T -- no --> TO[BAD, TIMEOUT\nREQ-MTD-003]
+    T -- yes --> E{exception?}
+    E -- yes --> EX[BAD\nREQ-MTD-006]
+    E -- no --> M{byte count\nand frame valid?}
+    M -- no --> MF[BAD, no partial decode\nREQ-MTD-007]
+    M -- yes --> G[decode, GOOD\nREQ-MTD-002, REQ-MTD-004]
+```
+
+Quality is decided per register, one reading each (REQ-MTD-005,
+REQ-MTD-009).
+
+### Request path
+
 ```mermaid
 sequenceDiagram
-    autonumber
     participant MTD as MTD driver
     participant GW as Waveshare gateway
     participant EM as EM111
-
-    Note over MTD: scheduler starts one cycle (REQ-MTD-001)
-
-    alt TCP connection unavailable (REQ-MTD-008)
-        MTD-->>MTD: one BAD reading per register, value null
-        Note over MTD: cycle clock keeps running (REQ-MTD-010)
-    else connection open
-        loop once per register in the group
-            MTD->>GW: Modbus TCP read, 03h or 04h, one register
-            GW->>EM: same request as Modbus RTU
-            Note over GW,EM: RS-485, typical answer 40 ms
-            alt answer within the response timeout
-                EM->>GW: RTU response
-                GW->>MTD: TCP response
-                alt exception response (REQ-MTD-006)
-                    MTD-->>MTD: BAD, value null
-                else byte count mismatch or malformed (REQ-MTD-007)
-                    MTD-->>MTD: BAD, value null, no partial decode
-                else well formed
-                    MTD-->>MTD: decode LSW/MSW, sign, weight (REQ-MTD-004)
-                    MTD-->>MTD: GOOD (REQ-MTD-002)
-                end
-            else no answer (REQ-MTD-003)
-                MTD-->>MTD: BAD, substatus TIMEOUT, value null
-            end
-        end
-    end
-
-    Note over MTD: one reading per register, quality decided per register (REQ-MTD-005, REQ-MTD-009)
+    MTD->>GW: Modbus TCP, 03h or 04h, one register
+    GW->>EM: same request as Modbus RTU over RS-485
+    EM->>GW: RTU response, typical 40 ms
+    GW->>MTD: TCP response
 ```
 
 ## Data model / interface
@@ -243,3 +263,14 @@ ones.
 
 Anything still unresolved that shouldn't block writing this doc, but
 should block marking it "Accepted".
+
+- **Daisy-chain break.** Meters past a break in the RS-485 chain go silent
+  while those before it answer, which reads as several meters dying. The
+  gateway config lists slaves without chain order, so the data cannot tell
+  the two apart.
+- **Second Modbus client.** The gateway accepts up to 30 TCP connections and
+  serves several hosts in its one-question-one-answer mode (Waveshare wiki).
+  A request queued behind another client's traffic can exceed
+  `responseTimeoutMs` and arrive as `TIMEOUT` with nothing broken. The
+  gateway's `QueryOneAckOneMaxWait` parameter bears on this and has not
+  been read.
