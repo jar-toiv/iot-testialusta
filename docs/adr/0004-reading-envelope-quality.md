@@ -2,13 +2,12 @@
 
 - **Tila:** Ehdotettu
 - **Päivämäärä:** 2026-09-10
-- **Liittyy:** ADR-0002, ADR-0005, ADR-0016, ADR-0020
+- **Liittyy:** ADR-0010 (Korvattu), ADR-0014 (Ehdotettu), ADR-0020
 
 ## Konteksti
 
-Toteutettuja protokollapolkuja on yksi: EM111 Modbus TCP:llä
-Waveshare-yhdyskäytävän kautta (ADR-0020), penkkiajon vaiheet 1-5 ajettu ja
-29 rekisteriä ristiintarkistettu. Muilla suunnitelluilla protokollilla ei ole
+Penkillä on todennettu yksi protokollapolku, EM111 Modbus TCP:llä
+Waveshare-yhdyskäytävän kautta (ADR-0020). Muilla suunnitelluilla protokollilla ei ole
 ajuria eikä osalla laitettakaan. Tavallinen ratkaisu, protokollakohtainen
 try/catch, hukkaa virheet poikkeuksina, jolloin hiljainen vika ei näy
 kannassa lainkaan.
@@ -103,9 +102,11 @@ tuore. Hylätyt keinot:
 | V, A ja W ristiin | Todistaa fysikaalisen järkevyyden, ei tuoreutta |
 | Kasvava laskurirekisteri | EM111:llä ei ole, tuntilaskuri `002Ch` palauttaa nollaa |
 
-Jää siis sama raakalukema toistuvana, kun kyselyväli ylittää mittarin oman
-päivitysvälin (datalehti: 1 s). Alkuarvot ovat kolme lukemaa viiden sekunnin
-välein. Tulos on `UNCERTAIN` eikä koskaan `BAD`, koska aidosti tasainen
+Jää siis sama raakalukema toistuvana. Toisto kertoo jotain vain, kun
+vertailtavien lukemien väli on pidempi kuin mittarin oma päivitysväli
+(`EM111_DS_ENG.pdf` s. 4: "Data refresh time 1 s"), koska Simple-tilassa
+tiheämmin kysyttäessä sama arvo toistuu normaalisti (ADR-0020). Alkuarvot
+ovat kolme lukemaa viiden sekunnin välein. Tulos on `UNCERTAIN` eikä koskaan `BAD`, koska aidosti tasainen
 kuorma tuottaa saman havainnon eikä eroa voi todistaa ilman fyysistä
 tarkistusta. OPC UA:ssa sama luokka on `Uncertain_LastUsableValue`. Muisti
 edellisistä lukemista kuuluu laatuportille, ajuri pysyy tilattomana.
@@ -131,10 +132,13 @@ edellisistä lukemista kuuluu laatuportille, ajuri pysyy tilattomana.
   edes sitä mitä yksittäisen rekisterin epäonnistuneelle luvulle tapahtuu.
   Laatu- tai virhekenttää ei siis ole mistä ottaa, joten se ei tuota tämän
   päätöksen vaatimaa laatuleimattua lukemaa. Oma bridge on pakollinen.
-  Saman työkalun OPC UA -plugin sen sijaan kantaa `Quality`-kentän, eli
-  puute ei ole Telegrafissa vaan Modbusissa. Lähteet: Telegraf Modbus
-  Input Plugin README (influxdata/telegraf, master-haara) ja OPC UA
-  Input Plugin -dokumentaatio, tarkistettu 2026-09-10
+  Saman työkalun OPC UA -plugin välittää protokollan `StatusCode`n
+  `Quality`-kenttään (`input_client.go`). Modbus ei kanna arvokohtaista
+  tilaa (Application Protocol V1.1b §6.3), joten laatu pitää johtaa
+  epäonnistuneesta kyselystä, eikä Telegrafin Modbus-plugin tee sitä.
+  Lähteet: Telegraf Modbus Input Plugin README ja
+  `plugins/common/opcua/input/input_client.go` (influxdata/telegraf,
+  master-haara), tarkistettu 2026-10-15
 
 ## Todennus
 

@@ -16,6 +16,23 @@ Retrieved 2026-08-28.
 | ZLAN "The Modbus gateway can be configured" (ZL DUI 20190714) | https://www.zlan-iot.com/download/configurable_modbus_gateway_zlmb.pdf | ZLMB mode: gateway polls configured registers itself from power-on, Vircom steps, offline value 0 / special / hold, firmware requirements for ZLAN5143 and 7144 |
 | Wiki mirror (PDF) | https://www.emorex.co/wp-content/uploads/2024/12/RS232_485_422-TO-POE-ETH-B-Waveshare-Wiki.pdf | Confirms SKU 23626 and 24759 share this product page |
 
+## Read 2026-10-15 (via WebFetch)
+
+From the Waveshare wiki product page above, for the MTD design.md open
+questions:
+
+- RS485 terminals: "RS485 must be connected by the positive pole to the TA,
+  the negative pole to the TB". Terminal type and wires per terminal not
+  stated. No maximum device count on this page.
+- Termination: for long buses with several devices, 120 Ω resistors at each
+  end of the bus. For short distance "you can remove the two 120Ω terminal
+  matching resistors of RS422/RS485 and set the jumper cap to NC."
+- "It supports 30 TCP connections as a TCP server and 7 destination IPs as a
+  TCP client."
+- Multi-host: "In the query mode of one question and one answer, it supports
+  the network port to allow multiple computers".
+- Default Modbus mode is storage mode, which "will automatically train the
+  query commands".
 
 ## Software
 
