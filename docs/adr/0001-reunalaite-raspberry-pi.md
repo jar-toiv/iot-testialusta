@@ -2,7 +2,7 @@
 
 - **Tila:** Hyväksytty
 - **Päivämäärä:** 2026-08-28
-- **Liittyy:** —
+- **Liittyy:** ADR-0004 (Ehdotettu)
 
 ## Konteksti
 
@@ -47,7 +47,7 @@ pysäytä prosessia. Kriittinen ohjaus kuuluu PLC:lle, datankeruu edge-laitteell
 **Huonot / hinta**
 - Ei tietoturva- eikä saatavuustakuuta pitkällä aikavälillä
 - 0...50 °C kaupallinen lämpötila-alue
-- Ei EMC-häiriönsiedon sertifiointia — sähkökaapin lähellä riski
+- Ei EMC-häiriönsiedon sertifiointia, sähkökaapin lähellä riski
 - Kuluttajaliittimet, ei ruuvikiinnitystä
 
 **Pakolliset lievennykset**
@@ -63,4 +63,11 @@ pysäytä prosessia. Kriittinen ohjaus kuuluu PLC:lle, datankeruu edge-laitteell
 
 ## Todennus
 
-Seurataan laitteen käyttäytymistä kentällä ja mietitään korvaajaa, mikäli tulee tarvetta.
+Päätös kumotaan, jos jompikumpi ylittyy kentällä kuukauden aikana:
+
+- Kuristus tai lämpörajoitus on tapahtunut (`vcgencmd get_throttled`,
+  bitit 18 ja 19, [Raspberry Pi OS -dokumentaatio](https://www.raspberrypi.com/documentation/computers/os.html),
+  kohta `get_throttled`) yli `TBD` kertaa.
+- Odottamattomia uudelleenkäynnistyksiä on yli `TBD` (`journalctl --list-boots`).
+
+Korvaaja on passiivijäähdytteinen teollinen mini-PC.

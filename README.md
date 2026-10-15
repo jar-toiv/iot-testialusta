@@ -53,6 +53,9 @@ ESP32 (CN105) ──WiFi (Pi:n oma AP)──►  Pi 4B                  ▼
                                                         store-and-forward
 ```
 
+Kaavio näyttää tavoitetilan. Nyt broker ja kannat ajetaan Pi:llä
+(ADR-0001), ja siirto pilveen tehdään omalla ADR:llä.
+
 Kerrokset: **ajuri → normalisointi → laatuportti → puskuri → julkaisu.**
 
 TSW010 on hallitsematon kytkin, joten linkin tila ei näy ohjelmallisesti:

@@ -7,6 +7,7 @@
 - Failed identification read gives BAD for the whole meter (REQ-MTD-013). Victron and SunSpec also identify first
 - Identification is per meter and retried each cycle. Closing the gateway connection would stop every meter behind it
 - Connection life drawn as two small diagrams, gateway and meter
+- ADR-0001 review: Pi stays for now, cloud gets its own ADR. Replacement trigger is now measurable (throttling, unexpected reboots)
 - Substatus still open: it should name the symptom, the cause comes later from many readings
 - Feature specs live only on the feature branch
 

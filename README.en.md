@@ -55,6 +55,9 @@ ESP32 (CN105) ──  WiFi (Pi:n oma AP)──►  Pi 4B                ▼
                                                         store-and-forward
 ```
 
+The diagram shows the target. For now the broker and databases run on the
+Pi (ADR-0001), and the move to the cloud gets its own ADR.
+
 Layers: **driver → normalization → quality gate → buffer → publish.**
 
 The TSW010 is an unmanaged switch, so link state is not readable in
