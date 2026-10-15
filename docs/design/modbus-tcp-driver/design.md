@@ -13,7 +13,7 @@
 | Component | Owns | Does not own |
 |---|---|---|
 | `scheduler` | The cycle clock: the configured polling interval, when the next cycle is due, and starting exactly one cycle at a time. | Error handling, Modbus protocol, connection state |
-| `connection` | Opening and closing the TCP connection, a new attempt each cycle while it is down, and identifying the meter on every new connection (D7). | The cycle clock, reading measurement registers |
+| `connection` | Opening and closing the TCP connection, a new attempt each cycle while it is down, and identifying each meter until it passes (D7). | The cycle clock, reading measurement registers |
 | `registerReader` | One request for one register (D5), the response timeout (D2), and classifying the outcome: answer, timeout, exception or malformed. | Decoding, quality per reading, the connection's life |
 | `decoder` | Raw words to a number: word order, `type`, `scale` (D6). A pure function, testable without hardware. | Anything on the wire |
 
@@ -106,28 +106,43 @@ and the path a request takes.
 
 ### Connection life
 
-Each cycle the scheduler ticks, and what MTD emits depends on the state.
+Two levels: the connection belongs to the gateway, identification to each
+meter. Each cycle the scheduler ticks, and what MTD emits depends on both.
+
+**Gateway connection**
 
 ```mermaid
 %%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
 flowchart LR
-    D([Disconnected]) -- opened --> I([Identifying])
-    I -- code ok --> P([Polling])
-    I -- code wrong --> W([WrongMeter])
-    I -- no answer --> D
-    P -- lost --> D
-    W -- lost --> D
+    D([Disconnected]) -- opened --> C([Connected])
+    C -- lost --> D
 ```
 
 | State | Each cycle | REQ |
 |---|---|---|
-| Disconnected | Try to open. If the open fails, every register `BAD` | 008, 010 |
-| Identifying | Read `000Bh`, `0302h`, `0303h`. No valid answer: every register `BAD`, close | 011, 013 |
-| Polling | One reading per register, see "One register read" | 002-007 |
-| WrongMeter | Every register `BAD` | 012 |
+| Disconnected | Try to open. If the open fails, every register of every meter `BAD` | 008, 010 |
+| Connected | Each meter acts on its own state below | |
 
-A failed firmware read (`0302h`, `0303h`) fails the whole identification,
-even when the code matched (D7).
+**Each meter, while Connected**
+
+```mermaid
+%%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
+flowchart LR
+    U([Unidentified]) -- code ok --> I([Identified])
+    U -- code wrong --> W([WrongMeter])
+    W -- retry --> U
+```
+
+| State | Each cycle | REQ |
+|---|---|---|
+| Unidentified | Read `000Bh`, `0302h`, `0303h`. Any read fails: every register of this meter `BAD`, stay | 011, 013 |
+| Identified | One reading per register, see "One register read" | 002-007 |
+| WrongMeter | Every register of this meter `BAD`, then retry identification | 012 |
+
+Every meter starts Unidentified when the connection opens. A failed
+firmware read fails the whole identification, even when the code matched.
+One meter's failure never closes the connection, so the others keep
+polling (D7).
 
 ### One register read
 
