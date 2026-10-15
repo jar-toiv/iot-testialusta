@@ -18,6 +18,10 @@ the same session.
 PDFs are kept locally in `pdf/`, which git ignores (licences restrict
 redistribution). The quotes here are what the repo relies on.
 
+Planned, not done: save the full page text of each source in `raw/`
+(gitignored) and grep it instead of quoting through WebFetch. The hook
+would then match the `**URL:**` line exactly instead of any substring.
+
 | Source | File | Used by |
 |---|---|---|
 | Modbus Application Protocol V1.1b | [modbus-application-protocol.md](modbus-application-protocol.md) | ADR-0004, REQ-MTD-006, 007 |
@@ -27,5 +31,6 @@ redistribution). The quotes here are what the repo relies on.
 | Victron dbus-modbus-client | [victron-dbus-modbus-client.md](victron-dbus-modbus-client.md) | D7, REQ-MTD-013 |
 | pysunspec2 | [pysunspec2-scan.md](pysunspec2-scan.md) | D7 discussion, substatus |
 | node-red-contrib-modbus | [node-red-contrib-modbus-fsm.md](node-red-contrib-modbus-fsm.md) | MTD design.md connection diagram |
+| Claude Code hooks reference | [claude-code-hooks.md](claude-code-hooks.md) | `.claude/scripts` hooks |
 | Raspberry Pi `get_throttled` | [raspberry-pi-get-throttled.md](raspberry-pi-get-throttled.md) | ADR-0001 Todennus |
 | Waveshare RS232/485/422 TO POE ETH (B) wiki | `hardware/waveshare-23626/sources.md` | MTD design.md open questions |

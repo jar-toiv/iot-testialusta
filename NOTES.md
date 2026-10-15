@@ -8,7 +8,8 @@
 - Identification is per meter and retried each cycle. Closing the gateway connection would stop every meter behind it
 - Connection life drawn as two small diagrams, gateway and meter
 - ADR-0001 review: Pi stays for now, cloud gets its own ADR. Replacement trigger is now measurable (throttling, unexpected reboots)
-- Substatus still open: it should name the symptom, the cause comes later from many readings
+- Substatus decided in ADR-0004: names the symptom (`NO_CONNECTION`, `EXCEPTION`, `MALFORMED`, `WRONG_DEVICE`, `NOT_IDENTIFIED`), OPC UA names only as a mapping
+- ADR-0004 timestamps defined: `ts.source`, `ts.edge`, `ts.ingest`, after OPC UA
 - Feature specs live only on the feature branch
 
 ### 14-10-26 (docs, Modbus driver requirements)
