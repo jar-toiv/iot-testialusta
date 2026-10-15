@@ -3,6 +3,11 @@
 - This document should be updated after each PR
 
 
+### 15-10-26 (docs, Modbus driver error handling)
+- Failed identification read gives BAD for the whole meter (REQ-MTD-013). Victron and SunSpec also identify first
+- Substatus still open: it should name the symptom, the cause comes later from many readings
+- Feature specs live only on the feature branch
+
 ### 14-10-26 (docs, Modbus driver requirements)
 - Plan for `driver.ts`: requirements -> design -> tasks -> tests -> code, one step at a time
 - Decisions now go in `docs/design/modbus-tcp-driver/decisions/`, one file each with a date
