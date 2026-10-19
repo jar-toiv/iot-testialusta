@@ -3,11 +3,6 @@
 - **Related:** requirements.md, pseudo.md, ADR-0004 (draft), ADR-0020, ADR-0010
   (superseded, context only), ADR-0003
 
-### LOG
-- Log is for tracking requirements implementation from requirements.md
-
-1. Starting Requirements REQ-MTD-001 -- 15.9.26
-
 ## Components
 
 | Component | Owns | Does not own |
@@ -25,10 +20,6 @@
 | 004 | `decoder` |
 | 002, 005, 009 | The cycle `scheduler` starts: one reading per register, quality per register |
 
-Each component is a separate unit so that each can be tested on its own.
-Connection and register reading are split the way Home Assistant splits its
-modbus hub from its entities.
-
 `scheduler` serves REQ-MTD-001 and REQ-MTD-010. It holds the next due time and
 no previous readings. That absence is deliberate: remembering values is what
 `STALE` detection needs, and ADR-0004 gives `STALE` to the quality gate.
@@ -44,7 +35,6 @@ overlapping cycle of our own is the same collision, by inference.
 
 NFR-MTD-001 is the only measurable claim about `scheduler`, and its tolerance
 has no source yet.
-
 
 ## Implementation considerations
 
@@ -78,19 +68,6 @@ weight in this project's own code either way.
 
 Other packages exist and were not compared.
 
-### TypeScript
-
-Both libraries ship their own declarations, so neither needs `@types`.
-`jsmodbus` generates them from its TypeScript source, `modbus-serial` keeps a
-hand-written `index.d.ts` that can drift from the implementation. Both are
-CommonJS with no `exports` field, and this package is `"type": "module"`, so
-import them as a default import.
-
-`tsconfig.json` needs `"types": ["node"]` before the first timer is written.
-TypeScript 6 changed the default to `[]`, and `setInterval` and `Buffer` come
-from `@types/node`, not from `lib`. Untested: nothing here uses a Node global
-yet, so `npm run typecheck` still passes.
-
 ## Sequence: one poll cycle
 
 Simple mode, so every query reaches the meter and nothing is answered from a
@@ -115,29 +92,30 @@ meter. Each cycle the scheduler ticks, and what MTD emits depends on both.
 %%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
 flowchart LR
     D([Disconnected]) -- opened --> C([Connected])
+    D -- open fails --> D
     C -- lost --> D
 ```
 
 | State | Each cycle | REQ |
 |---|---|---|
-| Disconnected | Try to open. If the open fails, every register of every meter `BAD` | 008, 010 |
+| Disconnected | Try to open. If the open fails, every register of every meter `BAD`, `NO_CONNECTION` | 008, 010 |
 | Connected | Each meter acts on its own state below | |
 
 **Each meter, while Connected**
 
 ```mermaid
 %%{init: {'theme':'neutral', 'flowchart': {'curve':'linear'}}}%%
-flowchart LR
-    U([Unidentified]) -- code ok --> I([Identified])
+flowchart TB
+    U([Unidentified<br/>read fails: stay]) -- all three ok --> I([Identified])
     U -- code wrong --> W([WrongMeter])
     W -- retry --> U
 ```
 
 | State | Each cycle | REQ |
 |---|---|---|
-| Unidentified | Read `000Bh`, `0302h`, `0303h`. Any read fails: every register of this meter `BAD`, stay | 011, 013 |
+| Unidentified | Read `000Bh`, `0302h`, `0303h`. Any read fails: every register of this meter `BAD`, `NOT_IDENTIFIED`, stay | 011, 013 |
 | Identified | One reading per register, see "One register read" | 002-007 |
-| WrongMeter | Every register of this meter `BAD`, then retry identification | 012 |
+| WrongMeter | Every register of this meter `BAD`, `WRONG_DEVICE`, then retry identification | 012 |
 
 Every meter starts Unidentified when the connection opens. A failed
 firmware read fails the whole identification, even when the code matched.
@@ -151,9 +129,9 @@ flowchart LR
     R[read one register] --> T{answer within\nresponseTimeoutMs?}
     T -- no --> TO[BAD, TIMEOUT\nREQ-MTD-003]
     T -- yes --> E{exception?}
-    E -- yes --> EX[BAD\nREQ-MTD-006]
+    E -- yes --> EX[BAD, EXCEPTION\nREQ-MTD-006]
     E -- no --> M{byte count\nand frame valid?}
-    M -- no --> MF[BAD, no partial decode\nREQ-MTD-007]
+    M -- no --> MF[BAD, MALFORMED\nno partial decode\nREQ-MTD-007]
     M -- yes --> G[decode, GOOD\nREQ-MTD-002, REQ-MTD-004]
 ```
 
@@ -264,6 +242,19 @@ request, REQ-MTD-005 and REQ-MTD-008 must be reconciled: REQ-008 marks every
 register in the cycle `BAD` on a lost connection, REQ-005 keeps registers
 that already answered `GOOD`.
 
+### Identification read fails
+
+`connection` identifies each meter (D7). Identification stops at the first
+failed request, and the meter's registers are emitted as REQ-MTD-013 states.
+The next cycle restarts that meter's identification from the first request.
+
+### Cycle overrun
+
+`scheduler` never starts a cycle while one runs (ADR-0020). Starts missed
+during an overrun are skipped, and the next cycle starts at its next due
+time. Each overrun is reported as telemetry. A timeout does not stop the
+cycle: every register is read (REQ-MTD-005).
+
 ## Testing strategy
 Waiting for req 001
 Which REQ is proven how. Unit tests for logic that needs no hardware, bench
@@ -289,3 +280,7 @@ should block marking it "Accepted".
   `responseTimeoutMs` and arrive as `TIMEOUT` with nothing broken. The
   gateway's `QueryOneAckOneMaxWait` parameter bears on this and has not
   been read.
+- **Overrun telemetry.** An overrun concerns the gateway's cycle, every meter
+  behind it, and the values read are still valid. It needs its own message,
+  whose format is not decided. Decided together with the meter status
+  message (ADR-0004, open).
