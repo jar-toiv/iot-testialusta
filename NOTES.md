@@ -2,6 +2,11 @@
 
 - This document should be updated after each PR
 
+### 19-10-26 (docs, Modbus driver error handling)
+- Identification stops at the first failed request, and the next cycle starts it over.
+- Cycle overrun: missed starts are skipped and the next cycle waits for its own time. Cycles never overlap on the bus
+- A timeout does not stop the cycle. Every register is still read, because REQ-MTD-005 forbids marking unread registers BAD
+- Overrun is reported as telemetry. Its message format waits for the meter status message (ADR-0004)
 
 ### 15-10-26 (docs, Modbus driver error handling, PR #55, #56)
 - Failed identification read gives BAD for the whole meter (REQ-MTD-013). Victron and SunSpec also identify first

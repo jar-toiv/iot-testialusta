@@ -34,3 +34,5 @@ would then match the `**URL:**` line exactly instead of any substring.
 | Claude Code hooks reference | [claude-code-hooks.md](claude-code-hooks.md) | `.claude/scripts` hooks |
 | Raspberry Pi `get_throttled` | [raspberry-pi-get-throttled.md](raspberry-pi-get-throttled.md) | ADR-0001 Todennus |
 | Waveshare RS232/485/422 TO POE ETH (B) wiki | `hardware/waveshare-23626/sources.md` | MTD design.md open questions |
+| Telegraf agent, gather overrun | [telegraf-agent-gather-overrun.md](telegraf-agent-gather-overrun.md) | MTD design.md cycle overrun |
+| Java `ScheduledExecutorService` | [java-scheduledexecutorservice.md](java-scheduledexecutorservice.md) | MTD design.md cycle overrun |
