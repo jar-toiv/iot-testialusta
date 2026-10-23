@@ -2,6 +2,8 @@
 /instructions
 /docs/bringup*
 /docs/architecture.md
+/docs/SDD_KIRO_DEPRICATED_SWITCHED_TO_SPEC-kit/
+.specify
 
 # ENV
 .env.*
@@ -13,7 +15,6 @@
 /CLAUDE.md
 /CLAUDE.local.md
 /claude_*.md
-/docs/claude/
 /docs/INDEX.md
 /.ignore
 
