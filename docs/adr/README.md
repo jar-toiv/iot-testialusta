@@ -41,11 +41,9 @@ punninta ovat aitoja. Muoto ja tilamerkinnät ovat ne jotka eivät vielä pidä.
    ei ole päätös, se on toteamus.
 3. **Kirjoita seuraukset rehellisesti, myös huonot.** Jokaisella valinnalla on
    hinta. Sen nimeäminen on uskottavuuden lähde, ei heikkous.
-4. **Älä muokkaa hyväksytyn ADR:n päätöstä tai seurauksia.** Jos päätös
-   muuttuu, kirjoita uusi ADR ja merkitse vanha `Korvattu (ks. ADR-XXXX)`.
-   Poikkeus: `Liittyy`-kenttää saa täydentää jälkikäteen (sääntö 6). Se ei
-   muuta päätöstä, vaan paljastaa yhteyden joka ei ollut tiedossa
-   kirjoitushetkellä.
+4. **Muuttunut päätös on uusi ADR.** Jos päätös muuttuu, kirjoita uusi ADR
+   ja merkitse vanha `Korvattu (ks. ADR-XXXX)`. Virheet, kuten väärät
+   osanumerot, hinnat tai kieli, korjataan suoraan.
 5. **Numerointi juoksee, ei täytetä aukkoja.**
 6. **`Liittyy` on vahvistettu, ei arvattu.** Viittaus lisätään vasta kun se on
    luettu ja tarkistettu, ja se perustellaan ADR:n tekstissä eikä pelkkänä
@@ -66,7 +64,7 @@ punninta ovat aitoja. Muoto ja tilamerkinnät ovat ne jotka eivät vielä pidä.
 
 - raha on käytetty tai laite on hyllyssä
 - päätöstä toteuttava koodi on olemassa
-- päätös on todennettu mittauksella, ja `Todennus` kertoo miten se mitattiin
+- päätös on todennettu mittauksella
 
 Muutoin `Ehdotettu`. Tämä koskee myös ADR:ää joka tuntuu itsestäänselvältä:
 hyvä perustelu ei ole sama asia kuin todennus.
@@ -80,14 +78,14 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | # | Otsikko | Tila | GitHubissa |
 |---|---|---|---|
 | [0001](0001-reunalaite-raspberry-pi.md) | Reunalaitteeksi Raspberry Pi 4B, ei teollista ohjainta | Hyväksytty | ✅ |
-| [0002](0002-Modbus-RTU-ja-M-bus-orja.md) | Kaksi eri valmistajaa yhden sijaan | Hyväksytty | ✅ |
+| [0002](0002-Modbus-RTU-ja-M-bus-orja.md) | Modbus- ja M-Bus-mittarit kahdelta eri valmistajalta | Hyväksytty | ✅ |
 | [0003](0003-omat-parserit.md) | Omat protokollaparserit, ei valmista yhdyskäytävää | Ehdotettu | luonnos |
 | [0004](0004-reading-envelope-quality.md) | Yksi mittausenvelooppi kaikille ajureille, substatus vain todennetuista vioista | Ehdotettu | luonnos |
 | [0005](0005-fyysinen-vian-tuotto.md) | Fyysinen vian tuottopaneeli | Ehdotettu | ✅ |
 | [0006](0006-verkkovikojen-simulointi.md) | Verkkovikojen simulointi netemillä + ristiintestaus oikeaa linkkiä vasten | Ehdotettu | luonnos |
 | [0007](0007-ei-erillista-4g-reititinta.md) | Ei erillistä 4G-reititintä ensimmäisessä vaiheessa | Ehdotettu | luonnos |
 | [0008](0008-toistotila.md) | Toistotila demon riippumattomuuden takaamiseksi | Ehdotettu | luonnos |
-| [0009](0009-kotelo-ja-sahkonsyotto.md) | Ryhmäkeskus koteloksi, ei pistokemuuntajia sisällä | Hyväksytty | ✅ |
+| [0009](0009-kotelo-ja-sahkonsyotto.md) | Gewiss GW40104BS -moduulikotelo keskukseksi | Hyväksytty | ✅ |
 | [0010](0010-waveshare-modbus-tcp.md) | Waveshare-sarjapalvelin Modbus TCP -tasoksi | Hyväksytty | ✅ |
 | [0011](0011-cn105-takaisinmallinnettu.md) | CN105 takaisinmallinnettuna protokollana standardin vastaparina | Ehdotettu | luonnos |
 | [0012](0012-wm-bus-rajaus.md) | wM-Bus-vastaanoton eettinen ja oikeudellinen rajaus | Ehdotettu | luonnos |
@@ -99,6 +97,8 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | [0018](0018-uloslahteva-komentokanava.md) | Uloslähtevä MQTT-komentokanava, ei sisääntulevaa yhteyttä | Ehdotettu | luonnos |
 | [0019](0019-pi-tarjoaa-etakohteelle-oman-wifi-tukiaseman-kohteen-infraa-ei-oleteta.md) | Pi tarjoaa etäkohteelle oman WiFi-tukiaseman, kohteen infraa ei oleteta | Ehdotettu | ✅ |
 | [0020](0020-waveshare-gateway-simple-tilaan.md) | Waveshare Simple-tilaan oletuksena, tallentava tila vain STALE-demoon| Hyväksytty | ✅ |
+| [0021](0021-rekisterikartta-json-zod-validointi.md) | Rekisterikartta pysyy JSON-datana ja validoidaan Zod-skeemaa vasten ajon aikana | Ehdotettu | luonnos |
+| [0022](0022-sdd-kirosta-spec-kitiin.md) | SDD-putki Kirosta GitHub spec-kitiin, vakiona | Ehdotettu | luonnos |
 
 ## Liittyvät dokumentit
 

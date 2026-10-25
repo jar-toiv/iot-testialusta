@@ -1,18 +1,17 @@
-# ADR-0002: Modbus RTU ja M-bus -orja
+# ADR-0002: Modbus- ja M-Bus-mittarit kahdelta eri valmistajalta
 
 - **Tila:** Hyväksytty
 - **Päivämäärä:** 2026-08-30
-- **Liittyy:** ADR-0010
+- **Liittyy:** —
 
 ## Konteksti
 
-Tarvitaan Modbus RTU -orja ja M-Bus-orja (myöhemmin). Tämä on ADR-0010:n
-Waveshare-yhdyskäytävän edellyttämä RS-485-orja.
+Tarvitaan Modbus RTU -orja ja M-Bus-orja (myöhemmin).
 
-Mahdollisuudet oli Modbus RTU: `Carlo Gavazzi EM111-DIN.AV8.1.X.S1.X` tai `(Eastron SDM120-Modbus)`.
-Carlo Gavazzin kaikki mallit oli saatavilla seuraavana päivänä ja on yleisesti käytettynä kiinteistöissä sähköauton lautausenergian kulutuksessa.
+Mahdollisuudet olivat Modbus RTU: `Carlo Gavazzi EM111-DIN.AV8.1.X.S1.X` tai `(Eastron SDM120-Modbus)`.
+Carlo Gavazzin kaikki mallit olivat saatavilla seuraavana päivänä tilattaessa.
 
-Mahdollisuudet M-Bus: Tätä ei vielä hankita. `(Eastron SDM120)` tulee todennäköisesti hankittua, koska se tarjoaa eri valmistajan. Gavazzilla on myös M-Bus-malli, tunnistettavissa tuotekoodin `M1`-osasta.
+Mahdollisuudet M-Bus: Tätä ei vielä hankita. `Eastron SDM120-MBus` tai Gavazzin M-Bus-malli (tuotekoodin `M1`-osa).
 
 ## Vaihtoehdot
 
@@ -20,26 +19,30 @@ Mahdollisuudet M-Bus: Tätä ei vielä hankita. `(Eastron SDM120)` tulee todenn�
 Yksi rekisterikartta, yksi datalehti, yksi konfigurointityökalu.
 Halvin ja nopein.
 
+Vastaan: ajurikerroksen abstraktio ei joudu koetukselle, kun molemmat
+laitteet ovat samalta valmistajalta.
+
 ### B: Carlo Gavazzi EM111 S1 (Modbus) + Eastron SDM120-MBus (M-Bus)
 Kaksi valmistajaa, kaksi dokumentaatiokulttuuria, kaksi rekisterikarttaa.
+
+### C: Kaksi Gavazzia (EM111 S1 + EM111 M1)
+Sama valmistaja, sama datalehti, EM111 on jo hyllyssä.
+
+Vastaan: ajurikerroksen abstraktio ei joudu koetukselle, kun molemmat
+laitteet ovat samalta valmistajalta.
 
 ## Päätös
 
 Valittiin **B**.
 
-Kaksi samanlaista laitetta ei todista ajurikerroksesta mitään. Abstraktio
-joutuu koetukselle vasta kun toteutukset eroavat. Molempien
-valmistajakohtaiset poikkeamat ovat jo tiedossa: Carlo Gavazzissa
-funktiokoodit 03h ja 04h palauttavat saman tuloksen vaikka standardi
-erottaa holding- ja input-rekisterit, ja Eastronilla on oma 32-bittisten
-liukulukujen sanajärjestyksensä. Kentällä laitekanta on aina sekalainen.
+Abstraktio joutuu koetukselle vasta kun toteutukset eroavat. Gavazzissa
+03h ja 04h palauttavat saman tuloksen (CP s. 3).
 
 ## Seuraukset
 
 **Hyvät**
 - Ajurikerroksen abstraktio joutuu oikeasti todistamaan itsensä
-- Kaksi aitoa "valmistajakohtaista kummallisuutta" demoon
-- Vastaa todellista kenttätilannetta
+- Lähteellinen valmistajakohtainen poikkeama demoon (Gavazzi 03h = 04h)
 
 **Huonot / hinta**
 - Kaksi datalehteä opeteltavaksi, kaksi konfigurointityökalua
