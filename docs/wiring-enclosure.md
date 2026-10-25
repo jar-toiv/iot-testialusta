@@ -2,7 +2,7 @@
 
 - **Revision:** 3
 - **Date:** 2026-10-25
-- **Related:** ADR-0009 (parts and branch-topology decision),
+- **Related:** ADR-0009 (enclosure choice),
   `docs/bringup-enclosure-assembly.md`
 
 ## Verification
@@ -95,3 +95,32 @@
 |---|---|---|---|
 | 1PWR2 | DIN power supply | Mean Well HDR-15-5 | 5 V 2.4 A 12 W |
 | 1PI1 | Single-board computer | Raspberry Pi 4B | |
+
+## Bill of materials
+
+| Part | Model/code | Role | excl. VAT (€) | VAT 25.5 % (€) |
+|---|---|---|---|---|
+| Modular enclosure, surface, 24-mod, IP65 | PC GW40104BS | Enclosure | 61.45 | 77.12 |
+| Terminal block WAGO 3N, blue, 2 pcs | 2002-1304 | Field wiring | 1.71 | 2.15 |
+| Terminal block WAGO, green-yellow, 2 pcs | 2002-1304 | " | 3.16 | 3.97 |
+| Terminal block WAGO, grey, 8 pcs | 2002-1304 | " | 6.82 | 8.56 |
+| Circuit breaker 1x10A, C curve | GW92006 | 1F1, DC supplies and RCD branch | 2.15 | 2.70 |
+| RCD 30mA/2x40A, type A | GWD4032 | Measured load branch | 29.29 | 36.76 |
+| DIN power supply 5V 2.4A 12W | Mean Well HDR-15-5 | Pi supply | 18.90 | 23.72 |
+| DIN power supply 24V 1.5A 30W | Mornsun LI30-20B24PR2 | Waveshare supply | (19.58) | (24.58) |
+| IEC C14 panel inlet, male, 10A 250V | GSD336-63 | Detachable mains cord | 3.20 | 4.02 |
+| Rocker switch 2-pole ON-OFF 16A, IP65, indicator | B448PUIP65 | Main switch | 4.90 | 6.15 |
+| ABB DIN socket | M1173 | Reserve for later additions | 12.00 | 15.06 |
+| Cable gland PG13.5, IP68, 6-12 mm, 3 pcs | WISKA HF-SKV | Strain relief for field cables | 6.00 | 7.53 |
+| **Total** | | | **149.58** | **187.72** |
+
+In parentheses: donated part, not included in the total. The price is a
+reference price for a current equivalent (Mean Well HDR-30-24).
+
+Price sources are deliberately not listed. The purchasing channel is kept
+private.
+
+## Open
+
+- Fuses to protect the 24 VDC and 5 VDC power supplies
+- Surge protection
