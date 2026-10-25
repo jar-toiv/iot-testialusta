@@ -2,6 +2,11 @@
 
 - This document should be updated after each PR
 
+### 25-10-26 (docs, ADR review)
+- ADR-0002 reviewed against the ADR rules. Titles now state the decision, unverified Liittyy links cleared
+- Gavazzi 03h = 04h confirmed from the manufacturer protocol PDF. Eastron's word order claim had no source and was dropped
+- ADR-0009 parts list moved to `wiring-enclosure.md`. ADR-0001 option B sourced from the Kunbus datasheet
+
 ### 19-10-26 (docs, Modbus driver error handling)
 - Identification stops at the first failed request, and the next cycle starts it over.
 - Cycle overrun: missed starts are skipped and the next cycle waits for its own time. Cycles never overlap on the bus
