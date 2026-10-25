@@ -9,8 +9,8 @@ The cabinet is later meant to be able to simulate faults that occur in the field
 
 <table>
   <tr>
-    <td><img src="docs/images/cabinet_powered_700kt.jpg" alt="The test cabinet powered up, door open" width="380"></td>
-    <td><img src="docs/images/cabinet_open_500kt.jpg" alt="The test cabinet wiring, no Raspberry Pi connected" width="380"></td>
+    <td><img src="docs/images/cabinet_closed.jpg" alt="The test cabinet powered up, door closed" width="380"></td>
+    <td><img src="docs/images/cabinet_open.jpg" alt="The test cabinet wiring, cover open" width="380"></td>
   </tr>
 </table>
 
