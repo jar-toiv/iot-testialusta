@@ -37,7 +37,7 @@ Perustelu kolmella lauseella tai vähemmän.
 **Mitä tämä sulkee pois myöhemmin**
 -
 
-## Todennus
+## Todennus (valinnainen)
 
-Miten tiedetään että päätös oli oikea tai väärä? Mitä mitataan, mitä
-katsotaan, milloin arvioidaan uudelleen?
+Miten tiedetään että päätös oli oikea tai väärä? Poista osio, jos sitä ei
+tarvita.
