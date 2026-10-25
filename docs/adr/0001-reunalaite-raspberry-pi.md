@@ -18,11 +18,10 @@ Raspberry Pi -korttia ei käytetä tehtaissa.
 ### A: Raspberry Pi 4B sellaisenaan
 Ilmainen, riittävä teho, tuttu ympäristö. Ei teollisia sertifiointeja. Ostettu lisäksi paristovarmennus RTC DS3231.
 
-### B: Kunbus Revolution Pi
-Sama Raspberry Pi -piiri, mutta EN 61131-2 -yhteensopiva DIN-kiskokotelo,
-CE- ja UL-sertifioitu, IEC 61000-6-2 EMC-häiriönsieto, -25...+60 °C, TPM 2.0,
-paristovarmennettu RTC, laitteistovahtikoira. Käytössä oikeasti valmistavassa
-teollisuudessa ja rakennusautomaatiossa. Hinta satoja euroja.
+### B: Kunbus RevPi Connect S
+Teollinen Pi 4B: DIN-kotelo, EN 61131-2, IEC 61000-6-2, CE, UL,
+-25...+55 °C, RTC, vahtikoira. Alkaen 418 € (alv 0).
+([lähde](../sources/revolution-pi.md))
 
 ### C: Teollinen PLC + erillinen edge-PC
 Oikeaoppisin, kallein, eniten työtä. Ei mahdu budjettiin.
