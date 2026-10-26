@@ -59,9 +59,8 @@ Säännöt nojaavat lähteisiin
    ymmärtäminen vaatii. Osaluettelot, kytkennät ja suunnitteluohjeet eivät
    kuulu ADR:ään, niihin linkitetään.
 8. **Jokaisella faktalla on lähde.** Laite-, standardi-, hinta- ja
-   mittausväite linkittää lähdetiedostoon (`docs/sources/`,
-   `hardware/*/sources.md`) tai on merkitty "(oma havainto)". Väite ilman
-   kumpaakaan ei kuulu ADR:ään.
+   mittausväite linkittää alkuperäiseen lähteeseen versioineen tai on
+   merkitty "(oma havainto)". Väite ilman kumpaakaan ei kuulu ADR:ään.
 
 ## Valmis-tarkistuslista
 
@@ -140,7 +139,7 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | [0019](0019-pi-tarjoaa-etakohteelle-oman-wifi-tukiaseman-kohteen-infraa-ei-oleteta.md) | Pi tarjoaa etäkohteelle oman WiFi-tukiaseman, kohteen infraa ei oleteta | Ehdotettu | ✅ |
 | [0020](0020-waveshare-gateway-simple-tilaan.md) | Waveshare Simple-tilaan oletuksena, tallentava tila vain STALE-demoon| Hyväksytty | ✅ |
 | [0021](0021-rekisterikartta-json-zod-validointi.md) | Rekisterikartta pysyy JSON-datana ja validoidaan Zod-skeemaa vasten ajon aikana | Ehdotettu | luonnos |
-| [0022](0022-sdd-kirosta-spec-kitiin.md) | SDD-putki Kirosta GitHub spec-kitiin, vakiona | Ehdotettu | luonnos |
+| [0022](0022-sdd-kirosta-openspeciin.md) | SDD-putki Kirosta OpenSpeciin | Ehdotettu | ✅ |
 
 ## Liittyvät dokumentit
 

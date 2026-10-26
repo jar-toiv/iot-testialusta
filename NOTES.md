@@ -1,5 +1,10 @@
 # What I did diary
 
+### 26-10-26 (docs, SDD tool)
+- SDD tool is OpenSpec (ADR-0022, proposed). Spec-kit removed
+- ADR facts link to the original source with its version
+- Sources index trimmed. Rows pointing to files outside git removed
+
 ### 26-10-26 (docs, ADR rules)
 - ADR template is now MADR 4.0.0 in Finnish
 - `docs/adr/README.md` has a ready checklist. Only the user sets an ADR to Hyväksytty
