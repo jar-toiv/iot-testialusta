@@ -28,6 +28,7 @@ would then match the `**URL:**` line exactly instead of any substring.
 | OPC UA Part 4, DataValue | [opc-ua-part4-datavalue.md](opc-ua-part4-datavalue.md) | ADR-0004 (`ts`, substatus) |
 | OPC UA Part 8, quality mapping | [opc-ua-part8-quality-mapping.md](opc-ua-part8-quality-mapping.md) | ADR-0004 (substatus table) |
 | Telegraf Modbus and OPC UA plugins | [telegraf-modbus-opcua.md](telegraf-modbus-opcua.md) | ADR-0004 |
+| Revolution Pi Connect family datasheet | [revolution-pi.md](revolution-pi.md) | ADR-0001 alternative B |
 | Victron dbus-modbus-client | [victron-dbus-modbus-client.md](victron-dbus-modbus-client.md) | D7, REQ-MTD-013 |
 | pysunspec2 | [pysunspec2-scan.md](pysunspec2-scan.md) | D7 discussion, substatus |
 | node-red-contrib-modbus | [node-red-contrib-modbus-fsm.md](node-red-contrib-modbus-fsm.md) | MTD design.md connection diagram |
