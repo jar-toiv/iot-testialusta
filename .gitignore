@@ -3,6 +3,7 @@
 /docs/bringup*
 /docs/architecture.md
 /docs/SDD_KIRO_DEPRICATED_SWITCHED_TO_SPEC-kit/
+/docs/sources/adr-practice.md
 .specify
 
 # ENV
