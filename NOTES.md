@@ -1,5 +1,10 @@
 # What I did diary
 
+### 26-10-26 (docs, ADR rules)
+- ADR template is now MADR 4.0.0 in Finnish
+- `docs/adr/README.md` has a ready checklist. Only the user sets an ADR to Hyväksytty
+- Every fact in an ADR needs a source or own observation. No parts lists or how-tos
+
 ### 25-10-26 (docs, ADR review)
 - ADR-0002 reviewed again. (against the rules, but
 its practising).
