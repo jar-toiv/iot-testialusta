@@ -1,43 +1,46 @@
-# ADR-0000: [Otsikko: päätös yhtenä väitelauseena]
+# ADR-0000: [Lyhyt otsikko: ratkaistu ongelma ja valittu ratkaisu]
 
 - **Tila:** Ehdotettu | Hyväksytty | Hylätty | Korvattu | Vanhentunut
 - **Päivämäärä:** YYYY-MM-DD
-- **Liittyy:** ADR-XXXX, ADR-YYYY
 
-## Konteksti
+## Konteksti ja ongelma
 
-Mikä tilanne pakotti päätökseen? Mitkä rajoitteet ovat voimassa (budjetti,
-osaaminen, käytettävissä oleva rauta, aika, turvallisuus)?
+Nykytila ja ratkaistava ongelma 2-3 lauseella. Ei päätöstä.
 
-## Vaihtoehdot
+<!-- Valinnainen. Poista, jos ei tarvita. -->
+## Päätöstekijät
 
-### A: [nimi]
-Mitä tämä olisi tarkoittanut. Puolesta ja vastaan.
+- [kriteeri, jolla vaihtoehtoja verrataan, esim. budjetti tai saatavuus]
 
-### B: [nimi]
-Sama.
+## Harkitut vaihtoehdot
 
-### C: [nimi]
-Sama.
+- A: [nimi]
+- B: [nimi]
 
 ## Päätös
 
-Valittiin **[A/B/C]**.
+Valittiin "[nimi]", koska [perustelu enintään kolmella lauseella,
+Kontekstin tai Päätöstekijöiden kriteereihin nojaten].
 
-Perustelu kolmella lauseella tai vähemmän.
+### Seuraukset
 
-## Seuraukset
+- Hyvä, koska [...]
+- Huono, koska [...]
 
-**Hyvät**
--
+## Vaihtoehtojen hyvät ja huonot puolet
 
-**Huonot / hinta**
--
+### A: [nimi]
 
-**Mitä tämä sulkee pois myöhemmin**
--
+- Hyvä, koska [...]
+- Huono, koska [...]
 
-## Todennus (valinnainen)
+### B: [nimi]
 
-Miten tiedetään että päätös oli oikea tai väärä? Poista osio, jos sitä ei
-tarvita.
+- Hyvä, koska [...]
+- Huono, koska [...]
+
+<!-- Valinnainen. Poista, jos ei tarvita. -->
+## Lisätietoa
+
+[Linkit lähteisiin ja dokumentteihin. Viittaus toiseen ADR:ään syineen
+(sääntö 6).]

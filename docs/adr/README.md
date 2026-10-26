@@ -35,6 +35,13 @@ punninta ovat aitoja. Muoto ja tilamerkinnät ovat ne jotka eivät vielä pidä.
 
 ## Säännöt
 
+Pohja on [MADR 4.0.0](https://github.com/adr/madr/tree/4.0.0) suomeksi.
+Säännöt nojaavat lähteisiin
+[Nygard 2011](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions),
+[Microsoft](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/architecture-decision-record),
+[Zimmermann 2023](https://www.ozimmer.ch/practices/2023/04/03/ADRCreation.html) ja
+[Zimmermann 2026](https://www.ozimmer.ch/practices/2026/09/12/ADRMistakes.html).
+
 1. **Yksi päätös per tiedosto.** Jos joudut kirjoittamaan "ja lisäksi",
    se on toinen ADR.
 2. **Kirjoita hylätyt vaihtoehdot auki.** Päätös ilman hylättyjä vaihtoehtoja
@@ -45,9 +52,44 @@ punninta ovat aitoja. Muoto ja tilamerkinnät ovat ne jotka eivät vielä pidä.
    ja merkitse vanha `Korvattu (ks. ADR-XXXX)`. Virheet, kuten väärät
    osanumerot, hinnat tai kieli, korjataan suoraan.
 5. **Numerointi juoksee, ei täytetä aukkoja.**
-6. **`Liittyy` on vahvistettu, ei arvattu.** Viittaus lisätään vasta kun se on
-   luettu ja tarkistettu, ja se perustellaan ADR:n tekstissä eikä pelkkänä
-   otsikkorivinä. Tyhjä `—` on parempi kuin viittaus johon ei voi luottaa.
+6. **Viittaus toiseen ADR:ään on vahvistettu, ei arvattu.** Se lisätään
+   vasta kun kohde on luettu, ja se kirjoitetaan Lisätietoa-osioon syineen.
+   Puuttuva viittaus on parempi kuin viittaus johon ei voi luottaa.
+7. **Lyhyt ja aiheessa.** Vain se, mitä päätöksen ja sen syyn
+   ymmärtäminen vaatii. Osaluettelot, kytkennät ja suunnitteluohjeet eivät
+   kuulu ADR:ään, niihin linkitetään.
+8. **Jokaisella faktalla on lähde.** Laite-, standardi-, hinta- ja
+   mittausväite linkittää lähdetiedostoon (`docs/sources/`,
+   `hardware/*/sources.md`) tai on merkitty "(oma havainto)". Väite ilman
+   kumpaakaan ei kuulu ADR:ään.
+
+## Valmis-tarkistuslista
+
+`/adr-review` tarkistaa nämä. ADR on valmis, kun jokainen kohta täyttyy.
+
+**Rakenne**
+- [ ] Osiot ja niiden järjestys vastaavat pohjaa.
+- [ ] Otsikko ja tila täsmäävät indeksiriviin.
+- [ ] Ei osaluetteloita, kytkentöjä tai ohjeita (sääntö 7).
+
+**Konteksti ja ongelma**
+- [ ] Kertoo nykytilan ja ratkaistavan ongelman 2-3 lauseella.
+- [ ] Ei sisällä päätöstä.
+
+**Harkitut vaihtoehdot**
+- [ ] Vähintään kaksi, ja jokainen oli aidosti harkittu.
+- [ ] Jokaisella on sekä hyvä että huono puoli.
+
+**Päätös**
+- [ ] Nimeää yhden vaihtoehdon, perustelu enintään kolme lausetta.
+- [ ] Perustelu nojaa Kontekstin tai Päätöstekijöiden kriteereihin, ei
+      pelkästään valitun vaihtoehdon ominaisuuksiin.
+- [ ] Seurauksissa on vähintään yksi "Huono, koska".
+
+**Koko ADR**
+- [ ] Sisältö vastaa otsikkoa, ei sivupolkuja.
+- [ ] Jokaisella faktalla on lähde tai "(oma havainto)" (sääntö 8).
+- [ ] Viittaukset ovat Lisätietoa-osiossa syineen (sääntö 6).
 
 ## Tilat
 
@@ -86,7 +128,7 @@ siitä miten laitetta käytetään. Sellainen ansaitaan mittauksella.
 | [0007](0007-ei-erillista-4g-reititinta.md) | Ei erillistä 4G-reititintä ensimmäisessä vaiheessa | Ehdotettu | luonnos |
 | [0008](0008-toistotila.md) | Toistotila demon riippumattomuuden takaamiseksi | Ehdotettu | luonnos |
 | [0009](0009-kotelo-ja-sahkonsyotto.md) | Gewiss GW40104BS -moduulikotelo keskukseksi | Hyväksytty | ✅ |
-| [0010](0010-waveshare-modbus-tcp.md) | Waveshare-sarjapalvelin Modbus TCP -tasoksi | Hyväksytty | ✅ |
+| [0010](0010-waveshare-modbus-tcp.md) | Waveshare-sarjapalvelin Modbus TCP -tasoksi | Korvattu | ✅ |
 | [0011](0011-cn105-takaisinmallinnettu.md) | CN105 takaisinmallinnettuna protokollana standardin vastaparina | Ehdotettu | luonnos |
 | [0012](0012-wm-bus-rajaus.md) | wM-Bus-vastaanoton eettinen ja oikeudellinen rajaus | Ehdotettu | luonnos |
 | [0013](0013-lora-point-to-point.md) | LoRa point-to-point, ei LoRaWAN-gatewaytä | Ehdotettu | luonnos |
