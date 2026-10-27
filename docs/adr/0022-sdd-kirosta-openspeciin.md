@@ -8,7 +8,7 @@
 SDD-putki rakennettiin Kiron spec-muodon päälle omilla agenteilla ja
 säännöillä. Putki osoittautui liian hankalaksi SDD:n opiskelun
 aloittamiseen, eikä omia sääntöjä voi tarkistaa mistään ulkoisesta
-lähteestä (oma havainto).
+lähteestä.
 
 ## Päätöstekijät
 
@@ -34,8 +34,6 @@ Se täyttää kaikki kolme päätöstekijää, spec-kit ei täytä kahta viimeis
 - Hyvä, koska projektiin ei tule toista ajoympäristöä.
 - Huono, koska OpenSpec kerää oletuksena käyttötilastoja. Ne kytketään pois
   asennuksessa (`openspec config set telemetry.enabled false`).
-- Huono, koska `/opsx:apply` toteuttaa taskit itse, kun projektissa
-  käyttäjä kirjoittaa koodin funktio kerrallaan.
 - Huono, koska vanhan putken työ ei siirry, vaan specit tehdään uudelleen.
 
 ## Vaihtoehtojen hyvät ja huonot puolet

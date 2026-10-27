@@ -10,7 +10,7 @@ Reunasolmun on ajettava Docker Composella Mosquitto, InfluxDB, MongoDB ja
 dashboard, sekä toimittava kaikkien kenttäväylien masterina. Käytettävissä on
 Raspberry Pi 4B (jo omistuksessa, 0 €).
 
-Vastaväite on aiheellinen ja se esitettiin projektin aikana suoraan:
+Vastaväite on aiheellinen:
 Raspberry Pi -korttia ei käytetä tehtaissa.
 
 ## Vaihtoehdot
