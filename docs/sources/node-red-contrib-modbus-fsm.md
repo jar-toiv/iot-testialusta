@@ -5,13 +5,13 @@
   `src/core/modbus-client-core.js`, read on `master`. Repo HEAD at time of
   writing: `84f1ab20dccb9409146cedc62a04ccf6a9c729f6` (HEAD may be a
   different branch than `master`, not checked)
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** MTD design.md, connection life diagram
 
 Library: `@xstate/fsm` (`require('@xstate/fsm')`, `createMachine`,
 `interpret`). `id: 'modbus'`, `initial: 'new'`.
 
-16 states. Transitions as restructured by WebFetch (not verbatim):
+16 states. Transitions restructured, not verbatim:
 
 | State | Event -> target |
 |---|---|

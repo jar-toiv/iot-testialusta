@@ -16,7 +16,7 @@ Retrieved 2026-08-28.
 | ZLAN "The Modbus gateway can be configured" (ZL DUI 20190714) | https://www.zlan-iot.com/download/configurable_modbus_gateway_zlmb.pdf | ZLMB mode: gateway polls configured registers itself from power-on, Vircom steps, offline value 0 / special / hold, firmware requirements for ZLAN5143 and 7144 |
 | Wiki mirror (PDF) | https://www.emorex.co/wp-content/uploads/2024/12/RS232_485_422-TO-POE-ETH-B-Waveshare-Wiki.pdf | Confirms SKU 23626 and 24759 share this product page |
 
-## Read 2026-10-15 (via WebFetch)
+## Read 2026-10-15
 
 From the Waveshare wiki product page above, for the MTD design.md open
 questions:

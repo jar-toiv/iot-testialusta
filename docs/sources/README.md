@@ -1,11 +1,10 @@
 # Sources
 
 Saved copies of external sources that decisions rest on, so they are not
-fetched again. Device datasheets stay in `hardware/<device>/`.
+retrieved again. Device datasheets stay in `hardware/<device>/`.
 
-`**Read:**` in each file says how the source was read. *By eye*: the page
-or PDF itself. *Via WebFetch*: a summarising model returned the quotes,
-not compared to the page.
+`**Read:**` in each file gives the read date. *By eye*: the page or PDF
+itself was compared.
 
 | Source | File | Used by |
 |---|---|---|

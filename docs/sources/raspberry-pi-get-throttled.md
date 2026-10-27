@@ -3,7 +3,7 @@
 - **Kind:** Primary
 - **URL:** https://www.raspberrypi.com/documentation/computers/os.html,
   section `get_throttled` under the `vcgencmd` utilities
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** ADR-0001 Todennus
 
 "Returns the throttled state of the system. This is a bit pattern. A bit

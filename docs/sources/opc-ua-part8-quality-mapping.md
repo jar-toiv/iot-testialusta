@@ -3,7 +3,7 @@
 - **Kind:** Primary
 - **Version:** OPC 10000-8 (version shown on the page not recorded)
 - **URL:** https://reference.opcfoundation.org/specs/OPC-10000-8/a-4-3-3
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** ADR-0004 (OPC UA column of the Modbus TCP substatus table)
 
 ## Table A.7, Quality mapping (OPC UA StatusCode -> OPC DA quality)

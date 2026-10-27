@@ -3,7 +3,7 @@
 - **Kind:** Primary (README and source code)
 - **Repo:** https://github.com/influxdata/telegraf, read on `master`.
   HEAD at time of writing: `2bac12a6a682e02f2ef42a43d40a259083892212`
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** ADR-0004 ("Mitä tämä sulkee pois", Telegraf paragraph)
 
 ## `plugins/inputs/modbus/README.md`

@@ -3,7 +3,7 @@
 - **Kind:** Primary
 - **Version:** OPC 10000-4 v1.05
 - **URL:** https://reference.opcfoundation.org/Core/Part4/v105/docs/7.11
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** ADR-0004 (`ts.source`, `ts.ingest`, quality per value)
 
 ## Table 131, DataValue
@@ -17,7 +17,7 @@
 
 (`sourcePicoSeconds` and `serverPicoSeconds` omitted.)
 
-## §7.11.3 and §7.11.4, as returned by WebFetch (paraphrase, not quotes)
+## §7.11.3 and §7.11.4 (paraphrase, not quotes)
 
 - sourceTimestamp is applied by the data source, reflects when the value or
   StatusCode last changed, is UTC, generated as close to the source as

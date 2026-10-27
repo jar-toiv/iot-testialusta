@@ -3,7 +3,7 @@
 - **Kind:** Primary (source code)
 - **Repo:** https://github.com/victronenergy/dbus-modbus-client, read on
   `master`. HEAD at time of writing: `fe12d8c9c30fab4310e16c10bbec0ced4ca9926f`
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** D7, REQ-MTD-013 (identify first, drop the device on failure)
 
 ## `carlo_gavazzi.py`

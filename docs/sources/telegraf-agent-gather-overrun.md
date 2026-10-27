@@ -3,7 +3,7 @@
 - **Kind:** Primary (source code)
 - **Repo:** https://github.com/influxdata/telegraf, file `agent/agent.go`,
   read on `master`. HEAD not recorded.
-- **Read:** 2026-10-19, via WebFetch
+- **Read:** 2026-10-19
 - **Used by:** MTD design.md, Error handling item 4 (cycle overrun)
 
 ## `agent/agent.go`, `gatherOnce`

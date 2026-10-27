@@ -3,7 +3,7 @@
 - **Kind:** Primary (official API reference)
 - **URL:** https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html
 - **Version:** Java SE 21
-- **Read:** 2026-10-19, via WebFetch
+- **Read:** 2026-10-19
 - **Used by:** MTD design.md, Error handling item 4 (cycle overrun)
 
 ## `scheduleAtFixedRate`

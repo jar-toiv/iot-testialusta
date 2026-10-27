@@ -4,7 +4,7 @@
 - **Repo:** https://github.com/sunspec/pysunspec2, file
   `sunspec2/modbus/client.py`, read on `master`. HEAD at time of writing:
   `8606a884c17a8d70d209dc4ef3898226687f03c5`
-- **Read:** 2026-10-15, via WebFetch
+- **Read:** 2026-10-15
 - **Used by:** D7 discussion (identify before reading), substatus discussion
   (no answer vs wrong device kept apart)
 
