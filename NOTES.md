@@ -1,5 +1,12 @@
 # What I did diary
 
+
+### 27-10-26 (docs, audit)
+- Docs never mention people. Facts carry a source or a verification status instead
+- Audited root, docs/, hardware/, src/, tests/, config/. ADR wording fixed.
+- TSW010 switch added to the enclosure wiring as 1ETH1 on 24 VDC
+- Tooling config comments cleaned up on a fix branch, merged via PR
+
 ### 26-10-26 (docs, SDD tool)
 - SDD tool is OpenSpec (ADR-0022, proposed). Spec-kit removed
 - ADR facts link to the original source with its version
