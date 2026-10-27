@@ -20,3 +20,5 @@ itself was compared.
 | Waveshare RS232/485/422 TO POE ETH (B) wiki | `hardware/waveshare-23626/sources.md` | old SDD (archived) |
 | Telegraf agent, gather overrun | [telegraf-agent-gather-overrun.md](telegraf-agent-gather-overrun.md) | old SDD (archived) |
 | Java `ScheduledExecutorService` | [java-scheduledexecutorservice.md](java-scheduledexecutorservice.md) | old SDD (archived) |
+| NetBox device type and device | [netbox-device-model.md](netbox-device-model.md) | hardware record structure |
+| NetBox devicetype-library validation | [netbox-devicetype-library.md](netbox-devicetype-library.md) | hardware record structure |

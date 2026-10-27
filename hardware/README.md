@@ -7,7 +7,7 @@ what it is supposed to be. Design decisions belong in `docs/adr/`.
 
 Standard as-found / as-left practice: **as-found** is what a device's
 settings were before anyone here touched it, **as-left** is what they were
-set to and when. A second-hand or previously-configured device may
+set to. Both carry a date. A second-hand or previously-configured device may
 carry settings from its last owner; without a record, a mismatch discovered
 later is unexplainable.
 
@@ -16,8 +16,9 @@ later is unexplainable.
 Documentation research and reading the physical unit are not the same thing.
 Every value carries one of:
 
-- **[MODEL]**  documented for this exact model, with a source
-- **[DEVICE]**  establishable only by reading the unit in front of you
+- **[MODEL]**  documented for this exact model, with a source and page
+- **[DEVICE]**  establishable only by reading the unit in front of you,
+  naming where: type plate, display, web UI or vendor tool
 
 ## Layout
 
