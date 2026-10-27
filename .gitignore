@@ -11,7 +11,7 @@
 !.env.example
 
 
-# Claude — personal configuration and notes, not project code.
+# Claude: personal configuration and notes, not project code.
 .claude
 /CLAUDE.md
 /CLAUDE.local.md
@@ -36,4 +36,5 @@ dist/
 /hardware/eastron-sdm120/eastronsdm120-musermanualv1.0.pdf
 /hardware/waveshare-23626/EN-RS485-TO-ETH-B-MQTT-and-json-user-manual2.pdf
 /hardware/waveshare-23626/RS485-TO-ETH-code-Serial-port-modification-parameters-and-hardware-TCPIP-protocol-stack.docx
+/hardware/teltonika-tsw010/Datasheet_TSW010_1.03.pdf
 /docs/sources/pdf/

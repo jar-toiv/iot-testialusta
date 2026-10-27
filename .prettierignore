@@ -2,10 +2,10 @@
 #
 # Markdown is excluded on purpose. proseWrap defaults to "preserve", so
 # prose would survive, but tables get re-aligned and list markers
-# normalised — and the ADR tables and CLAUDE.md's line budget are
+# normalised. The ADR tables and CLAUDE.md's line budget are
 # hand-tuned. Revisit only as a deliberate one-off reformat.
 #
-# Shell scripts are not a Prettier language at all; .claude/scripts/ is
+# Shell scripts are not a Prettier language at all, so .claude/scripts/ is
 # untouched either way.
 
 node_modules/

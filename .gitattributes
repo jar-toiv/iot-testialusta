@@ -2,8 +2,5 @@
 # is a Linux Pi, so git stores and checks out LF everywhere. This matches
 # Prettier's endOfLine: "lf" in .prettierrc, and is the setup Prettier's
 # own documentation prescribes for a repo that should contain only LF.
-#
-# CLAUDE.md scheduled this file "before committing the first shell script";
-# adding the formatter brought the same decision forward.
 
 * text=auto eol=lf
