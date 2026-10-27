@@ -1,7 +1,7 @@
 # Enclosure Wiring
 
-- **Revision:** 3
-- **Date:** 2026-10-25
+- **Revision:** 4
+- **Date:** 2026-10-26
 - **Related:** ADR-0009 (enclosure choice),
   `docs/bringup-enclosure-assembly.md`
 
@@ -23,6 +23,7 @@
 | 1 | 2026-09-09 | First version: main circuit, 5V and 24V DC circuits |
 | 2 | 2026-09-09 | Verification completed: checked against photo, checked against physical unit breaker by breaker, terminal numbers confirmed against datasheet/nameplate |
 | 3 | 2026-10-25 | Corrected to the physical unit: one breaker 1F1 feeds both the DC supplies and 1Q1 (there is no second breaker), RCD part number GWD4032, device designations added. Verification in progress: earth continuity and insulation resistance pending |
+| 4 | 2026-10-26 | TSW010 switch added on 1X: 24 VDC |
 
 ## Main circuit (230V AC)
 
@@ -58,7 +59,7 @@
 | 1PR1 | DIN socket (P30) | ABB M1173 | 16 A 250 V |
 
 
-## 24V DC circuit (Waveshare)
+## 24V DC circuit (Waveshare, switch)
 
 ```text
 1X: 230 VAC
@@ -67,7 +68,9 @@
            │
            └───24 V DC───► 1X: 24 VDC
                             │
-                            └──────► 1GTW1 Waveshare
+                            ├──────► 1GTW1 Waveshare
+                            │
+                            └──────► 1ETH1 Teltonika TSW010
 ```
 
 ### Devices
@@ -76,6 +79,7 @@
 |---|---|---|---|
 | 1PWR1 | DIN power supply | Mornsun LI30-20B24PR2 | 24 V 1.5 A 30 W |
 | 1GTW1 | RS-485 to Ethernet gateway | Waveshare 23626 | 6-36 V DC input |
+| 1ETH1 | Ethernet switch | Teltonika TSW010 | 9-30 V DC input |
 
 ## 5V DC circuit (Pi)
 
