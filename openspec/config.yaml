@@ -19,6 +19,17 @@ rules:
     - Every device fact (register, address, data type, scaling) names its
       source and page.
 
+operations:
+  apply:
+    guidance:
+      - Run `npm run typecheck` and `npm test` before marking a task
+        complete. Leave the task unchecked while either fails.
+      - When the implementation contradicts a spec or design.md, stop and
+        update the artifact first.
+  archive:
+    guidance:
+      - Archive on the feature branch before the PR merges.
+
 # Project context (optional)
 # Add only constraints that should guide OpenSpec artifacts and workflows.
 # Include constraints an agent cannot infer by reading the code.
