@@ -1,18 +1,23 @@
 schema: spec-driven
 
 context: |
-  - A change that touches CN105 includes a requirement and a test that the
-    heat pump is only read, never written.
-  - A change that touches wM-Bus includes a requirement and a test that
-    reception is limited to the project's own meters, never a wildcard.
+  - CN105 is read-only. The heat pump is never written to.
+  - wM-Bus receives only the project's own meters, never a wildcard.
 
 rules:
+  specs:
+    - A change that touches CN105 or wM-Bus has a requirement with a
+      scenario for that limit.
   design:
     - Every device fact (register, address, data type, scaling) names its
       source and page.
   tasks:
-    - The happy-path test comes first, then tests around it. No test
-      without a requirement it guards.
+    - The happy-path test comes first, then tests around it.
+    - Every test traces to a scenario in the specs.
+    - The CN105 and wM-Bus limits each have a test that runs, not only a
+      requirement.
+    - Every device fact (register, address, data type, scaling) names its
+      source and page.
 
 # Project context (optional)
 # Add only constraints that should guide OpenSpec artifacts and workflows.
