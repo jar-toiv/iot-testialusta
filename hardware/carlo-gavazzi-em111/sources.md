@@ -11,11 +11,11 @@ for traceability.
 | Source | Used for |
 |---|---|
 | Carlo Gavazzi product page (https://www.gavazziautomation.com/fi-fi/tuote/EM111DINAV81XS1X) | Landing page, links to all documents below |
-| EM111_DS_ENG.pdf (datasheet) | Electrical ratings, resolution, accuracy class, data refresh time 1 s (p. 4) |
-| EM111_EM112_ET112_CP.pdf (communication protocol, v2 rev14) | Modbus register map, serial port config registers |
-| EM111_IM.pdf (instruction manual) | Terminal wiring, factory defaults |
-| EM110-111-112DIN_CE.pdf | Declaration of conformity |
-| EM111_PIC.png | Reference photo |
+| EM111_DS_ENG.pdf (datasheet, "EM111 DS 070323"). The URL https://api.gavazziautomation.com/fileadmin/images/PIM/DATASHEET/ENG/EM111_DS_ENG.pdf served a newer revision, "EM111 DS 310826", on 2026-10-27 | Electrical ratings, resolution, accuracy class, data refresh time 1 s (p. 4) |
+| EM111_EM112_ET112_CP.pdf (communication protocol, v2 rev14). Own URL not found (2026-10-27) | Modbus register map, serial port config registers |
+| EM111_IM.pdf (instruction manual), https://api.gavazziautomation.com/fileadmin/images/PIM/MANUALS/ENG/EM111_IM.pdf, SHA-256 matches the local file (2026-10-27) | Terminal wiring, factory defaults |
+| EM110-111-112DIN_CE.pdf (declaration of conformity). Own URL not found (2026-10-27) | Declaration of conformity |
+| EM111_PIC.png, https://api.gavazziautomation.com/fileadmin/images/PIM/WEB/EM111_PIC.png | Reference photo |
 
 ## Software
 

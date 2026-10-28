@@ -20,14 +20,14 @@ CP = `EM111_EM112_ET112_CP.pdf`.
 
 | Field | Value | Confidence |
 |---|---|---|
-| Supply voltage | 230 V AC self, screw terminal | **[MODEL]** |
+| Supply voltage | 230 V AC, -30 % / +20 %, self-powered via measured voltage | **[MODEL]** IM, Technical data |
 | Rated current | 32 A | **[MODEL]** DS p. 1 |
 | Max current | 45 A | **[MODEL]** DS p. 1 |
-| Communication | RS485 serial port, screw term | **[MODEL]** |
-| Address | 1 - 247, (default) 1 | **[MODEL]** |
-| Serial baud rate | 9.6 / 19.2 / 38.4 / 57.6 / 115.2 kbps as steps, (default) 9.6  | **[MODEL]** |
-| Parity | none (default) / even | **[MODEL]** |
-| Stop bits | 1 (default) or 2; 2 only allowed if parity = none | **[MODEL]** |
+| Communication | RS485 serial port, screw terminals | **[MODEL]** DS p. 4 |
+| Address | 1 - 247, (default) 1 | **[MODEL]** DS p. 4 |
+| Serial baud rate | 9.6 / 19.2 / 38.4 / 57.6 / 115.2 kbps, (default) 9.6 | **[MODEL]** DS p. 4, CP p. 13 |
+| Parity | none (default) / even | **[MODEL]** DS p. 4, CP p. 13 |
+| Stop bits | 1 (default) or 2, 2 only allowed if parity = none | **[MODEL]** CP p. 13 |
 | Data refresh time | 1 s | **[MODEL]** `EM111_DS_ENG.pdf` p. 4 |
 
 ### Terminal labels
@@ -39,7 +39,8 @@ CP = `EM111_EM112_ET112_CP.pdf`.
 | `8` | A - |
 | `6` | B + |
 
-These terminals are for RS485 usage. see `sources.md`
+RS485 terminals, IM Fig. 5: "terminated on the last network device
+connecting terminals A- and T". **[MODEL]**
 
 ## Factory defaults
 
@@ -69,7 +70,7 @@ Matches factory defaults above and nothing was changed.
 
 | Field | As-found value | Verified how |
 |---|---|---|
-| Supply and measuring | `1F1:2` → `1Q1`, `1Q1:2` → terminal `1`, terminal `2` → `1PR1:L`, `1Q1:4` → `N` → `1PR1:N` | Inspected at the unit |
+| Supply and measuring | Between `1Q1` and `1PR1`, see `docs/wiring-enclosure.md` | Inspected at the unit |
 | RS485 termination | Terminals `5` and `8` bridged | Inspected at the unit |
 | RS485 bus | Wired to the Waveshare gateway as in the manufacturer wiring diagram | Inspected at the unit |
 | Tariff input `3`-`4` | Not connected | Inspected at the unit |

@@ -1,7 +1,7 @@
 # Enclosure Wiring
 
-- **Revision:** 4
-- **Date:** 2026-10-26
+- **Revision:** 5
+- **Date:** 2026-10-27
 - **Related:** ADR-0009 (enclosure choice),
   `docs/bringup-enclosure-assembly.md`
 
@@ -24,6 +24,7 @@
 | 2 | 2026-09-09 | Verification completed: checked against photo, checked against physical unit breaker by breaker, terminal numbers confirmed against datasheet/nameplate |
 | 3 | 2026-10-25 | Corrected to the physical unit: one breaker 1F1 feeds both the DC supplies and 1Q1 (there is no second breaker), RCD part number GWD4032, device designations added. Verification in progress: earth continuity and insulation resistance pending |
 | 4 | 2026-10-26 | TSW010 switch added on 1X: 24 VDC |
+| 5 | 2026-10-27 | EM111 added between 1Q1 and 1PR1, as inspected at the unit |
 
 ## Main circuit (230V AC)
 
@@ -38,13 +39,13 @@
                              │
                              ├───N────► N rail
                              │
-                             ├───N────► 1Q1 N ───────────────────► ABB suko N
+                             ├───N────► 1Q1 N, 4 ──────────► EM111 N ────────► 1PR1 N
                              │
-                             └───L────► 1F1 1→2
+                             └───L────► 1F1
                                          │
-                                         ├───L───► 1X: 230 VAC
+                                         ├──L──► 1X: 230 VAC
                                          │
-                                         └───L───► 1Q1 L 1→2 ───► ABB suko L
+                                         └──L──► 1Q1 L ────► (1) EM111 (2) ──► 1PR1 L
 ```
 
 ### Devices
@@ -57,6 +58,11 @@
 | 1F1 | Circuit breaker | GW92006 | 1x10A C |
 | 1Q1 | RCD | GWD4032 | 2x40A 30mA type A |
 | 1PR1 | DIN socket (P30) | ABB M1173 | 16 A 250 V |
+| 1EM1 | Energy meter | Carlo Gavazzi EM111DINAV81XS1X | 32 A rated, 45 A max |
+
+EM111 terminals 5 and 8 are bridged (bus termination). RS485 terminals go
+to 1GTW1 Waveshare. Tariff input 3-4 is not connected. Details:
+`hardware/carlo-gavazzi-em111/device.md`.
 
 
 ## 24V DC circuit (Waveshare, switch)
