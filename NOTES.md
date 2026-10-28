@@ -1,6 +1,14 @@
 # What I did diary
 
 
+### 27-10-28 (docs, hardware)
+- EM111 record corrected against the datasheet: role, 32 A rated / 45 A max, defaults, page numbers on model values
+- EM111 added to the enclosure wiring between 1Q1 and 1PR1 (rev 5)
+- Hardware README: as-found and as-left carry a date
+- `hardware-record` skill built
+- NetBox device type library read as the industry reference for the record structure
+
+
 ### 27-10-26 (docs, audit)
 - Docs never mention people. Facts carry a source or a verification status instead
 - Audited root, docs/, hardware/, src/, tests/, config/. ADR wording fixed.
