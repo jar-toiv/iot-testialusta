@@ -21,4 +21,5 @@ itself was compared.
 | Telegraf agent, gather overrun | [telegraf-agent-gather-overrun.md](telegraf-agent-gather-overrun.md) | old SDD (archived) |
 | Java `ScheduledExecutorService` | [java-scheduledexecutorservice.md](java-scheduledexecutorservice.md) | old SDD (archived) |
 | NetBox device type and device | [netbox-device-model.md](netbox-device-model.md) | hardware record structure |
+| Reconnect strategies (Telegraf, MQTT.js, pymodbus, paho, node-red-contrib-modbus, systemd) | [reconnect-strategies.md](reconnect-strategies.md) | `add-modbus-tcp-driver` |
 | NetBox devicetype-library validation | [netbox-devicetype-library.md](netbox-devicetype-library.md) | hardware record structure |

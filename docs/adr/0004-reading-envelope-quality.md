@@ -36,8 +36,15 @@ type Reading = {
   substatus?: 'TIMEOUT' | 'STALE' | 'NO_CONNECTION' | 'EXCEPTION'
             | 'MALFORMED' | 'WRONG_DEVICE' | 'NOT_IDENTIFIED';
   ts:         { source?: string; edge: string; ingest?: string };
+  detail?:    string;   // oireen raakatieto, esim. Modbus-poikkeuskoodi '02'
+  durationMs?: number;  // luvun kesto pyynnöstä vastaukseen tai aikakatkaisuun
 };
 ```
+
+Ajuri täyttää `source`, `value`, `unit`, `substatus`, `ts.edge`, `detail` ja
+`durationMs`. `quality`n asettaa laatuportti. Laatuportti ei lue `detail`ia,
+joten se ei tunne protokollan koodeja. `detail` on dashboardia ja vianhakua
+varten.
 
 Aikaleimat (`ts`), mallina OPC 10000-4 §7.11:
 
@@ -55,16 +62,21 @@ Aikaleimat (`ts`), mallina OPC 10000-4 §7.11:
 Modbus TCP:n oireet (2026-10-15). Substatus nimeää sen, minkä ajuri näki,
 ei arvausta syystä: sama oire voi johtua useasta viasta, ja syyn päättely
 kuuluu kerrokselle joka näkee monta lukemaa. Kaikissa `value` on `null` ja
-`quality` on `BAD`. Vaatimukset: `docs/design/modbus-tcp-driver/requirements.md`.
+`quality` on `BAD`.
 
-| Substatus | Milloin | REQ-MTD | OPC UA -vastine |
-|---|---|---|---|
-| `NO_CONNECTION` | Gatewayn TCP-yhteys ei aukea tai katkeaa | 008 | `Bad_NotConnected` |
-| `TIMEOUT` | Rekisteri ei vastaa ajoissa | 003 | `Bad_NoCommunication` |
-| `EXCEPTION` | Modbus-poikkeusvastaus | 006 | `Bad_ConfigurationError` (01h-03h), `Bad_DeviceFailure` (04h) |
-| `MALFORMED` | Vastaus rikki tai väärän pituinen | 007 | `Bad_NoCommunication` |
-| `WRONG_DEVICE` | Tunnistuskoodi luettiin, mutta se on väärä | 012 | `Bad_ConfigurationError` |
-| `NOT_IDENTIFIED` | Tunnistusluku ei saanut vastausta | 013 | `Bad_NoCommunication` |
+| Substatus | Milloin | OPC UA -vastine |
+|---|---|---|
+| `NO_CONNECTION` | Gatewayn TCP-yhteys ei aukea tai katkeaa | `Bad_NotConnected` |
+| `TIMEOUT` | Rekisteri ei vastaa ajoissa | `Bad_NoCommunication` |
+| `EXCEPTION` | Modbus-poikkeusvastaus, koodi `detail`issa | `Bad_ConfigurationError` (01h-03h), `Bad_DeviceFailure` (04h) |
+| `MALFORMED` | Vastaus rikki tai väärän pituinen | `Bad_NoCommunication` |
+| `WRONG_DEVICE` | Tunnistuskoodi luettiin, mutta se on väärä | `Bad_ConfigurationError` |
+| `NOT_IDENTIFIED` | Tunnistusluku ei saanut vastausta | `Bad_NoCommunication` |
+
+Gatewayn koodit 0Ah (path unavailable) ja 0Bh (target device failed to
+respond) ovat `EXCEPTION`, koska ajuri näki poikkeusvastauksen
+(Application Protocol V1.1b §7, `docs/sources/modbus-application-protocol.md`).
+Tämä gateway antaa väylän ollessa poikki `TIMEOUT`in eikä 0Bh:ta (ADR-0020).
 
 OPC-sarake on vain vastaavuus, dataan menee vasemman sarakkeen nimi. Nimet
 OPC 10000-8 Table A.7:stä. `MALFORMED`in ja `NOT_IDENTIFIED`in vastine on
@@ -74,7 +86,9 @@ tai laitteesta.
 
 Avoin: mittarin tila (tunnistettu, väärä, ei tunnistettu) omana viestinään,
 jotta frontti voi laskea tunnistetut mittarit. Kuuluu MQTT-nimiavaruuteen
-(ADR-0014), ei lukemaan.
+(ADR-0014), ei lukemaan. Samoin avoin: ajurin ylityslaskuri (kierros
+ohitettu, koska edellinen oli kesken) on ajurin oma tilaviesti, ei lukema.
+Viestin muoto on päättämättä.
 
 Envelooppi on yhteinen, koska vain ajurikerros saa tietää protokollan. Jos
 tyyppi pilkottaisiin protokollittain, normalisointi, laatuportti, puskuri ja
@@ -122,7 +136,8 @@ edellisistä lukemista kuuluu laatuportille, ajuri pysyy tilattomana.
   STALE:lle
 
 **Huonot / hinta**
-- Enemmän dataa kantaan, ja jokainen ajuri kirjoitetaan tähän muotoon
+- Enemmän dataa kantaan, ja jokainen ajuri tuottaa tämän muodon
+  `quality`a lukuun ottamatta
 - Dashboardin on osattava esittää kolme laatutasoa
 - Uusi protokolla vaatii oman ADR:n ennen kuin sen substatus on olemassa
 
