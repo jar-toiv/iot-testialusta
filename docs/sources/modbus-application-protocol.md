@@ -6,8 +6,7 @@
   (modbus.org, anleitung.smart-dog.eu).
 - **URL:** https://millenia.cars.aps.anl.gov/software/epics/Modbus_Application_Protocol_V1_1b.pdf
   (mirror, redirected from cars.uchicago.edu)
-- **Read:** 2026-10-15, by eye (PDF pages 15-16). §7: 2026-11-04, by eye
-  (PDF pages 48-50)
+- **Read:** 2026-10-15 (pp. 15-16), 2026-11-04 (pp. 48-50)
 - **Local copy:** `pdf/Modbus_Application_Protocol_V1_1b.pdf`
 - **Used by:** ADR-0004 (Telegraf paragraph), REQ-MTD-006, REQ-MTD-007,
   change `add-modbus-tcp-driver` (§7)

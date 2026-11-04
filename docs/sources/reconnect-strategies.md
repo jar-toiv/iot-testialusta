@@ -1,9 +1,8 @@
 # Reconnect strategies in client libraries
 
-- **Kind:** Primary (README, source code and man page), quotes extracted
-  with a fetch tool, not compared by eye
-- **Read:** 2026-11-04. Repos read on their default branch, HEAD not recorded.
-- **Used by:** change `add-modbus-tcp-driver` (connection recovery options)
+- **Kind:** Primary
+- **Read:** 2026-11-04
+- **Used by:** `add-modbus-tcp-driver`
 
 ## Telegraf Modbus input, `plugins/inputs/modbus/modbus.go`
 
