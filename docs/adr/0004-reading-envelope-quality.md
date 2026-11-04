@@ -1,6 +1,6 @@
 # ADR-0004: Yksi mittausenvelooppi kaikille ajureille, substatus vain todennetuista vioista
 
-- **Tila:** Ehdotettu
+- **Tila:** Hyväksytty
 - **Päivämäärä:** 2026-09-10
 - **Liittyy:** ADR-0010 (Korvattu), ADR-0014 (Ehdotettu), ADR-0020
 
