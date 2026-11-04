@@ -1,6 +1,13 @@
 # What I did diary
 
 
+### 04-11-26 (feat modbus-tcp-driver, proposal)
+- ADR-0004 aligned with the driver and quality gate split: driver names the symptom, quality gate sets `quality`
+- ADR-0004 set to Hyväksytty. Work continues on `feature/add-modbus-tcp-driver`
+- Driver boundary derived backwards from the `Reading` envelope: config in, readings out
+- proposal.md "What Changes" written
+- Next: name the capability in "Capabilities", then "Impact"
+
 ### 27-10-28 (docs, hardware)
 - EM111 record corrected against the datasheet: role, 32 A rated / 45 A max, defaults, page numbers on model values
 - EM111 added to the enclosure wiring between 1Q1 and 1PR1 (rev 5)
