@@ -1,5 +1,9 @@
 # What I did diary
 
+### 15-11-26 (feat modbus-tcp-driver, proposal and spec)
+- Finished Open Spec proposal.md and spec.md
+- Next: design.md
+
 
 ### 04-11-26 (feat modbus-tcp-driver, proposal)
 - ADR-0004 aligned with the driver and quality gate split: driver names the symptom, quality gate sets `quality`
